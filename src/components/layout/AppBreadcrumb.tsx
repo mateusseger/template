@@ -6,7 +6,7 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from "@/components/ui/_final/breadcrump"
+} from "@/components/ui/breadcrumb"
 import { Home } from "lucide-react"
 import { getMenuItemByUrl } from "@/core/constants/menu"
 

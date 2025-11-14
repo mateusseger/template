@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/_final/button"
+import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/useAuth"
 import { logout } from "@/core/auth/authService"
 import { LogOut } from "lucide-react"
-import { AppBreadcrumb } from "./AppBreadcrump"
-import { Avatar, AvatarFallback } from "@/components/ui/_final/avatar"
+import { AppBreadcrumb } from "./AppBreadcrumb"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,9 +11,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/_final/dropdown-menu"
-import { SidebarTrigger } from "@/components/ui/_final/sidebar"
-import { Separator } from "@/components/ui/_final/separator"
+} from "@/components/ui/dropdown-menu"
+import { SidebarTrigger } from "@/components/ui/sidebar"
+import { Separator } from "@/components/ui/separator"
 
 export function AppHeader() {
     const { user } = useAuth()

@@ -2,7 +2,7 @@ import { AppHeader } from "./AppHeader"
 import { AppSidebar } from "./AppSidebar"
 import { Outlet } from "react-router-dom"
 import { AppPageTransition } from "./AppPageTransition"
-import { SidebarProvider } from "../ui/_final/sidebar"
+import { SidebarProvider } from "../ui/sidebar"
 
 export function AppLayout() {
     return (

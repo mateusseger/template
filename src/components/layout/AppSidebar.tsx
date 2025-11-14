@@ -12,8 +12,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarRail,
-} from "@/components/ui/_final/sidebar"
-import { Button } from "@/components/ui/_final/button"
+} from "@/components/ui/sidebar"
+import { Button } from "@/components/ui/button"
 import { getVisibleMenuItems, type MenuItem } from "@/core/constants/menu"
 import { useAuth } from "@/hooks/useAuth"
 import { useTheme } from "@/themes"
@@ -21,7 +21,7 @@ import { cn } from "@/core/utils/cn"
 
 /**
  * AppSidebar - Sidebar principal da aplicação
- * 
+ *
  * Funcionalidades:
  * - Menu colapsável com ícones
  * - Suporte a submenus em painel lateral
