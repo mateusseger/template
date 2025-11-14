@@ -1,0 +1,696 @@
+# Instruções do Template React — v2.0 (React + Vite + TypeScript + Tailwind + shadcn/ui)
+
+## Objetivo
+Estas instruções são destinadas a qualquer assistente de código (ex.: GitHub Copilot, Cursor, Codeium, Tabnine, Claude Code).
+Devem ser seguidas com prioridade máxima ao desenvolver neste projeto.
+
+**Versão**: 2.0.0 (Revisado e Atualizado)
+**Data**: 13 de Novembro de 2024
+
+---
+
+## Stack Tecnológica
+
+### Core
+- **React 19** com TypeScript strict mode
+- **Vite 7** como build tool
+- **TypeScript 5.9** com configurações strict
+
+### UI e Estilização
+- **Tailwind CSS 4.x** para estilização
+- **shadcn/ui** para componentes (baseado em Radix UI)
+- **Lucide React** para ícones
+- Seguir **rigorosamente** os padrões do shadcn/ui
+- **Nunca customizar** estilos base sem necessidade
+
+### Autenticação
+- **OIDC Client** para SSO
+- **Mock de autenticação** via `VITE_DEV_AUTH_BYPASS`
+- **Sistema de roles** configurável
+
+### Data Fetching
+- **React Query (@tanstack/react-query)** para queries e mutations
+- **Axios** como cliente HTTP
+
+### Roteamento
+- **React Router DOM v7**
+- Rotas protegidas com verificação de roles
+- Suporte a hierarquia de permissões
+
+---
+
+## Estrutura de Pastas (REVISADA)
+
+```
+src/
+├── components/                # Componentes reutilizáveis
+│   ├── layout/               # Componentes de layout
+│   │   ├── AppLayout.tsx    # Layout principal (sidebar + header + content)
+│   │   ├── Header.tsx       # Cabeçalho da aplicação
+│   │   ├── Sidebar.tsx      # Menu lateral com navegação
+│   │   └── ProtectedRoute.tsx  # Wrapper para rotas protegidas
+│   └── ui/                   # Componentes shadcn/ui
+│       ├── button.tsx       # Componente Button
+│       ├── card.tsx         # Componente Card
+│       └── separator.tsx    # Componente Separator
+├── contexts/                 # Contextos React globais
+│   └── AuthContext.tsx      # Context de autenticação
+├── core/                     # Núcleo da aplicação (REORGANIZADO)
+│   ├── api/                 # Configuração de API
+│   │   └── queryClient.ts   # React Query client setup
+│   ├── auth/                # Autenticação
+│   │   ├── authService.ts   # Serviço de autenticação (OIDC + mock)
+│   │   └── oidcConfig.ts    # Configuração OIDC
+│   ├── constants/           # Constantes globais
+│   │   └── roles.ts         # Definição de roles e funções de autorização
+│   ├── types/               # Tipos TypeScript globais
+│   │   └── user.ts          # Interface IUser
+│   └── utils/               # Funções utilitárias
+│       └── cn.ts            # Utility para combinar classes
+├── features/                 # Features da aplicação (feature-based)
+│   ├── admin/               # Painel administrativo (exemplo de rota protegida)
+│   │   └── AdminPage.tsx
+│   ├── auth/                # Páginas de autenticação
+│   │   ├── AuthCallbackPage.tsx
+│   │   ├── LogoutPage.tsx
+│   │   └── UnauthorizedPage.tsx
+│   ├── errors/              # Páginas de erro
+│   │   └── NotFoundPage.tsx
+│   ├── example/             # Página exemplo em branco
+│   │   └── ExamplePage.tsx
+│   ├── home/                # Página inicial
+│   │   └── HomePage.tsx
+│   └── todos/               # Feature TODO (exemplo completo)
+│       ├── TodosPage.tsx
+│       └── types.ts
+├── hooks/                    # Custom hooks globais
+│   ├── useAuth.ts           # Hook de autenticação
+│   └── useAuthorization.ts  # Hook de autorização/roles
+├── router/                   # Configuração de rotas
+│   └── index.tsx            # Definição de rotas e proteções
+├── App.tsx                   # Componente raiz com providers
+├── main.tsx                  # Entry point
+└── index.css                 # CSS global com Tailwind
+```
+
+### Mudanças Principais da v1.0 → v2.0
+
+1. **`lib/` → `core/`**: Reorganização para melhor clareza
+2. **`types/` → `core/types/`**: Tipos agora dentro de core
+3. **`core/constants/`**: Nova pasta para constantes (roles, etc.)
+4. **`hooks/useAuthorization.ts`**: Novo hook para verificação de roles
+5. **`features/admin/`**: Nova feature demonstrando proteção por roles
+
+---
+
+## Princípios de Organização
+
+### Feature-based Architecture
+
+- Cada feature é **autocontida** em sua própria pasta dentro de `features/`
+- Uma feature pode conter:
+  - Componentes específicos
+  - Tipos/interfaces próprias
+  - Lógica de negócio
+  - Páginas
+  - Hooks customizados (se necessário)
+
+### Separação de Responsabilidades
+
+- **`components/layout/`**: Estrutura e navegação da aplicação
+- **`components/ui/`**: Componentes reutilizáveis do shadcn/ui
+- **`features/`**: Código de negócio e domínio (features específicas)
+- **`core/`**: Infraestrutura, configurações, utilitários, tipos globais
+- **`hooks/`**: Hooks customizados compartilhados entre features
+- **`contexts/`**: Contextos React globais (auth, theme, etc.)
+
+---
+
+## Convenções de Código
+
+### Nomenclatura
+
+#### Arquivos e Pastas
+- **Componentes**: PascalCase (`HomePage.tsx`, `TodosPage.tsx`)
+- **Hooks**: camelCase com prefixo `use` (`useAuth.ts`, `useAuthorization.ts`)
+- **Utilitários**: camelCase (`cn.ts`, `authService.ts`)
+- **Tipos**: camelCase (`user.ts`, `types.ts`)
+- **Pastas de features**: kebab-case ou camelCase (`todos/`, `auth/`, `admin/`)
+- **Pastas de componentes**: PascalCase ou kebab-case
+
+#### Variáveis e Funções
+- **Variáveis e funções**: camelCase (`userName`, `handleSubmit`)
+- **Constantes**: UPPER_SNAKE_CASE (`USER_ROLES`, `DEV_AUTH_BYPASS`)
+- **Interfaces**: Prefixo `I` (`IUser`, `ITodo`, `IMenuItem`)
+- **Types**: Prefixo `T` quando não for interface (`TAuthContext`)
+
+### TypeScript
+- **Sempre tipar** props, retornos de funções e parâmetros públicos
+- **Evitar `any`** — usar `unknown` com type guards quando necessário
+- Habilitar **strict mode** sempre
+- Usar interfaces para objetos públicos
+- Usar types para unions, intersections e aliases
+
+### React
+- **Componentes funcionais** sempre (não usar classes)
+- **Hooks** para lógica e estado
+- **Props tipadas** com interfaces
+- Evitar lógica complexa nos componentes — extrair para hooks ou utils
+- Preferir tipagem explícita de props
+
+### Imports
+- **Imports relativos** — sem path aliases como `@/`
+- Ordenar imports:
+  1. Bibliotecas externas (React, etc.)
+  2. Core/lib
+  3. Componentes
+  4. Hooks
+  5. Utils e tipos
+  6. CSS (se houver)
+
+Exemplo:
+```typescript
+import { useState } from "react"                    // 1. Externa
+import { USER_ROLES } from "../../core/constants/roles"  // 2. Core
+import { Button } from "../../components/ui/button"      // 3. Componente
+import { useAuth } from "../../hooks/useAuth"            // 4. Hook
+import type { IUser } from "../../core/types/user"       // 5. Type
+```
+
+---
+
+## Autenticação
+
+### Configuração OIDC
+- Arquivo: `src/core/auth/oidcConfig.ts`
+- Usa variáveis de ambiente (`VITE_APP_*`)
+- Configurações: authority, client_id, redirect_uri, scope
+
+### Auth Service
+- Arquivo: `src/core/auth/authService.ts`
+- Funções principais:
+  - `getUser()` — obtém usuário autenticado (real ou mock)
+  - `login()` — inicia fluxo de login (ou bypass se mock)
+  - `logout()` — encerra sessão
+  - `isAuthenticated()` — verifica autenticação
+  - `createMockUser(customRoles?)` — cria usuário mock
+
+### Mock de Autenticação (DEV_AUTH_BYPASS)
+
+**Variável de ambiente**: `VITE_DEV_AUTH_BYPASS=true`
+
+Quando ativada:
+- Cria automaticamente um usuário mock
+- Pula fluxo de OIDC completamente
+- Permite navegar em rotas protegidas
+- **Útil para desenvolvimento local**
+
+**Desabilitar em produção** (`VITE_DEV_AUTH_BYPASS=false`)
+
+### Configuração de Roles do Mock
+
+**Variável de ambiente**: `VITE_DEV_MOCK_ROLES=admin,user`
+
+- Define as roles do usuário mock
+- Separadas por vírgula
+- Exemplo: `admin,editor,viewer,user`
+- Se não definida, usa apenas `user`
+
+### AuthContext
+- Arquivo: `src/contexts/AuthContext.tsx`
+- Provê:
+  - `user`: objeto do usuário autenticado (IUser)
+  - `isAuthenticated`: booleano de status de autenticação
+  - `setIsAuthenticated`: função para atualizar status
+
+### useAuth Hook
+- Arquivo: `src/hooks/useAuth.ts`
+- Hook customizado para acessar contexto de autenticação
+- Lança erro se usado fora do `AuthContextProvider`
+
+---
+
+## Sistema de Roles e Autorização (NOVO v2.0)
+
+### Definição de Roles
+
+Arquivo: `src/core/constants/roles.ts`
+
+```typescript
+export const USER_ROLES = {
+  ADMIN: "admin",      // Nível 4
+  EDITOR: "editor",    // Nível 3
+  VIEWER: "viewer",    // Nível 2
+  USER: "user",        // Nível 1
+} as const
+
+export type UserRole = (typeof USER_ROLES)[keyof typeof USER_ROLES]
+```
+
+### Hierarquia de Roles
+
+```typescript
+export const ROLE_HIERARCHY: Record<UserRole, number> = {
+  [USER_ROLES.ADMIN]: 4,    // Acesso total
+  [USER_ROLES.EDITOR]: 3,   // Pode editar
+  [USER_ROLES.VIEWER]: 2,   // Pode visualizar
+  [USER_ROLES.USER]: 1,     // Acesso básico
+}
+```
+
+### Funções de Autorização
+
+```typescript
+// Tem uma role específica?
+hasRole(userRoles, requiredRole)
+
+// Tem alguma das roles?
+hasAnyRole(userRoles, requiredRoles)
+
+// Tem todas as roles?
+hasAllRoles(userRoles, requiredRoles)
+
+// Tem nível mínimo de role?
+hasMinimumRoleLevel(userRoles, minimumRole)
+```
+
+### useAuthorization Hook (NOVO)
+
+Arquivo: `src/hooks/useAuthorization.ts`
+
+```typescript
+const {
+  userRoles,           // Array de roles do usuário
+  canAccess,           // (roles) => boolean - tem alguma das roles?
+  canAccessAll,        // (roles) => boolean - tem todas as roles?
+  hasMinimumLevel,     // (role) => boolean - tem nível mínimo?
+  hasRole,             // (role) => boolean - tem role específica?
+} = useAuthorization()
+```
+
+Exemplo de uso:
+```typescript
+import { useAuthorization } from "../../hooks/useAuthorization"
+import { USER_ROLES } from "../../core/constants/roles"
+
+function MyComponent() {
+  const { canAccess, hasRole } = useAuthorization()
+
+  if (canAccess([USER_ROLES.ADMIN, USER_ROLES.EDITOR])) {
+    return <AdminContent />
+  }
+
+  if (hasRole(USER_ROLES.VIEWER)) {
+    return <ViewerContent />
+  }
+
+  return <UserContent />
+}
+```
+
+### Rotas Protegidas
+
+Componente: `src/components/layout/ProtectedRoute.tsx`
+
+```typescript
+<ProtectedRoute requiredRoles={[USER_ROLES.ADMIN]}>
+  <AdminPage />
+</ProtectedRoute>
+```
+
+- Verifica autenticação antes de renderizar
+- Suporta `requiredRoles` para controle de acesso
+- Usa `hasAnyRole` para verificação (basta ter UMA das roles)
+- Redireciona para `/unauthorized` se sem permissão
+- Mostra loading enquanto carrega autenticação
+
+### Menu Dinâmico com Roles
+
+O Sidebar filtra automaticamente itens baseado em roles:
+
+```typescript
+interface MenuItem {
+  title: string
+  icon: typeof Home
+  url: string
+  requiredRoles?: string[]  // Opcional
+}
+
+const menuItems: MenuItem[] = [
+  {
+    title: "Home",
+    url: "/",
+    // Sem requiredRoles = todos veem
+  },
+  {
+    title: "Admin",
+    url: "/admin",
+    requiredRoles: [USER_ROLES.ADMIN],  // Só admins veem
+  },
+]
+```
+
+O Sidebar usa `useAuthorization` para filtrar:
+```typescript
+const { canAccess } = useAuthorization()
+
+const visibleItems = menuItems.filter((item) => {
+  if (!item.requiredRoles) return true
+  return canAccess(item.requiredRoles)
+})
+```
+
+---
+
+## UI e Componentes
+
+### shadcn/ui
+- **Sempre usar componentes do shadcn/ui** quando disponíveis
+- **Nunca usar HTML puro** para elementos que existam no shadcn
+- Componentes em: `src/components/ui/`
+- Instalação de novos componentes:
+  ```bash
+  npx shadcn@latest add <component-name>
+  ```
+- Documentação: [https://ui.shadcn.com](https://ui.shadcn.com)
+
+### Tailwind CSS
+- Usar classes utilitárias do Tailwind
+- **Evitar CSS inline** no JSX
+- Usar função `cn()` para combinar classes condicionalmente
+- Respeitar variáveis CSS do Tailwind 4 (`--color-primary`, `--color-foreground`, etc.)
+
+### Layout
+- **AppLayout**: layout principal com sidebar e header
+- **Header**: barra superior com info do usuário e logout
+- **Sidebar**: menu lateral com navegação (filtra por roles)
+- Todos os layouts seguem padrões do shadcn blocks
+
+### Ícones
+- Usar **Lucide React**
+- Importar apenas os ícones necessários
+- Ex.: `import { Home, LogOut, Shield } from "lucide-react"`
+
+---
+
+## Roteamento
+
+### Estrutura de Rotas
+- Arquivo: `src/router/index.tsx`
+- Usa `createBrowserRouter` do React Router
+- Rotas principais envolvidas por `<ProtectedRoute>`
+- Rotas públicas (callback, logout, unauthorized, 404) sem proteção
+
+### Padrões de Rotas
+
+```typescript
+import { USER_ROLES } from "../core/constants/roles"
+
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,  // Sem roles = qualquer autenticado
+      },
+      {
+        path: "/admin",
+        element: (
+          <ProtectedRoute requiredRoles={[USER_ROLES.ADMIN]}>
+            <AdminPage />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+  // Rotas públicas
+  {
+    path: "/auth/callback",
+    element: <AuthCallbackPage />,
+  },
+  {
+    path: "/unauthorized",
+    element: <UnauthorizedPage />,
+  },
+])
+```
+
+### Adicionando Nova Rota Protegida
+
+1. Criar página em `src/features/<feature>/`
+2. Importar no `router/index.tsx`
+3. Adicionar rota com `<ProtectedRoute requiredRoles={...}>`
+4. Atualizar menu em `Sidebar.tsx` com `requiredRoles`
+
+### Padrões de Nomenclatura de Rotas
+- **Plural** quando possível (`/todos`, `/users`)
+- **kebab-case** (`/example-page`, `/admin-panel`)
+- Evitar preposições desnecessárias
+
+---
+
+## Data Fetching (React Query)
+
+### React Query Client
+- Configurado em: `src/core/api/queryClient.ts`
+- **Queries**: para leitura de dados
+- **Mutations**: para criação/atualização/deleção
+- Configurações:
+  - `retry: 0`
+  - `refetchOnWindowFocus: false`
+
+### Exemplo de Query
+```typescript
+import { useQuery } from "@tanstack/react-query"
+import axios from "axios"
+
+function useTodos() {
+  return useQuery({
+    queryKey: ["todos"],
+    queryFn: async () => {
+      const { data } = await axios.get(`${import.meta.env.VITE_APP_API_URL}/todos`)
+      return data
+    },
+  })
+}
+```
+
+### Exemplo de Mutation
+```typescript
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+
+function useCreateTodo() {
+  const queryClient = useQueryClient()
+  
+  return useMutation({
+    mutationFn: async (todo: ITodo) => {
+      const { data } = await axios.post("/api/todos", todo)
+      return data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["todos"] })
+    },
+  })
+}
+```
+
+---
+
+## Formulários e Estado
+
+### Estado Local
+- Usar `useState` para estado de componente
+- Usar `useReducer` para estado complexo
+- Não duplicar server state (usar React Query)
+
+### Formulários
+- Componentes controlados sempre
+- Validação local quando possível
+- Usar componentes do shadcn (Input, Label, Form, etc.)
+
+---
+
+## Boas Práticas
+
+### Geral
+- Código **limpo, legível e manutenível**
+- Funções pequenas e com responsabilidade única
+- Evitar duplicação de código (DRY)
+- Comentários apenas para lógica complexa
+
+### Performance
+- Usar `React.memo` apenas quando necessário
+- Evitar re-renders desnecessários
+- Code-splitting em rotas quando relevante
+
+### Acessibilidade
+- Componentes shadcn já são acessíveis por padrão
+- Manter padrões ao criar componentes customizados
+- Usar semantic HTML
+
+### Segurança
+- **Nunca commitar secrets** no código
+- Usar variáveis de ambiente (`VITE_*`)
+- Validar entrada do usuário
+- **IMPORTANTE**: Verificação de roles no frontend é apenas UX
+  - **SEMPRE validar roles no backend**
+  - Nunca confiar apenas no frontend para segurança
+
+---
+
+## O Que Não Fazer
+
+### Proibições Absolutas
+- ❌ Usar classes React (apenas funcionais)
+- ❌ Usar `any` sem justificativa
+- ❌ CSS inline no JSX
+- ❌ HTML puro quando existe componente shadcn
+- ❌ Duplicar estado que vem da API (usar React Query)
+- ❌ Customizar estilos base do shadcn sem necessidade
+- ❌ Criar componentes de UI próprios quando shadcn tem equivalente
+- ❌ Ignorar a arquitetura feature-based
+- ❌ Misturar responsabilidades entre camadas
+
+### Evitar
+- Lógica de negócio nos componentes de layout
+- Componentes muito grandes (> 200 linhas)
+- Props drilling excessivo (usar context quando necessário)
+- Bibliotecas externas desnecessárias
+- Imports absolutos ou aliases (usar relativos)
+
+---
+
+## Desenvolvimento de Features
+
+### Checklist para Nova Feature
+
+1. ✅ Criar pasta em `src/features/<nome-feature>/`
+2. ✅ Definir tipos/interfaces em `types.ts` (se necessário)
+3. ✅ Criar componentes da feature
+4. ✅ Criar página principal (`<Feature>Page.tsx`)
+5. ✅ Definir roles necessárias (se protegida)
+6. ✅ Adicionar rota em `src/router/index.tsx`
+7. ✅ Atualizar menu em `Sidebar.tsx` (com `requiredRoles` se necessário)
+8. ✅ Testar navegação e autenticação
+9. ✅ Testar verificação de roles
+10. ✅ Testar build (`npm run build`)
+
+### Padrão de Páginas
+- Título com `<h1>` usando classes Tailwind
+- Descrição com `<p>` e classe `text-muted-foreground`
+- Conteúdo em `<Card>` do shadcn
+- Layout responsivo com classes Tailwind
+- Container com `max-w-*` para limitar largura
+
+---
+
+## Variáveis de Ambiente
+
+### Obrigatórias
+- `VITE_APP_AUTHORITY` — URL do provedor SSO/OIDC
+- `VITE_APP_CLIENT_ID` — Client ID da aplicação OIDC
+- `VITE_APP_RESPONSE_TYPE` — Tipo de resposta OIDC
+- `VITE_APP_SCOPE` — Escopos solicitados OIDC
+- `VITE_APP_TOKEN_KEY` — Chave para localStorage do token
+
+### Opcionais
+- `VITE_APP_API_URL` — URL base da API
+
+### Desenvolvimento
+- `VITE_DEV_AUTH_BYPASS` — Flag de mock (`true`/`false`)
+  - `true`: Usa mock de autenticação
+  - `false`: Usa OIDC real
+- `VITE_DEV_MOCK_ROLES` — Roles do mock user (separadas por vírgula)
+  - Exemplo: `admin,editor,user`
+  - Se não definida, usa apenas `user`
+
+### Exemplo Completo de `.env`
+
+```env
+# OIDC Configuration
+VITE_APP_AUTHORITY=https://sso.example.com/auth/realms/MyRealm
+VITE_APP_CLIENT_ID=my-app-client-id
+VITE_APP_RESPONSE_TYPE=id_token token
+VITE_APP_SCOPE=openid profile email roles
+VITE_APP_TOKEN_KEY=app-token
+
+# API
+VITE_APP_API_URL=https://api.example.com
+
+# Development Mode
+VITE_DEV_AUTH_BYPASS=true          # Usar mock
+VITE_DEV_MOCK_ROLES=admin,user     # Roles do mock
+```
+
+---
+
+## Build e Deploy
+
+### Build de Produção
+```bash
+npm run build
+```
+
+### Validações Antes do Deploy
+1. ✅ Desabilitar `VITE_DEV_AUTH_BYPASS=false`
+2. ✅ Remover/ajustar `VITE_DEV_MOCK_ROLES`
+3. ✅ Verificar variáveis de ambiente de produção
+4. ✅ Executar `npm run lint` sem erros
+5. ✅ Executar `npm run build` com sucesso
+6. ✅ Testar em ambiente de staging
+
+---
+
+## Resumo dos Comandos
+
+```bash
+npm install          # Instalar dependências
+npm run dev          # Desenvolvimento (porta 3000)
+npm run build        # Build de produção
+npm run lint         # Executar linter
+npm run preview      # Preview do build
+
+# Adicionar componentes shadcn/ui
+npx shadcn@latest add <component-name>
+```
+
+---
+
+## Arquitetura Detalhada
+
+Para entendimento completo da arquitetura, consultar:
+- **[ARCHITECTURE.md](../ARCHITECTURE.md)**: Arquitetura detalhada do projeto
+- **[README.md](../README.md)**: Overview e quick start
+- **[QUICK_START.md](../QUICK_START.md)**: Guia rápido passo a passo
+
+---
+
+## Observações Finais
+
+Este template foi projetado para ser:
+- **Simples** de entender
+- **Fácil** de estender
+- **Escalável** para projetos grandes
+- **Modular** e bem organizado
+- **Seguro** com sistema robusto de roles
+- **Flexível** com mock de desenvolvimento
+
+Mantenha a consistência com os padrões estabelecidos e a arquitetura proposta para garantir a qualidade e manutenibilidade do código.
+
+---
+
+**Versão**: 2.0.0 (Revisado)  
+**Data**: 13 de Novembro de 2024  
+**Mudanças Principais**:
+- Reorganização `lib/` → `core/`
+- Sistema robusto de roles e autorização
+- Hook `useAuthorization`
+- Menu dinâmico baseado em roles
+- Configuração de mock roles via `.env`
+- Documentação completa atualizada
