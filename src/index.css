@@ -1,51 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #ffffff;
-  --color-foreground: #0a0a0a;
-  --color-card: #ffffff;
-  --color-card-foreground: #0a0a0a;
-  --color-popover: #ffffff;
-  --color-popover-foreground: #0a0a0a;
-  --color-primary: #dc2626;
-  --color-primary-foreground: #fafafa;
-  --color-secondary: #f5f5f5;
-  --color-secondary-foreground: #171717;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #737373;
-  --color-accent: #fef2f2;
-  --color-accent-foreground: #991b1b;
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #fafafa;
-  --color-border: #e5e5e5;
-  --color-input: #e5e5e5;
-  --color-ring: #dc2626;
-  --radius: 0.5rem;
+    --color-background: #ffffff;
+    --color-foreground: #0a0a0a;
+    --color-card: #ffffff;
+    --color-card-foreground: #0a0a0a;
+    --color-popover: #ffffff;
+    --color-popover-foreground: #0a0a0a;
+    --color-primary: #dc2626;
+    --color-primary-foreground: #fafafa;
+    --color-secondary: #f5f5f5;
+    --color-secondary-foreground: #171717;
+    --color-muted: #f5f5f5;
+    --color-muted-foreground: #737373;
+    --color-accent: #fef2f2;
+    --color-accent-foreground: #991b1b;
+    --color-destructive: #ef4444;
+    --color-destructive-foreground: #fafafa;
+    --color-border: #e5e5e5;
+    --color-input: #e5e5e5;
+    --color-ring: #dc2626;
+    --radius: 0.5rem;
 
-  
+
 }
 
 * {
-  @apply border-border;
+    @apply border-border;
 }
 
 html {
-  @apply scroll-smooth;
+    @apply scroll-smooth;
 }
 
 body {
-  @apply bg-background text-foreground;
-  font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
 }
 
 html,
 body {
-  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 @supports (font-variation-settings: normal) {
-  body {
-    font-family: "Inter", sans-serif;
-  }
+    body {
+        font-family: "Inter", sans-serif;
+    }
 }
-

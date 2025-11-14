@@ -14,7 +14,16 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
+import { getUserInitials, getUserDisplayName } from "@/core/utils/userHelpers"
 
+/**
+ * AppHeader - Barra de navegação superior com acionador da barra lateral, breadcrumb e menu do usuário
+ *
+ * Componente responsável por exibir o cabeçalho da aplicação, incluindo:
+ * - Botão para alternar a visibilidade da barra lateral
+ * - Navegação breadcrumb
+ * - Menu dropdown do usuário com opção de logout
+ */
 export function AppHeader() {
     const { user } = useAuth()
 
@@ -22,19 +31,14 @@ export function AppHeader() {
         await logout()
     }
 
-    const getUserInitials = () => {
-        if (!user) return "U"
-        const name = user.name || user.email || "User"
-        return name
-            .split(" ")
-            .map((n) => n[0])
-            .join("")
-            .toUpperCase()
-            .slice(0, 2)
-    }
+    const userDisplayName = getUserDisplayName(user)
+    const userInitials = getUserInitials(user)
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 transition-all duration-300">
+        <header
+            className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 transition-all duration-300"
+            role="banner"
+        >
             <div className="flex h-14 items-center px-4 gap-4">
                 <SidebarTrigger className="cursor-pointer" />
                 <Separator orientation="vertical" className="data-[orientation=vertical]:h-4" />
@@ -45,10 +49,13 @@ export function AppHeader() {
                     {user && (
                         <DropdownMenu modal={false}>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="relative h-9 w-9 rounded-full cursor-pointer">
+                                <Button
+                                    variant="ghost"
+                                    className="relative h-9 w-9 rounded-full cursor-pointer"
+                                >
                                     <Avatar className="h-9 w-9">
                                         <AvatarFallback className="bg-primary text-primary-foreground text-xs font-medium">
-                                            {getUserInitials()}
+                                            {userInitials}
                                         </AvatarFallback>
                                     </Avatar>
                                 </Button>
@@ -57,7 +64,7 @@ export function AppHeader() {
                                 <DropdownMenuLabel className="font-normal">
                                     <div className="flex flex-col space-y-1">
                                         <p className="text-sm font-medium leading-none">
-                                            {user.name || "User"}
+                                            {userDisplayName}
                                         </p>
                                         <p className="text-xs leading-none text-muted-foreground">
                                             {user.email}
@@ -65,7 +72,11 @@ export function AppHeader() {
                                     </div>
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+                                <DropdownMenuItem
+                                    onClick={handleLogout}
+                                    className="cursor-pointer"
+                                    role="menuitem"
+                                >
                                     <LogOut className="mr-2 h-4 w-4" />
                                     <span>Logout</span>
                                 </DropdownMenuItem>
