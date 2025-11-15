@@ -1,4 +1,4 @@
-import { useAuth } from "@/core/hooks/useAuth"
+import { useAuth } from "@/hooks/useAuth"
 import { hasAnyRole, hasAllRoles, hasMinimumRoleLevel, type UserRole } from "@/core/constants/roles"
 
 export function useAuthorization() {

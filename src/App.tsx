@@ -1,10 +1,10 @@
 import { QueryClientProvider } from "@tanstack/react-query"
 import { RouterProvider } from "react-router-dom"
 import { ErrorBoundary } from "react-error-boundary"
-import { AuthContextProvider } from "@/core/contexts/AuthContext"
+import { AuthContextProvider } from "@/services/auth/authContext"
 import { ThemeProvider } from "@/themes"
-import { queryClient } from "@/core/api/queryClient"
-import { router } from "@/core/router"
+import { queryClient } from "@/api/queryClient"
+import { router } from "@/router"
 
 function ErrorFallback({ error }: { error: Error }) {
     return (

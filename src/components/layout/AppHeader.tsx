@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { useAuth } from "@/core/hooks/useAuth"
+import { useAuth } from "@/hooks/useAuth"
 import { logout } from "@/services/auth/authService"
 import { LogOut } from "lucide-react"
 import { AppBreadcrumb } from "./AppBreadcrumb"
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
-import { getUserInitials, getUserDisplayName } from "@/core/helpers/userHelpers"
+import { getUserInitials, getUserDisplayName } from "@/helpers/userHelpers"
 
 /**
  * AppHeader - Barra de navegação superior com acionador da barra lateral, breadcrumb e menu do usuário

@@ -1,8 +1,8 @@
 import { type ReactNode, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "@/core/hooks/useAuth"
+import { useAuth } from "@/hooks/useAuth"
 import { hasAnyRole, type UserRole } from "@/core/constants/roles"
-import { getUserRoles } from "@/core/helpers/userHelpers"
+import { getUserRoles } from "@/helpers/userHelpers"
 
 interface ProtectedRouteProps {
     children: ReactNode

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { useAuth } from "@/core/hooks/useAuth"
+import { useAuth } from "@/hooks/useAuth"
 
 export function HomePage() {
     const { user } = useAuth()

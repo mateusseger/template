@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "@/themes"
-import { cn } from "@/utils/cn"
-import { useSidebarMenu } from "@/core/hooks/useSidebarMenu"
+import { cn } from "@/core/utils/cn"
+import { useSidebarMenu } from "@/hooks/useSidebarMenu"
 import { AppSidebarSubmenu } from "./AppSidebarSubmenu"
 
 /**
