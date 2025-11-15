@@ -53,7 +53,6 @@ export function AppSidebarSubmenu({
                         ease: "easeInOut",
                     }}
                     className="bg-background flex flex-col overflow-hidden border-r"
-                    role="navigation"
                     id={`submenu-${parentItem.name}`}
                 >
                     {/* Cabeçalho do Submenu */}

@@ -1,19 +1,19 @@
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card"
-import { Button } from "../../components/ui/button"
-import { Input } from "../../components/ui/input"
-import { Textarea } from "../../components/ui/textarea"
-import { Badge } from "../../components/ui/badge"
-import { Separator } from "../../components/ui/separator"
-import { Skeleton } from "../../components/ui/skeleton"
-import { Checkbox } from "../../components/ui/checkbox"
-import { Label } from "../../components/ui/label"
-import { Switch } from "../../components/ui/switch"
-import { Progress } from "../../components/ui/progress"
-import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert"
-import { Avatar, AvatarFallback } from "../../components/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import { Skeleton } from "@/components/ui/skeleton"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
+import { Progress } from "@/components/ui/progress"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
     Dialog,
     DialogContent,
@@ -22,7 +22,7 @@ import {
     DialogTitle,
     DialogTrigger,
     DialogFooter,
-} from "../../components/ui/dialog"
+} from "@/components/ui/dialog"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -30,9 +30,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "../../components/ui/dropdown-menu"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip"
-import { useTheme } from "../../themes"
+} from "@/components/ui/dropdown-menu"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { useTheme } from "@/themes"
 import {
     Palette,
     Moon,
@@ -54,7 +54,7 @@ export function DesignSystemPage() {
     const [switchOn, setSwitchOn] = useState(false)
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="space-y-8">
             <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tight">Design System</h1>
                 <p className="text-muted-foreground">

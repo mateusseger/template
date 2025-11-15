@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { useAuth } from "@/hooks/useAuth"
-import { logout } from "@/core/auth/authService"
+import { useAuth } from "@/core/hooks/useAuth"
+import { logout } from "@/services/auth/authService"
 import { LogOut } from "lucide-react"
 import { AppBreadcrumb } from "./AppBreadcrumb"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
-import { getUserInitials, getUserDisplayName } from "@/core/utils/userHelpers"
+import { getUserInitials, getUserDisplayName } from "@/core/helpers/userHelpers"
 
 /**
  * AppHeader - Barra de navegação superior com acionador da barra lateral, breadcrumb e menu do usuário
@@ -37,7 +37,6 @@ export function AppHeader() {
     return (
         <header
             className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 transition-all duration-300"
-            role="banner"
         >
             <div className="flex h-14 items-center px-4 gap-4">
                 <SidebarTrigger className="cursor-pointer" />
@@ -75,7 +74,6 @@ export function AppHeader() {
                                 <DropdownMenuItem
                                     onClick={handleLogout}
                                     className="cursor-pointer"
-                                    role="menuitem"
                                 >
                                     <LogOut className="mr-2 h-4 w-4" />
                                     <span>Logout</span>

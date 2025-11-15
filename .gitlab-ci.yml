@@ -1,0 +1,65 @@
+stages:
+  - build
+  - staging
+  - production
+
+image: node:22-slim
+
+variables:
+  project_name: "herval-biros"
+  publish_path: "dist"
+
+build:
+  stage: build
+  tags:
+    - satelites
+  script:
+    - npm install
+    - npm run build
+
+staging:
+  stage: staging
+  tags:
+    - satelites
+    
+  variables:
+    remote_path: "biros"
+    publish_path: "dist"
+
+  before_script:
+    - "apt-get update -qq && apt-get install -y -qq lftp"
+
+  script:
+    - npm install
+    - npm run build:staging
+    - lftp -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST_BLACK115 -e "mirror --delete -R -p $publish_path $remote_path; quit"
+
+  only:
+    refs:
+      - staging
+    changes:
+      - src/**/*
+
+production:
+  stage: production
+  tags:
+    - satelites
+  
+  variables:
+    remote_path: "biros"
+
+  before_script:
+    - "apt-get update -qq && apt-get install -y -qq lftp"
+
+  script:
+    - npm install
+    - npm run build:production
+    - lftp -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST_BLACK0113 -e "mirror --delete -R -p $publish_path $remote_path; quit"
+    - lftp -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST_BLACK0114 -e "mirror --delete -R -p $publish_path $remote_path; quit"
+
+  when: manual
+  only:
+    refs:
+      - master
+    changes:
+      - src/**/*

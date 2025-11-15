@@ -26,22 +26,16 @@ export const MENU_ITEMS: MenuItem[] = [
         description: "Página inicial",
     },
     {
-        name: "Todos",
-        url: "/todos",
-        icon: ListTodo,
-        description: "Lista de tarefas",
-    },
-    {
-        name: "Example",
-        url: "/example",
-        icon: FileText,
-        description: "Página de exemplo",
-    },
-    {
         name: "Design System",
         url: "/design-system",
         icon: Palette,
         description: "Componentes do design system",
+    },
+    {
+        name: "Todos",
+        url: "/todos",
+        icon: ListTodo,
+        description: "Lista de tarefas",
     },
     {
         name: "Settings",
@@ -49,31 +43,12 @@ export const MENU_ITEMS: MenuItem[] = [
         description: "Configurações do sistema",
         subItems: [
             {
-                name: "Profile",
-                url: "/settings/profile",
-                icon: User,
-                description: "Configurações de perfil",
-            },
-            {
                 name: "Preferences",
                 url: "/settings/preferences",
                 icon: Sliders,
                 description: "Preferências do usuário",
-            },
-            {
-                name: "Security",
-                url: "/settings/security",
-                icon: Lock,
-                description: "Configurações de segurança",
-            },
+            }
         ],
-    },
-    {
-        name: "Admin",
-        url: "/admin",
-        icon: Shield,
-        roles: [USER_ROLES.ADMIN],
-        description: "Área administrativa",
     },
 ]
 

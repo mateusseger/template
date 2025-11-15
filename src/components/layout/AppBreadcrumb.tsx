@@ -7,7 +7,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { getBreadcrumbPath } from "@/core/utils/menuHelpers"
+import { getBreadcrumbPath } from "@/core/helpers/menuHelpers"
 
 /**
  * AppBreadcrumb - Navegação breadcrumb automática baseada na rota atual
@@ -30,14 +30,14 @@ export function AppBreadcrumb() {
                         <div key={item.url} className="flex items-center gap-1.5">
                             {index > 0 && <BreadcrumbSeparator />}
                             <BreadcrumbItem>
-                                {isLast ? (
+                                {isLast || !item.url ? (
                                     <BreadcrumbPage className="flex items-center gap-1">
                                         {Icon && <Icon className="h-3.5 w-3.5" />}
                                         {item.name}
                                     </BreadcrumbPage>
                                 ) : (
                                     <BreadcrumbLink asChild>
-                                        <Link to={item.url!} className="flex items-center gap-1">
+                                        <Link to={item.url} className="flex items-center gap-1">
                                             {Icon && <Icon className="h-3.5 w-3.5" />}
                                             {item.name}
                                         </Link>
