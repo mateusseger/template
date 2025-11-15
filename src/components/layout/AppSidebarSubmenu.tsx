@@ -1,25 +1,41 @@
 import { Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
+import {
+    SidebarContent,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from "@/components/ui/sidebar"
+import { cn } from "@/core/utils/cn"
 import type { MenuItem } from "@/core/constants/menu"
 
 /**
  * AppSidebarSubmenu - Painel de navegação secundário para itens de submenu
  *
+ * Arquitetura:
+ * - Usa componentes nativos do shadcn para consistência com AppSidebarMenu
+ * - Animações suaves via Framer Motion
+ * - Estrutura idêntica ao menu principal (Header + Content + Group)
+ *
  * Funcionalidades:
- * - Animações suaves usando Framer Motion
- * - Reutiliza primitivos de UI da Sidebar para consistência visual
- * - Fecha automaticamente ao navegar para um item
+ * - Estado ativo baseado na rota atual
+ * - Animação de abertura/fechamento sincronizada com menu principal
+ * - Suporte a tooltips e acessibilidade
+ * - Fecha automaticamente ao navegar
  *
  * Design:
  * - Largura fixa (256px) quando aberto, 0 quando fechado
  * - Transição suave de largura com fade de opacidade
  * - Mantém alinhamento visual com a barra lateral principal
+ * - Reutiliza tokens de design do sistema (cores, espaçamentos, etc.)
  *
  * Animação:
  * - AnimatePresence gerencia entrada/saída do componente
  * - Motion.aside anima largura e opacidade
- * - Duração de 0.3s com easing suave
+ * - Duração de 0.3s com easing suave (igual ao AppSidebarMenu)
  *
  * @param parentItem - Item de menu pai contendo subItems
  * @param isRouteActive - Callback para verificar se uma rota está ativa
@@ -54,43 +70,51 @@ export function AppSidebarSubmenu({
                     }}
                     className="bg-background flex flex-col overflow-hidden border-r"
                     id={`submenu-${parentItem.name}`}
+                    aria-label={`Submenu de ${parentItem.name}`}
                 >
-                    {/* Cabeçalho do Submenu */}
-                    <div className="border-b min-w-64">
-                        <div className="h-14 flex items-center px-4">
+                    <SidebarHeader className="border-b p-0">
+                        <div className="h-14 px-4 flex items-center min-w-64">
                             <h3 className="text-sm font-semibold text-foreground whitespace-nowrap">
                                 {parentItem.name}
                             </h3>
                         </div>
-                    </div>
+                    </SidebarHeader>
 
-                    {/* Conteúdo do Submenu */}
-                    <div className="flex-1 p-2 min-w-64">
-                        <SidebarMenu>
-                            {parentItem.subItems?.map((subItem) => {
-                                const isActive = isRouteActive(subItem.url)
+                    <SidebarContent className="min-w-64">
+                        <SidebarGroup>
+                            <SidebarGroupContent>
+                                <SidebarMenu>
+                                    {parentItem.subItems?.map((subItem) => {
+                                        const isActive = isRouteActive(subItem.url)
 
-                                return (
-                                    <SidebarMenuItem key={subItem.url}>
-                                        <SidebarMenuButton
-                                            asChild
-                                            isActive={isActive}
-                                        >
-                                            <Link
-                                                to={subItem.url}
-                                                onClick={onClose}
-                                                className="transition-all duration-200 hover:translate-x-1"
-                                            >
-                                                <subItem.icon className="h-4 w-4" />
-                                                <span>{subItem.name}</span>
-                                            </Link>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                )
-                            })}
-                        </SidebarMenu>
-                    </div>
+                                        return (
+                                            <SidebarMenuItem key={subItem.url}>
+                                                <SidebarMenuButton
+                                                    asChild
+                                                    isActive={isActive}
+                                                    tooltip={subItem.description || subItem.name}
+                                                >
+                                                    <Link
+                                                        to={subItem.url}
+                                                        onClick={onClose}
+                                                        className={cn(
+                                                            "transition-all duration-200 hover:translate-x-1",
+                                                            isActive && "font-medium shadow-sm"
+                                                        )}
+                                                    >
+                                                        <subItem.icon className="h-4 w-4" />
+                                                        <span>{subItem.name}</span>
+                                                    </Link>
+                                                </SidebarMenuButton>
+                                            </SidebarMenuItem>
+                                        )
+                                    })}
+                                </SidebarMenu>
+                            </SidebarGroupContent>
+                        </SidebarGroup>
+                    </SidebarContent>
                 </motion.aside>
+
             )}
         </AnimatePresence>
     )
