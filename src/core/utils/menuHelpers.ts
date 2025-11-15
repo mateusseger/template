@@ -81,3 +81,48 @@ export function getBreadcrumbLabel(url: string, segment: string): string {
     // Fallback: capitaliza primeira letra do segmento
     return segment.charAt(0).toUpperCase() + segment.slice(1)
 }
+
+/**
+ * getBreadcrumbPath - Gera o caminho completo de breadcrumb a partir de uma URL
+ *
+ * Busca na estrutura do menu para construir o caminho hierárquico.
+ * Se a URL corresponder a um subitem, retorna [pai, filho].
+ * Se for um item principal, retorna apenas o item.
+ * Sempre inclui o Home no início.
+ *
+ * @param url - URL atual (ex: "/settings/profile")
+ * @returns Array de MenuItem/MenuSubItem representando o caminho completo
+ *
+ * @example
+ * ```typescript
+ * // Para "/settings/profile" retorna: [Home, Settings, Profile]
+ * const path = getBreadcrumbPath("/settings/profile")
+ * ```
+ */
+export function getBreadcrumbPath(url: string): Array<MenuItem | MenuSubItem> {
+    const homeItem = MENU_ITEMS.find(item => item.url === "/")
+    const path: Array<MenuItem | MenuSubItem> = homeItem ? [homeItem] : []
+
+    if (url === "/") return path
+
+    // Busca item principal
+    const mainItem = MENU_ITEMS.find((item) => item.url === url)
+    if (mainItem) {
+        path.push(mainItem)
+        return path
+    }
+
+    // Busca em subitens e inclui o pai
+    for (const item of MENU_ITEMS) {
+        if (item.subItems) {
+            const subItem = item.subItems.find((sub) => sub.url === url)
+            if (subItem) {
+                path.push(item, subItem)
+                return path
+            }
+        }
+    }
+
+    // Fallback: não encontrou no menu, retorna só o home
+    return path
+}

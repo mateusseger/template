@@ -7,8 +7,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Home } from "lucide-react"
-import { findMenuItemByUrl, getBreadcrumbLabel } from "@/core/utils/menuHelpers"
+import { getBreadcrumbPath } from "@/core/utils/menuHelpers"
 
 /**
  * AppBreadcrumb - Navegação breadcrumb automática baseada na rota atual
@@ -18,46 +17,29 @@ import { findMenuItemByUrl, getBreadcrumbLabel } from "@/core/utils/menuHelpers"
  */
 export function AppBreadcrumb() {
     const location = useLocation()
-    const pathnames = location.pathname.split("/").filter((x) => x)
-
-    if (pathnames.length === 0) {
-        return null
-    }
+    const breadcrumbItems = getBreadcrumbPath(location.pathname)
 
     return (
         <Breadcrumb>
             <BreadcrumbList>
-                <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                        <Link to="/" className="flex items-center gap-1">
-                            <Home className="h-3.5 w-3.5"/>
-                            Home
-                        </Link>
-                    </BreadcrumbLink>
-                </BreadcrumbItem>
-
-                {pathnames.map((value, index) => {
-                    const to = `/${pathnames.slice(0, index + 1).join("/")}`
-                    const isLast = index === pathnames.length - 1
-                    const menuItem = findMenuItemByUrl(to)
-                    const label = getBreadcrumbLabel(to, value)
-                    const Icon = menuItem?.icon
+                {breadcrumbItems.map((item, index) => {
+                    const isLast = index === breadcrumbItems.length - 1
+                    const Icon = item.icon
 
                     return (
-                        <div key={to} className="flex items-center gap-1.5">
-                            <BreadcrumbSeparator />
+                        <div key={item.url} className="flex items-center gap-1.5">
+                            {index > 0 && <BreadcrumbSeparator />}
                             <BreadcrumbItem>
                                 {isLast ? (
-                                    <BreadcrumbPage
-                                        className="flex items-center gap-1">
+                                    <BreadcrumbPage className="flex items-center gap-1">
                                         {Icon && <Icon className="h-3.5 w-3.5" />}
-                                        {label}
+                                        {item.name}
                                     </BreadcrumbPage>
                                 ) : (
                                     <BreadcrumbLink asChild>
-                                        <Link to={to} className="flex items-center gap-1" >
+                                        <Link to={item.url!} className="flex items-center gap-1">
                                             {Icon && <Icon className="h-3.5 w-3.5" />}
-                                            {label}
+                                            {item.name}
                                         </Link>
                                     </BreadcrumbLink>
                                 )}
