@@ -17,6 +17,11 @@ import { useTheme } from "@/themes"
 import { cn } from "@/core/utils/cn"
 import { useSidebarMenu } from "@/hooks/useSidebarMenu"
 import { AppSidebarSubmenu } from "./AppSidebarSubmenu"
+import { projectConfig } from "@/config/project"
+import logoHervalLight from "@/assets/logo-herval-light.png"
+import logoHervalDark from "@/assets/logo-herval-dark.png"
+import logoTaqi from "@/assets/logo-taqi.svg"
+import logoIplace from "@/assets/logo-iplace.svg"
 
 /**
  * AppSidebarMenu - Barra lateral principal de navegação
@@ -33,14 +38,18 @@ import { AppSidebarSubmenu } from "./AppSidebarSubmenu"
  * - Estado ativo baseado na rota atual
  * - Filtragem de menu baseada em permissões (via hook)
  * - Acessibilidade completa com atributos ARIA
+ * - Logo dinâmico baseado no tema ativo
+ * - Nome do projeto com scroll automático quando excede a largura disponível
  *
  * Estrutura:
- * - Header: Logo/título da aplicação
+ * - Header: Logo e nome do projeto
  * - Content: Lista de itens de menu com possíveis submenus
  * - Footer: Controle de alternância de tema (claro/escuro)
  *
  * @see useSidebarMenu - Hook personalizado para gerenciamento de estado
  * @see AppSidebarSubmenu - Componente de submenu secundário
+ * @see ScrollingText - Componente de texto com scroll automático
+ * @see projectConfig - Configuração do projeto (nome, versão, etc.)
  */
 export function AppSidebarMenu() {
     const { theme, toggleMode } = useTheme()
@@ -53,18 +62,37 @@ export function AppSidebarMenu() {
         closeSubmenu,
     } = useSidebarMenu()
 
+    // Logos por tema e modo (light/dark)
+    const logos = {
+        herval: {
+            light: logoHervalLight,
+            dark: logoHervalDark,
+        },
+        taqi: {
+            light: logoTaqi,
+            dark: logoTaqi, // Mesmo logo para ambos os modos
+        },
+        iplace: {
+            light: logoIplace,
+            dark: logoIplace, // Mesmo logo para ambos os modos
+        },
+    }
+
+    const currentLogo = logos[theme.color as keyof typeof logos][theme.mode]
+
     return (
         <>
             {/* Barra Lateral Principal */}
             <Sidebar collapsible="icon">
                 <SidebarHeader className="border-b p-0">
-                    <div className="h-14 px-4 flex items-center justify-between">
-                        <h2 className="text-lg font-semibold tracking-tight group-data-[collapsible=icon]:hidden">
-                            Template App
-                        </h2>
-                        <span className="text-lg font-bold hidden group-data-[collapsible=icon]:block">
-                            T
-                        </span>
+                    <div className="h-14 px-4 flex items-center gap-3 transition-all duration-200 ease-linear group-data-[collapsible=icon]:px-1">
+                        <img
+                            src={currentLogo}
+                            alt="Logo"
+                            className="h-6 group-data-[collapsible=icon]:object-contain"
+                        />
+
+                        <h1 className="text-sm font-bold group-data-[collapsible=icon]:hidden">{projectConfig.name}</h1>
                     </div>
                 </SidebarHeader>
 

@@ -1,4 +1,4 @@
-export type ThemeColor = "red" | "orange" | "green"
+export type ThemeColor = "herval" | "taqi" | "iplace"
 export type ThemeMode = "light" | "dark"
 
 export interface ThemeConfig {

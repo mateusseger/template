@@ -1,7 +1,7 @@
 import type { Theme } from "./types"
 
-export const themes: Record<"red" | "orange" | "green", Theme> = {
-    red: {
+export const themes: Record<"herval" | "taqi" | "iplace", Theme> = {
+    herval: {
         light: {
             background: "#ffffff",
             foreground: "#0a0a0a",
@@ -9,19 +9,19 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "card-foreground": "#0a0a0a",
             popover: "#ffffff",
             "popover-foreground": "#0a0a0a",
-            primary: "#dc2626", // red-600
+            primary: "#E10000",
             "primary-foreground": "#ffffff",
             secondary: "#f5f5f5",
             "secondary-foreground": "#171717",
             muted: "#f5f5f5",
             "muted-foreground": "#737373",
-            accent: "#fef2f2", // red-50
-            "accent-foreground": "#991b1b", // red-800
+            accent: "#fff5f5",
+            "accent-foreground": "#b91c1c",
             destructive: "#dc2626",
             "destructive-foreground": "#ffffff",
             border: "#e5e5e5",
             input: "#e5e5e5",
-            ring: "#dc2626",
+            ring: "#E10000",
             sidebar: "oklch(0.985 0 0)",
             "sidebar-foreground": "oklch(0.145 0 0)",
             "sidebar-primary": "oklch(0.205 0 0)",
@@ -38,19 +38,19 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "card-foreground": "#fafafa",
             popover: "#0a0a0a",
             "popover-foreground": "#fafafa",
-            primary: "#c70000", // red-500
+            primary: "#E10000",
             "primary-foreground": "#ffffff",
             secondary: "#262626",
             "secondary-foreground": "#fafafa",
             muted: "#262626",
             "muted-foreground": "#a3a3a3",
-            accent: "#450a0a", // red-950
-            "accent-foreground": "#fca5a5", // red-300
+            accent: "#450a0a",
+            "accent-foreground": "#fca5a5",
             destructive: "#7f1d1d",
             "destructive-foreground": "#fafafa",
             border: "#262626",
             input: "#262626",
-            ring: "#ef4444",
+            ring: "#ff4444",
             sidebar: "oklch(0.205 0 0)",
             "sidebar-foreground": "oklch(0.985 0 0)",
             "sidebar-primary": "oklch(0.488 0.243 264.376)",
@@ -61,7 +61,7 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "sidebar-ring": "oklch(0.439 0 0)",
         },
     },
-    orange: {
+    taqi: {
         light: {
             background: "#ffffff",
             foreground: "#0a0a0a",
@@ -69,19 +69,19 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "card-foreground": "#0a0a0a",
             popover: "#ffffff",
             "popover-foreground": "#0a0a0a",
-            primary: "#ea580c", // orange-600
+            primary: "#eb5c2e",
             "primary-foreground": "#ffffff",
             secondary: "#f5f5f5",
             "secondary-foreground": "#171717",
             muted: "#f5f5f5",
             "muted-foreground": "#737373",
-            accent: "#fff7ed", // orange-50
-            "accent-foreground": "#9a3412", // orange-800
+            accent: "#fff7ed",
+            "accent-foreground": "#c2410c",
             destructive: "#dc2626",
             "destructive-foreground": "#ffffff",
             border: "#e5e5e5",
             input: "#e5e5e5",
-            ring: "#ea580c",
+            ring: "#eb5c2e",
             sidebar: "oklch(0.985 0 0)",
             "sidebar-foreground": "oklch(0.145 0 0)",
             "sidebar-primary": "oklch(0.205 0 0)",
@@ -98,19 +98,19 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "card-foreground": "#fafafa",
             popover: "#0a0a0a",
             "popover-foreground": "#fafafa",
-            primary: "#f97316", // orange-500
+            primary: "#eb5c2e",
             "primary-foreground": "#ffffff",
             secondary: "#262626",
             "secondary-foreground": "#fafafa",
             muted: "#262626",
             "muted-foreground": "#a3a3a3",
-            accent: "#431407", // orange-950
-            "accent-foreground": "#fdba74", // orange-300
+            accent: "#431407",
+            "accent-foreground": "#fdba74",
             destructive: "#7f1d1d",
             "destructive-foreground": "#fafafa",
             border: "#262626",
             input: "#262626",
-            ring: "#f97316",
+            ring: "#fb923c",
             sidebar: "oklch(0.205 0 0)",
             "sidebar-foreground": "oklch(0.985 0 0)",
             "sidebar-primary": "oklch(0.488 0.243 264.376)",
@@ -121,7 +121,7 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "sidebar-ring": "oklch(0.439 0 0)",
         },
     },
-    green: {
+    iplace: {
         light: {
             background: "#ffffff",
             foreground: "#0a0a0a",
@@ -129,19 +129,19 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "card-foreground": "#0a0a0a",
             popover: "#ffffff",
             "popover-foreground": "#0a0a0a",
-            primary: "#16a34a", // green-600
-            "primary-foreground": "#ffffff",
+            primary: "#c6d30d",
+            "primary-foreground": "#1a1a0a",
             secondary: "#f5f5f5",
             "secondary-foreground": "#171717",
             muted: "#f5f5f5",
             "muted-foreground": "#737373",
-            accent: "#f0fdf4", // green-50
-            "accent-foreground": "#166534", // green-800
+            accent: "#fefce8",
+            "accent-foreground": "#854d0e",
             destructive: "#dc2626",
             "destructive-foreground": "#ffffff",
             border: "#e5e5e5",
             input: "#e5e5e5",
-            ring: "#16a34a",
+            ring: "#c6d30d",
             sidebar: "oklch(0.985 0 0)",
             "sidebar-foreground": "oklch(0.145 0 0)",
             "sidebar-primary": "oklch(0.205 0 0)",
@@ -158,19 +158,19 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
             "card-foreground": "#fafafa",
             popover: "#0a0a0a",
             "popover-foreground": "#fafafa",
-            primary: "#22c55e", // green-500
-            "primary-foreground": "#ffffff",
+            primary: "#c6d30d",
+            "primary-foreground": "#1a1a0a",
             secondary: "#262626",
             "secondary-foreground": "#fafafa",
             muted: "#262626",
             "muted-foreground": "#a3a3a3",
-            accent: "#052e16", // green-950
-            "accent-foreground": "#86efac", // green-300
+            accent: "#3f3f0a",
+            "accent-foreground": "#fde047",
             destructive: "#7f1d1d",
             "destructive-foreground": "#fafafa",
             border: "#262626",
             input: "#262626",
-            ring: "#22c55e",
+            ring: "#d4e157",
             sidebar: "oklch(0.205 0 0)",
             "sidebar-foreground": "oklch(0.985 0 0)",
             "sidebar-primary": "oklch(0.488 0.243 264.376)",
@@ -183,6 +183,6 @@ export const themes: Record<"red" | "orange" | "green", Theme> = {
     },
 }
 
-export function getTheme(color: "red" | "orange" | "green") {
+export function getTheme(color: "herval" | "taqi" | "iplace") {
     return themes[color]
 }

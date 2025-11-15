@@ -76,25 +76,25 @@ export function DesignSystemPage() {
                 <CardContent className="space-y-4">
                     <div className="grid grid-cols-3 gap-3">
                         <Button
-                            variant={theme.color === "red" ? "default" : "outline"}
-                            onClick={() => setThemeColor("red")}
+                            variant={theme.color === "herval" ? "default" : "outline"}
+                            onClick={() => setThemeColor("herval")}
                             className="w-full"
                         >
-                            Vermelho
+                            Herval
                         </Button>
                         <Button
-                            variant={theme.color === "orange" ? "default" : "outline"}
-                            onClick={() => setThemeColor("orange")}
+                            variant={theme.color === "taqi" ? "default" : "outline"}
+                            onClick={() => setThemeColor("taqi")}
                             className="w-full"
                         >
-                            Laranja
+                            Taqi
                         </Button>
                         <Button
-                            variant={theme.color === "green" ? "default" : "outline"}
-                            onClick={() => setThemeColor("green")}
+                            variant={theme.color === "iplace" ? "default" : "outline"}
+                            onClick={() => setThemeColor("iplace")}
                             className="w-full"
                         >
-                            Verde
+                            iPlace
                         </Button>
                     </div>
 

@@ -16,16 +16,16 @@ const THEME_MODE_KEY = "theme-mode"
 
 function getDefaultThemeColor(): ThemeColor {
     const envTheme = import.meta.env.VITE_APP_THEME as ThemeColor | undefined
-    if (envTheme && (envTheme === "red" || envTheme === "orange" || envTheme === "green")) {
+    if (envTheme && (envTheme === "herval" || envTheme === "taqi" || envTheme === "iplace")) {
         return envTheme
     }
 
     const stored = localStorage.getItem(THEME_COLOR_KEY)
-    if (stored && (stored === "red" || stored === "orange" || stored === "green")) {
+    if (stored && (stored === "herval" || stored === "taqi" || stored === "iplace")) {
         return stored as ThemeColor
     }
 
-    return "red"
+    return "herval"
 }
 
 function getDefaultThemeMode(): ThemeMode {
