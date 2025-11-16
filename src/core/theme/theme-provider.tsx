@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, type ReactNode } from "react"
 import type { ThemeColor, ThemeMode, ThemeConfig } from "./types"
-import { themes } from "./themes"
+import { THEMES } from "./theme-config"
 
 interface ThemeContextType {
     theme: ThemeConfig
@@ -43,7 +43,7 @@ function getDefaultThemeMode(): ThemeMode {
 
 function applyTheme(color: ThemeColor, mode: ThemeMode) {
     const root = document.documentElement
-    const themeColors = themes[color][mode]
+    const themeColors = THEMES[color][mode]
 
     root.classList.remove("light", "dark")
     root.classList.add(mode)

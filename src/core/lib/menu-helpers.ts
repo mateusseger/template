@@ -7,7 +7,7 @@
  * - Navegação na estrutura hierárquica do menu
  */
 
-import { type MenuItem, type MenuSubItem, MENU_ITEMS } from "@/core/constants/menu"
+import { type MenuItem, type MenuSubItem, MENU_ITEMS } from "./menu"
 
 /**
  * findMenuItemByUrl - Encontra um item de menu pela URL (incluindo subitens)
@@ -102,13 +102,13 @@ export function getBreadcrumbLabel(url: string, segment: string): string {
  * ```
  */
 export function getBreadcrumbPath(url: string): Array<MenuItem | MenuSubItem> {
-    const homeItem = MENU_ITEMS.find(item => item.url === "/")
+    const homeItem = MENU_ITEMS.find((item: MenuItem) => item.url === "/")
     const path: Array<MenuItem | MenuSubItem> = homeItem ? [homeItem] : []
 
     if (url === "/") return path
 
     // Busca item principal
-    const mainItem = MENU_ITEMS.find((item) => item.url === url)
+    const mainItem = MENU_ITEMS.find((item: MenuItem) => item.url === url)
     if (mainItem) {
         path.push(mainItem)
         return path
@@ -117,7 +117,7 @@ export function getBreadcrumbPath(url: string): Array<MenuItem | MenuSubItem> {
     // Busca em subitens e inclui o pai
     for (const item of MENU_ITEMS) {
         if (item.subItems) {
-            const subItem = item.subItems.find((sub) => sub.url === url)
+            const subItem = item.subItems.find((sub: MenuSubItem) => sub.url === url)
             if (subItem) {
                 path.push(item, subItem)
                 return path
@@ -130,12 +130,12 @@ export function getBreadcrumbPath(url: string): Array<MenuItem | MenuSubItem> {
     const segments = url.split('/').filter(Boolean)
     if (segments.length > 1) {
         const parentUrl = '/' + segments[0]
-        const parentItem = MENU_ITEMS.find((item) => item.url === parentUrl)
+        const parentItem = MENU_ITEMS.find((item: MenuItem) => item.url === parentUrl)
         if (parentItem) {
             // Retorna o item pai, e o componente breadcrumb adicionará o label dinâmico
             path.push(parentItem)
             // Adiciona placeholder que será substituído por breadcrumbLabel se existir
-            path.push({ name: segments[segments.length - 1], url, icon: parentItem.icon } as any)
+            path.push({ name: segments[segments.length - 1], url, icon: parentItem.icon } as MenuSubItem)
             return path
         }
     }

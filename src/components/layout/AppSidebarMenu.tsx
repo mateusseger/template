@@ -13,12 +13,12 @@ import {
     SidebarRail,
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
-import { useTheme } from "@/themes"
-import { cn } from "@/core/utils/cn"
+import { useTheme } from "@/core/theme"
+import { cn } from "@/core/lib/cn"
 import { useSidebarMenu } from "@/hooks/useSidebarMenu"
 import { AppSidebarSubmenu } from "./AppSidebarSubmenu"
 import { projectConfig } from "@/config/project"
-import { useSidebarLayout } from "@/contexts/SidebarLayoutContext"
+import { useSidebarLayout } from "@/components/layout/sidebar-layout-context"
 import { useEffect } from "react"
 import logoHervalLight from "@/assets/logo-herval-light.png"
 import logoHervalDark from "@/assets/logo-herval-dark.png"
@@ -87,7 +87,7 @@ export function AppSidebarMenu() {
         },
     }
 
-    const currentLogo = logos[theme.color as keyof typeof logos][theme.mode]
+    const currentLogo = logos[theme.color][theme.mode]
 
     return (
         <>

@@ -1,6 +1,8 @@
 import type { Theme } from "./types"
 
-export const themes: Record<"herval" | "taqi" | "iplace", Theme> = {
+export type ThemeName = "herval" | "taqi" | "iplace"
+
+export const THEMES: Record<ThemeName, Theme> = {
     herval: {
         light: {
             background: "#ffffff",
@@ -183,6 +185,6 @@ export const themes: Record<"herval" | "taqi" | "iplace", Theme> = {
     },
 }
 
-export function getTheme(color: "herval" | "taqi" | "iplace") {
-    return themes[color]
+export function getTheme(name: ThemeName): Theme {
+    return THEMES[name]
 }

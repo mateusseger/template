@@ -1,5 +1,5 @@
 import { Home, ListTodo, Palette, Settings, Sliders, Undo2, type LucideIcon } from "lucide-react"
-import { type UserRole } from "./roles"
+import { type UserRole } from "@/core/permissions"
 
 export interface MenuSubItem {
     name: string

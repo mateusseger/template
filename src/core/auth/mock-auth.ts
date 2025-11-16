@@ -4,8 +4,8 @@
  * Provides mock authentication functionality for development and testing
  */
 
-import type { IUser } from "./types"
-import { USER_ROLES } from "@/core/constants/roles"
+import type { IUser } from "./auth-types"
+import { USER_ROLES } from "@/core/permissions"
 
 /**
  * Gets mock roles from environment or returns default

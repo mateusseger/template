@@ -25,7 +25,7 @@
  */
 
 import { useAuth } from "@/hooks/useAuth"
-import { getUserRoles } from "@/helpers/userHelpers"
+import { getUserRoles } from "@/core/lib/user-helpers"
 import {
     hasAnyRole,
     hasAllRoles,

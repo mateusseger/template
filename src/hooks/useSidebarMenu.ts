@@ -1,8 +1,8 @@
 import { useState, useCallback, useMemo, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { getVisibleMenuItems, type MenuItem } from "@/core/constants/menu"
+import { getVisibleMenuItems, type MenuItem } from "@/core/lib/menu"
 import { useAuth } from "@/hooks/useAuth"
-import { getUserRoles } from "@/helpers/userHelpers"
+import { getUserRoles } from "@/core/lib/user-helpers"
 
 /**
  * useSidebarMenu - Hook personalizado para gerenciamento de estado e lógica do menu lateral

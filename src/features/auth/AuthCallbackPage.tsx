@@ -17,8 +17,12 @@
  */
 
 import { useEffect, useState, useRef } from "react"
-import { handleCallback } from "@/services/auth/authService"
-import { AUTH_ERRORS, AUTH_REDIRECTS } from "@/services/auth/constants"
+import { handleCallback, AUTH_ERRORS } from "@/core/auth"
+
+const AUTH_REDIRECTS = {
+    AFTER_LOGIN: "/",
+    AFTER_LOGOUT: "/",
+}
 
 export function AuthCallbackPage() {
     const [error, setError] = useState<string | null>(null)

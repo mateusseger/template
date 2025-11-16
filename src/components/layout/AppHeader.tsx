@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
-import { getUserInitials, getUserDisplayName } from "@/helpers/userHelpers"
+import { getUserInitials, getUserDisplayName } from "@/core/lib/user-helpers"
 
 /**
  * AppHeader - Barra de navegação superior com acionador da barra lateral, breadcrumb e menu do usuário

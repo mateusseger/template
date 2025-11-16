@@ -14,8 +14,11 @@
  */
 
 import { useEffect, useRef } from "react"
-import { logout } from "@/services/auth/authService"
-import { AUTH_REDIRECTS } from "@/services/auth/constants"
+import { logout } from "@/core/auth"
+
+const AUTH_REDIRECTS = {
+    AFTER_LOGOUT: "/",
+}
 
 export function LogoutPage() {
     const hasLoggedOut = useRef(false)

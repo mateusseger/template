@@ -2,7 +2,7 @@ import { AppHeader } from "./AppHeader"
 import { AppSidebarMenu } from "./AppSidebarMenu"
 import { AppPageTransition } from "../transitions/AppPageTransition"
 import { SidebarProvider } from "../ui/sidebar"
-import { SidebarLayoutProvider } from "@/contexts/SidebarLayoutContext"
+import { SidebarLayoutProvider } from "@/components/layout/sidebar-layout-context"
 import { DetailSectionsProvider } from "./detail-sections/DetailSectionsProvider"
 import { DetailSectionsSidebar } from "./detail-sections/DetailSectionsSidebar"
 

@@ -14,7 +14,7 @@
  * ```
  */
 
-import type { IUser } from "@/services/auth/types"
+import type { IUser } from "@/core/auth/auth-types"
 
 /**
  * Extracts user roles from user object

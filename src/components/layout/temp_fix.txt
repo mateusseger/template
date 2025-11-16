@@ -1,0 +1,1 @@
+    const currentLogo = logos[theme.color][theme.mode]

@@ -1,7 +1,7 @@
 // filepath: src/components/layout/detail-sections/Section.tsx
 import { forwardRef, useEffect, useRef, type ReactNode } from "react"
 import { type LucideIcon } from "lucide-react"
-import { cn } from "@/core/utils/cn"
+import { cn } from "@/core/lib/cn"
 import { useDetailSections } from "./DetailSectionsProvider"
 
 interface SectionProps {

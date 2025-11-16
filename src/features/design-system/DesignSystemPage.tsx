@@ -32,7 +32,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { useTheme } from "@/themes"
+import { useTheme } from "@/core/theme"
 import {
     Palette,
     Moon,

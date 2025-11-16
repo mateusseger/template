@@ -7,7 +7,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { getBreadcrumbPath } from "@/helpers/menuHelpers"
+import { getBreadcrumbPath } from "@/core/lib/menu-helpers"
 
 /**
  * AppBreadcrumb - Navegação breadcrumb automática baseada na rota atual

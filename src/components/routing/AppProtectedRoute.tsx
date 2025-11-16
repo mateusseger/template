@@ -31,7 +31,7 @@
 import { type ReactNode, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "@/hooks/useAuth"
-import { getUserRoles } from "@/helpers/userHelpers"
+import { getUserRoles } from "@/core/lib/user-helpers"
 import { hasAnyRole, type UserRole } from "@/core/permissions"
 
 interface ProtectedRouteProps {

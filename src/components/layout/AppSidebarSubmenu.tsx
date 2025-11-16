@@ -9,8 +9,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { cn } from "@/core/utils/cn"
-import type { MenuItem } from "@/core/constants/menu"
+import { cn } from "@/core/lib/cn"
+import type { MenuItem } from "@/core/lib/menu"
 
 /**
  * AppSidebarSubmenu - Painel de navegação secundário para itens de submenu
