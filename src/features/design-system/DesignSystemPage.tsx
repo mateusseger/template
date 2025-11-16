@@ -1,19 +1,19 @@
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { Skeleton } from "@/components/ui/skeleton"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Progress } from "@/components/ui/progress"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
+import { Button } from "@/shared/components/ui/button"
+import { Input } from "@/shared/components/ui/input"
+import { Textarea } from "@/shared/components/ui/textarea"
+import { Badge } from "@/shared/components/ui/badge"
+import { Separator } from "@/shared/components/ui/separator"
+import { Skeleton } from "@/shared/components/ui/skeleton"
+import { Checkbox } from "@/shared/components/ui/checkbox"
+import { Label } from "@/shared/components/ui/label"
+import { Switch } from "@/shared/components/ui/switch"
+import { Progress } from "@/shared/components/ui/progress"
+import { Alert, AlertDescription, AlertTitle } from "@/shared/components/ui/alert"
+import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/tabs"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
 import {
     Dialog,
     DialogContent,
@@ -22,7 +22,7 @@ import {
     DialogTitle,
     DialogTrigger,
     DialogFooter,
-} from "@/components/ui/dialog"
+} from "@/shared/components/ui/dialog"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -30,9 +30,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { useTheme } from "@/core/theme"
+} from "@/shared/components/ui/dropdown-menu"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/shared/components/ui/tooltip"
+import { useTheme } from "@/shared/theme"
 import {
     Palette,
     Moon,
@@ -55,11 +55,18 @@ export function DesignSystemPage() {
 
     return (
         <div className="space-y-8">
-            <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tight">Design System</h1>
-                <p className="text-muted-foreground">
-                    Biblioteca completa de componentes do template
-                </p>
+            <div>
+                <div className="flex items-center gap-3 mb-2">
+                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <Palette className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                        <h1 className="text-3xl font-bold tracking-tight">Design System</h1>
+                        <p className="text-muted-foreground">
+                            Biblioteca completa de componentes do template
+                        </p>
+                    </div>
+                </div>
             </div>
 
             {/* Theme Switcher Section */}
