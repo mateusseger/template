@@ -1,6 +1,6 @@
 // Configuração geral do projeto
 
 export const projectConfig = {
-    name: "Birôs",
+    name: "Template",
     version: "1.0.0",
 } as const
