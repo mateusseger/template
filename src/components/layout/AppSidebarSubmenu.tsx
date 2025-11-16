@@ -68,7 +68,7 @@ export function AppSidebarSubmenu({
                         duration: 0.3,
                         ease: "easeInOut",
                     }}
-                    className="bg-background flex flex-col overflow-hidden border-r"
+                    className="bg-background flex flex-col overflow-hidden border-r h-screen sticky top-0"
                     id={`submenu-${parentItem.name}`}
                     aria-label={`Submenu de ${parentItem.name}`}
                 >

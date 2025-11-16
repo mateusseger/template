@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/useAuth"
-import { logout } from "@/services/auth/authService"
 import { LogOut } from "lucide-react"
 import { AppBreadcrumb } from "./AppBreadcrumb"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -25,10 +24,14 @@ import { getUserInitials, getUserDisplayName } from "@/helpers/userHelpers"
  * - Menu dropdown do usuário com opção de logout
  */
 export function AppHeader() {
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
 
     const handleLogout = async () => {
-        await logout()
+        try {
+            await logout()
+        } catch (error) {
+            console.error("Error logging out:", error)
+        }
     }
 
     const userDisplayName = getUserDisplayName(user)

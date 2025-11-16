@@ -1,102 +1,130 @@
 /**
- * User Helper Utilities - Utilitários auxiliares para manipulação de dados do usuário
+ * User Helper Utilities
  * 
- * Centraliza a extração e formatação de dados do usuário, fornecendo:
- * - Extração segura de roles/permissões
- * - Geração de iniciais para avatares
- * - Formatação de nome de exibição
- * 
- * Garante consistência no acesso a propriedades do usuário em toda a aplicação.
- */
-
-/**
- * getUserRoles - Extrai as roles (permissões) do usuário de diferentes possíveis localizações
- * 
- * Suporta múltiplas estruturas de dados do usuário:
- * - user.profile.userRoles (estrutura aninhada)
- * - user.userRoles (estrutura direta)
- * 
- * Útil para:
- * - Controle de acesso baseado em permissões
- * - Filtragem de menu baseada em roles
- * - Validação de autorização em rotas protegidas
- * 
- * @param user - Objeto do usuário (pode ser null/undefined)
- * @returns Array de strings representando as roles do usuário, array vazio se não houver roles
+ * Provides utility functions for working with user data:
+ * - Role extraction
+ * - Name formatting
+ * - Initial generation for avatars
  * 
  * @example
- * ```typescript
+ * ```ts
  * const roles = getUserRoles(user)
- * // Retorna: ["admin", "user"] ou []
+ * const initials = getUserInitials(user)
+ * const displayName = getUserDisplayName(user)
  * ```
  */
-export function getUserRoles(user: any): string[] {
-    if (!user) return []
-    return user?.profile?.userRoles ?? user?.userRoles ?? []
+
+import type { IUser } from "@/services/auth/types"
+
+/**
+ * Extracts user roles from user object
+ * 
+ * Handles multiple formats:
+ * 1. user.userRoles (enriched by authService)
+ * 2. user.profile.userRoles (custom claim)
+ * 3. user.profile.roles (direct claim)
+ * 4. user.profile.resource_access[client_id].roles (Keycloak client-specific)
+ * 5. user.profile.realm_access.roles (Keycloak realm-wide)
+ * 
+ * @param user - User object
+ * @returns Array of role strings
+ */
+export function getUserRoles(user: IUser | null | undefined): string[] {
+    if (!user) {
+        return []
+    }
+
+
+    // Format 1: userRoles at root (enriched by authService)
+    if (Array.isArray(user.userRoles) && user.userRoles.length > 0) {
+        return user.userRoles
+    }
+
+    // Format 2: userRoles in profile (custom claim)
+    if (user.profile?.userRoles && Array.isArray(user.profile.userRoles) && user.profile.userRoles.length > 0) {
+        return user.profile.userRoles
+    }
+
+    // Format 3: roles in profile (direct claim)
+    if (user.profile?.roles && Array.isArray(user.profile.roles) && user.profile.roles.length > 0) {
+        return user.profile.roles
+    }
+
+    // Format 4: resource_access[client_id].roles (Keycloak client-specific)
+    const clientId = import.meta.env.VITE_APP_CLIENT_ID || "react-app"
+    if (user.profile?.resource_access?.[clientId]?.roles) {
+        const clientRoles = user.profile.resource_access[clientId].roles
+        if (Array.isArray(clientRoles) && clientRoles.length > 0) {
+            return clientRoles
+        }
+    }
+
+    // Format 5: realm_access.roles (Keycloak realm-wide)
+    if (user.profile?.realm_access?.roles) {
+        const realmRoles = user.profile.realm_access.roles
+        if (Array.isArray(realmRoles) && realmRoles.length > 0) {
+            return realmRoles
+        }
+    }
+
+    return []
 }
 
 /**
- * getUserInitials - Gera iniciais do nome do usuário para exibição em avatar
+ * Gets display name for user with safe fallbacks
  * 
- * Lógica de geração:
- * 1. Usa o nome completo se disponível
- * 2. Fallback para email se nome não existir
- * 3. Fallback final para "User"
- * 4. Divide por espaços e pega primeira letra de cada palavra
- * 5. Converte para maiúsculas e limita a 2 caracteres
+ * Priority order:
+ * 1. user.name
+ * 2. user.profile.name
+ * 3. user.email
+ * 4. user.profile.email
+ * 5. "User" (fallback)
  * 
- * Casos de uso:
- * - Avatar com iniciais quando não há foto
- * - Placeholder visual para identificação rápida
- * - Componentes de perfil simplificados
- * 
- * @param user - Objeto do usuário (pode ser null/undefined)
- * @returns String com 1-2 caracteres em maiúsculas, "U" se usuário for inválido
- * 
- * @example
- * ```typescript
- * getUserInitials({ name: "João Silva" }) // Retorna: "JS"
- * getUserInitials({ email: "joao@exemplo.com" }) // Retorna: "JO"
- * getUserInitials(null) // Retorna: "U"
- * ```
+ * @param user - User object
+ * @returns Display name string
  */
-export function getUserInitials(user: any): string {
-    if (!user) return "U"
+export function getUserDisplayName(user: IUser | null | undefined): string {
+    if (!user) {
+        return "User"
+    }
 
-    const name = user.name || user.email || "User"
-    return name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2)
+    return (
+        user.name ||
+        user.profile?.name ||
+        user.email ||
+        user.profile?.email ||
+        "User"
+    )
 }
 
 /**
- * getUserDisplayName - Retorna o nome de exibição preferencial do usuário
+ * Generates user initials for avatar display
  * 
- * Hierarquia de preferência:
- * 1. Nome completo (user.name)
- * 2. Email (user.email)
- * 3. Fallback genérico "User"
+ * Logic:
+ * - Full name: First letter of first and last name ("John Doe" -> "JD")
+ * - Email: First letter only ("john@example.com" -> "J")
+ * - Fallback: "U" (User)
  * 
- * Útil para:
- * - Exibição no cabeçalho da aplicação
- * - Mensagens de boas-vindas personalizadas
- * - Labels em componentes de perfil
- * - Registros de auditoria e logs
- * 
- * @param user - Objeto do usuário (pode ser null/undefined)
- * @returns String com o nome de exibição, "User" se usuário for inválido
- * 
- * @example
- * ```typescript
- * getUserDisplayName({ name: "Maria Santos" }) // Retorna: "Maria Santos"
- * getUserDisplayName({ email: "maria@exemplo.com" }) // Retorna: "maria@exemplo.com"
- * getUserDisplayName(null) // Retorna: "User"
- * ```
+ * @param user - User object
+ * @returns 1-2 character initials string
  */
-export function getUserDisplayName(user: any): string {
-    if (!user) return "User"
-    return user.name || user.email || "User"
+export function getUserInitials(user: IUser | null | undefined): string {
+    const displayName = getUserDisplayName(user)
+
+    // Email format: use first character only
+    if (displayName.includes("@")) {
+        return displayName[0].toUpperCase()
+    }
+
+    // Name format: try first and last initials
+    const nameParts = displayName.split(" ").filter(Boolean)
+    if (nameParts.length > 1) {
+        return (
+            nameParts[0][0].toUpperCase() +
+            nameParts[nameParts.length - 1][0].toUpperCase()
+        )
+    }
+
+    // Single word or fallback: first character
+    return displayName[0]?.toUpperCase() || "U"
 }

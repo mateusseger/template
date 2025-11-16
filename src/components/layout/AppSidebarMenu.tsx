@@ -18,6 +18,8 @@ import { cn } from "@/core/utils/cn"
 import { useSidebarMenu } from "@/hooks/useSidebarMenu"
 import { AppSidebarSubmenu } from "./AppSidebarSubmenu"
 import { projectConfig } from "@/config/project"
+import { useSidebarLayout } from "@/contexts/SidebarLayoutContext"
+import { useEffect } from "react"
 import logoHervalLight from "@/assets/logo-herval-light.png"
 import logoHervalDark from "@/assets/logo-herval-dark.png"
 import logoTaqi from "@/assets/logo-taqi.svg"
@@ -29,6 +31,7 @@ import logoIplace from "@/assets/logo-iplace.svg"
  * Arquitetura:
  * - Utiliza o hook useSidebarMenu para encapsular estado e lógica
  * - Delega a renderização de submenus ao componente AppSidebarSubmenu
+ * - Publica estado do submenu via SidebarLayoutContext
  * - Foco em composição e apresentação
  *
  * Funcionalidades:
@@ -61,6 +64,12 @@ export function AppSidebarMenu() {
         handleItemClick,
         closeSubmenu,
     } = useSidebarMenu()
+    const { setIsSubmenuOpen } = useSidebarLayout()
+
+    // Publica mudanças no estado do submenu para o layout context
+    useEffect(() => {
+        setIsSubmenuOpen(!!activeSubmenu)
+    }, [activeSubmenu, setIsSubmenuOpen])
 
     // Logos por tema e modo (light/dark)
     const logos = {

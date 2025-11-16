@@ -1,67 +1,82 @@
-import { type ReactNode, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { useAuth } from "@/hooks/useAuth"
-import { hasAnyRole, type UserRole } from "@/core/constants/roles"
-import { getUserRoles } from "@/helpers/userHelpers"
-
-interface ProtectedRouteProps {
-    children: ReactNode
-    requiredRoles?: UserRole[]
-}
-
 /**
- * AppProtectedRoute - Componente de guarda para controle de acesso baseado em permissões
- *
- * Responsabilidades:
- * - Verifica autenticação do usuário antes de renderizar conteúdo protegido
- * - Valida se o usuário possui as permissões (roles) necessárias
- * - Redireciona para /unauthorized se o usuário não tiver acesso
- * - Retorna null enquanto aguarda verificações, evitando flash de conteúdo
- *
- * Fluxo de Autorização:
- * 1. Verifica se o usuário está autenticado (gerenciado pelo AuthProvider)
- * 2. Extrai as roles do usuário usando helper centralizado
- * 3. Compara roles do usuário com roles requeridas
- * 4. Permite acesso se nenhuma role for requerida (qualquer usuário autenticado)
- * 5. Redireciona se usuário não tiver permissões necessárias
- *
- * @param children - Componentes filhos a serem renderizados se autorizado
- * @param requiredRoles - Array opcional de roles, se vazio permite qualquer usuário autenticado
- *
+ * Protected Route Component
+ * 
+ * Protects routes based on authentication and role-based authorization.
+ * 
+ * Features:
+ * - Requires authentication (handled by AuthContext)
+ * - Optional role-based access control
+ * - Automatic redirect to /unauthorized for insufficient permissions
+ * - No content flash during authorization checks
+ * 
  * @example
  * ```tsx
- * <AppProtectedRoute requiredRoles={['admin']}>
+ * // Any authenticated user
+ * <AppProtectedRoute>
+ *   <HomePage />
+ * </AppProtectedRoute>
+ * 
+ * // Only admin users
+ * <AppProtectedRoute requiredRoles={[USER_ROLES.ADMIN]}>
  *   <AdminPanel />
+ * </AppProtectedRoute>
+ * 
+ * // Editor or Admin users
+ * <AppProtectedRoute requiredRoles={[USER_ROLES.EDITOR, USER_ROLES.ADMIN]}>
+ *   <EditorView />
  * </AppProtectedRoute>
  * ```
  */
+
+import { type ReactNode, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "@/hooks/useAuth"
+import { getUserRoles } from "@/helpers/userHelpers"
+import { hasAnyRole, type UserRole } from "@/core/permissions"
+
+interface ProtectedRouteProps {
+    /** Child components to render if authorized */
+    children: ReactNode
+
+    /** 
+     * Required roles for access (empty = any authenticated user)
+     * User needs ANY of the specified roles (OR logic)
+     */
+    requiredRoles?: UserRole[]
+}
+
 export function AppProtectedRoute({ children, requiredRoles = [] }: ProtectedRouteProps) {
     const navigate = useNavigate()
     const { user, isAuthenticated } = useAuth()
 
-    // Verifica autorização - extrai roles usando helper centralizado
+    // Extract user roles
     const userRoles = getUserRoles(user)
+
+    // Check if user has required access
     const hasRequiredAccess = requiredRoles.length === 0 || hasAnyRole(userRoles, requiredRoles)
 
     useEffect(() => {
-        // AuthProvider gerencia redirecionamento quando não autenticado
-        if (!isAuthenticated) return
+        // AuthContext handles redirect when not authenticated
+        if (!isAuthenticated) {
+            return
+        }
 
-        // Redireciona se usuário não possui as permissões necessárias
+        // Redirect if user doesn't have required permissions
         if (!hasRequiredAccess) {
             navigate("/unauthorized", { replace: true })
         }
     }, [isAuthenticated, hasRequiredAccess, navigate])
 
-    // Se não autenticado, não renderiza (AuthProvider gerencia redirecionamento)
+    // Don't render if not authenticated (AuthContext handles redirect)
     if (!isAuthenticated) {
         return null
     }
 
-    // Se usuário não tem acesso, não renderiza (redirecionamento ocorrendo no effect)
+    // Don't render if unauthorized (redirect in progress)
     if (!hasRequiredAccess) {
         return null
     }
 
     return <>{children}</>
 }
+

@@ -10,6 +10,8 @@ import { UnauthorizedPage } from "@/features/auth/UnauthorizedPage"
 import { NotFoundPage } from "@/features/errors/NotFoundPage"
 import { USER_ROLES } from "@/core/constants/roles"
 import { PreferencesPage } from "@/features/settings/PreferencesPage"
+import { DevolucoesListPage } from "@/features/devolucoes/DevolucoesListPage"
+import { DevolucaoDetailPage } from "@/features/devolucoes/DevolucaoDetailPage"
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +33,18 @@ export const router = createBrowserRouter([
             {
                 path: "/todos",
                 element: <TodosPage />,
+            },
+            {
+                path: "/devolucoes",
+                element: <DevolucoesListPage />,
+            },
+            {
+                path: "/devolucoes/:id",
+                element: <DevolucaoDetailPage />,
+                handle: {
+                    detailSectionsEnabled: true,
+                    breadcrumbLabel: (params: { id: string }) => `DEV-${params.id}`,
+                },
             },
             {
                 path: "/settings/preferences",

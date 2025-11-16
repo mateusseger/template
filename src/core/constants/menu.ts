@@ -1,5 +1,5 @@
-import { Home, ListTodo, FileText, Shield, Palette, Settings, User, Sliders, Lock, type LucideIcon } from "lucide-react"
-import { USER_ROLES, type UserRole } from "./roles"
+import { Home, ListTodo, Palette, Settings, Sliders, Undo2, type LucideIcon } from "lucide-react"
+import { type UserRole } from "./roles"
 
 export interface MenuSubItem {
     name: string
@@ -36,6 +36,12 @@ export const MENU_ITEMS: MenuItem[] = [
         url: "/todos",
         icon: ListTodo,
         description: "Lista de tarefas",
+    },
+    {
+        name: "Devoluções",
+        url: "/devolucoes",
+        icon: Undo2,
+        description: "Gerenciamento de devoluções",
     },
     {
         name: "Settings",

@@ -90,6 +90,8 @@ export function getBreadcrumbLabel(url: string, segment: string): string {
  * Se for um item principal, retorna apenas o item.
  * Sempre inclui o Home no início.
  *
+ * Para rotas dinâmicas (ex: /devolucoes/:id), tenta encontrar a rota pai.
+ *
  * @param url - URL atual (ex: "/settings/profile")
  * @returns Array de MenuItem/MenuSubItem representando o caminho completo
  *
@@ -123,6 +125,21 @@ export function getBreadcrumbPath(url: string): Array<MenuItem | MenuSubItem> {
         }
     }
 
-    // Fallback: não encontrou no menu, retorna só o home
+    // Fallback para rotas dinâmicas: tenta encontrar a rota pai
+    // Ex: /devolucoes/123 -> busca /devolucoes
+    const segments = url.split('/').filter(Boolean)
+    if (segments.length > 1) {
+        const parentUrl = '/' + segments[0]
+        const parentItem = MENU_ITEMS.find((item) => item.url === parentUrl)
+        if (parentItem) {
+            // Retorna o item pai, e o componente breadcrumb adicionará o label dinâmico
+            path.push(parentItem)
+            // Adiciona placeholder que será substituído por breadcrumbLabel se existir
+            path.push({ name: segments[segments.length - 1], url, icon: parentItem.icon } as any)
+            return path
+        }
+    }
+
+    // Fallback final: não encontrou no menu, retorna só o home
     return path
 }
