@@ -15,14 +15,16 @@ const THEME_COLOR_KEY = "theme-color"
 const THEME_MODE_KEY = "theme-mode"
 
 function getDefaultThemeColor(): ThemeColor {
-    const envTheme = import.meta.env.VITE_APP_THEME as ThemeColor | undefined
-    if (envTheme && (envTheme === "herval" || envTheme === "taqi" || envTheme === "iplace")) {
-        return envTheme
-    }
-
+    // Prioriza localStorage sobre .env para preservar escolha do usuário
     const stored = localStorage.getItem(THEME_COLOR_KEY)
     if (stored && (stored === "herval" || stored === "taqi" || stored === "iplace")) {
         return stored as ThemeColor
+    }
+
+    // Fallback para tema do .env
+    const envTheme = import.meta.env.VITE_APP_THEME as ThemeColor | undefined
+    if (envTheme && (envTheme === "herval" || envTheme === "taqi" || envTheme === "iplace")) {
+        return envTheme
     }
 
     return "herval"
