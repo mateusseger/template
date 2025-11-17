@@ -1,6 +1,6 @@
 // Página de listagem de Pokémons
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Search, ChevronLeft, ChevronRight, Sparkles } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
