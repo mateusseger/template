@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card"
 import { Button } from "@/shared/components/ui/button"
 import { Input } from "@/shared/components/ui/input"
 import { Textarea } from "@/shared/components/ui/textarea"
@@ -32,11 +32,8 @@ import {
     DropdownMenuTrigger,
 } from "@/shared/components/ui/dropdown-menu"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/shared/components/ui/tooltip"
-import { useTheme } from "@/shared/theme"
 import {
     Palette,
-    Moon,
-    Sun,
     Info,
     XCircle,
     Download,
@@ -48,7 +45,6 @@ import {
 } from "lucide-react"
 
 export function DesignSystemPage() {
-    const { theme, setThemeColor } = useTheme()
     const [progress, setProgress] = useState(45)
     const [checked, setChecked] = useState(false)
     const [switchOn, setSwitchOn] = useState(false)
@@ -68,60 +64,6 @@ export function DesignSystemPage() {
                     </div>
                 </div>
             </div>
-
-            {/* Theme Switcher Section */}
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Palette className="h-5 w-5" />
-                        Sistema de Temas
-                    </CardTitle>
-                    <CardDescription>
-                        Três temas corporativos com suporte a modo claro e escuro
-                    </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="grid grid-cols-3 gap-3">
-                        <Button
-                            variant={theme.color === "herval" ? "default" : "outline"}
-                            onClick={() => setThemeColor("herval")}
-                            className="w-full"
-                        >
-                            Herval
-                        </Button>
-                        <Button
-                            variant={theme.color === "taqi" ? "default" : "outline"}
-                            onClick={() => setThemeColor("taqi")}
-                            className="w-full"
-                        >
-                            Taqi
-                        </Button>
-                        <Button
-                            variant={theme.color === "iplace" ? "default" : "outline"}
-                            onClick={() => setThemeColor("iplace")}
-                            className="w-full"
-                        >
-                            iPlace
-                        </Button>
-                    </div>
-
-                    <div className="flex items-center justify-between p-4 rounded-lg border bg-muted/50">
-                        <div className="flex items-center gap-2">
-                            {theme.mode === "light" ? (
-                                <Sun className="h-4 w-4 text-primary" />
-                            ) : (
-                                <Moon className="h-4 w-4 text-primary" />
-                            )}
-                            <span className="text-sm font-medium">
-                                Modo: {theme.mode === "light" ? "Claro" : "Escuro"}
-                            </span>
-                        </div>
-                        <Badge variant="outline">{theme.color}</Badge>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <Separator />
 
             {/* Buttons Section */}
             <section className="space-y-4">

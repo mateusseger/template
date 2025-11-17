@@ -6,6 +6,12 @@ import { useTheme } from "@/shared/theme/use-theme"
 import { Settings, Palette, Sun, Moon, Check } from "lucide-react"
 import { motion } from "framer-motion"
 import { THEMES, THEME_METADATA, type ThemeName } from "@/shared/theme/theme-config"
+import logoHervalDark from "@/shared/assets/logo-herval-dark.png"
+import logoHervalLight from "@/shared/assets/logo-herval-light.png"
+import logoIplaceDark from "@/shared/assets/logo-iplace-dark.svg"
+import logoIplaceLight from "@/shared/assets/logo-iplace-light.svg"
+import logoTaqiDark from "@/shared/assets/logo-taqi-dark.svg"
+import logoTaqiLight from "@/shared/assets/logo-taqi-light.svg"
 
 // Gera as opções de tema dinamicamente a partir do theme-config
 const THEME_OPTIONS = (Object.keys(THEMES) as ThemeName[]).map((themeId) => ({
@@ -30,6 +36,13 @@ export function PreferencesPage() {
 
     const handleModeToggle = () => {
         setThemeMode(theme.mode === "light" ? "dark" : "light")
+    }
+
+    // Mapeamento de logos por tema
+    const themeLogos: Record<ThemeName, { light: string; dark: string }> = {
+        herval: { light: logoHervalLight, dark: logoHervalDark },
+        taqi: { light: logoTaqiLight, dark: logoTaqiDark },
+        iplace: { light: logoIplaceLight, dark: logoIplaceDark },
     }
 
     return (
@@ -104,9 +117,16 @@ export function PreferencesPage() {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
-                                    {/* Header com nome e badge */}
+                                    {/* Header com logo e badge */}
                                     <div className="flex items-center justify-between mb-3">
-                                        <p className="font-semibold text-lg">{themeOption.name}</p>
+                                        <div className="flex items-center gap-3">
+                                            <img
+                                                src={themeLogos[themeOption.id][theme.mode]}
+                                                alt={themeOption.name}
+                                                className="h-6 w-auto object-contain"
+                                            />
+                                            <p className="text-md font-bold">{themeOption.name}</p>
+                                        </div>
                                         {theme.color === themeOption.id && (
                                             <Badge variant="default" className="text-xs">
                                                 <Check className="h-3 w-3 mr-1" />

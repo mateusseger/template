@@ -22,8 +22,10 @@ import { useSidebarLayout } from "@/shared/components/layout/sidebar-layout-cont
 import { useEffect } from "react"
 import logoHervalLight from "@/shared/assets/logo-herval-light.png"
 import logoHervalDark from "@/shared/assets/logo-herval-dark.png"
-import logoTaqi from "@/shared/assets/logo-taqi.svg"
-import logoIplace from "@/shared/assets/logo-iplace.svg"
+import logoTaqiLight from "@/shared/assets/logo-taqi-light.svg"
+import logoTaqiDark from "@/shared/assets/logo-taqi-dark.svg"
+import logoIplaceLight from "@/shared/assets/logo-iplace-light.svg"
+import logoIplaceDark from "@/shared/assets/logo-iplace-dark.svg"
 
 /**
  * AppSidebarMenu - Barra lateral principal de navegação
@@ -78,12 +80,12 @@ export function AppSidebarMenu() {
             dark: logoHervalDark,
         },
         taqi: {
-            light: logoTaqi,
-            dark: logoTaqi, // Mesmo logo para ambos os modos
+            light: logoTaqiLight,
+            dark: logoTaqiDark,
         },
         iplace: {
-            light: logoIplace,
-            dark: logoIplace, // Mesmo logo para ambos os modos
+            light: logoIplaceLight,
+            dark: logoIplaceDark,
         },
     }
 
@@ -94,7 +96,10 @@ export function AppSidebarMenu() {
             {/* Barra Lateral Principal */}
             <Sidebar collapsible="icon">
                 <SidebarHeader className="border-b p-0">
-                    <div className="h-14 px-4 flex items-center gap-3 transition-all duration-200 ease-linear group-data-[collapsible=icon]:px-1">
+                    <Link
+                        to="/"
+                        className="h-14 px-4 flex items-center gap-3 transition-all duration-200 ease-linear group-data-[collapsible=icon]:px-1 hover:bg-accent/50 cursor-pointer"
+                    >
                         <img
                             src={currentLogo}
                             alt="Logo"
@@ -102,7 +107,7 @@ export function AppSidebarMenu() {
                         />
 
                         <h1 className="text-sm font-bold group-data-[collapsible=icon]:hidden">{projectConfig.name}</h1>
-                    </div>
+                    </Link>
                 </SidebarHeader>
 
                 <SidebarContent>
