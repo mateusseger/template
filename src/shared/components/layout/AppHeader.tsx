@@ -14,7 +14,6 @@ import {
 import { SidebarTrigger } from "@/shared/components/ui/sidebar"
 import { Separator } from "@/shared/components/ui/separator"
 import { getUserInitials, getUserDisplayName } from "@/shared/lib/user"
-import { motion } from "framer-motion"
 
 /**
  * AppHeader - Barra de navegação superior com acionador da barra lateral, breadcrumb e menu do usuário
@@ -68,32 +67,25 @@ export function AppHeader() {
                                 className="w-56"
                                 align="end"
                                 forceMount
-                                asChild
                             >
-                                <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.15, ease: "easeOut" }}
+                                <DropdownMenuLabel className="font-normal">
+                                    <div className="flex flex-col space-y-1">
+                                        <p className="text-sm font-medium leading-none">
+                                            {userDisplayName}
+                                        </p>
+                                        <p className="text-xs leading-none text-muted-foreground">
+                                            {user.email}
+                                        </p>
+                                    </div>
+                                </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem
+                                    onClick={handleLogout}
+                                    className="cursor-pointer"
                                 >
-                                    <DropdownMenuLabel className="font-normal">
-                                        <div className="flex flex-col space-y-1">
-                                            <p className="text-sm font-medium leading-none">
-                                                {userDisplayName}
-                                            </p>
-                                            <p className="text-xs leading-none text-muted-foreground">
-                                                {user.email}
-                                            </p>
-                                        </div>
-                                    </DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem
-                                        onClick={handleLogout}
-                                        className="cursor-pointer"
-                                    >
-                                        <LogOut className="mr-2 h-4 w-4" />
-                                        <span>Logout</span>
-                                    </DropdownMenuItem>
-                                </motion.div>
+                                    <LogOut className="mr-2 h-4 w-4" />
+                                    <span>Logout</span>
+                                </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     )}

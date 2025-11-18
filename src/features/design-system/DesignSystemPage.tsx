@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTheme } from "@/shared/theme/use-theme"
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card"
 import { Button } from "@/shared/components/ui/button"
 import { Input } from "@/shared/components/ui/input"
@@ -41,13 +42,24 @@ import {
     User,
     Settings,
     LogOut,
-    HelpCircle
+    HelpCircle,
+    ChevronDownIcon
 } from "lucide-react"
+import { Calendar } from "@/shared/components/ui/calendar"
+import { toast } from "sonner"
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/components/ui/popover"
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/shared/components/ui/drawer"
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/shared/components/ui/sheet"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/components/ui/select"
+import { Spinner } from "@/shared/components/ui/spinner"
 
 export function DesignSystemPage() {
     const [progress, setProgress] = useState(45)
     const [checked, setChecked] = useState(false)
     const [switchOn, setSwitchOn] = useState(false)
+    const [open, setOpen] = useState(false)
+    const [date, setDate] = useState<Date | undefined>(new Date())
+    const { theme, setThemeColor, setThemeMode } = useTheme()
 
     return (
         <div className="space-y-8">
@@ -84,6 +96,7 @@ export function DesignSystemPage() {
                                 <Button variant="outline">Outline</Button>
                                 <Button variant="ghost">Ghost</Button>
                                 <Button variant="destructive">Destructive</Button>
+                                <Button disabled>Disabled</Button>
                                 <Button variant="link">Link</Button>
                             </div>
                         </CardContent>
@@ -114,7 +127,7 @@ export function DesignSystemPage() {
                     <p className="text-muted-foreground">Campos de formulário e controles</p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-3 gap-6">
                     <Card>
                         <CardHeader>
                             <CardTitle>Text Inputs</CardTitle>
@@ -131,6 +144,53 @@ export function DesignSystemPage() {
                             <div className="space-y-2">
                                 <Label htmlFor="textarea1">Textarea</Label>
                                 <Textarea id="textarea1" placeholder="Digite uma mensagem..." />
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Select e Date Picker</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="theme">Tema</Label>
+                                <Select value={theme.mode} onValueChange={(value) => setThemeMode(value as "light" | "dark")}>
+                                    <SelectTrigger className="w-48" id="theme">
+                                        <SelectValue placeholder="Selecione um tema" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="light">Light</SelectItem>
+                                        <SelectItem value="dark">Dark</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="date">Data de nascimento</Label>
+                                <Popover open={open} onOpenChange={setOpen}>
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                            variant="outline"
+                                            id="date"
+                                            className="w-48 justify-between font-normal"
+                                        >
+                                            {date ? date.toLocaleDateString() : "Select date"}
+                                            <ChevronDownIcon />
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+                                        <Calendar
+                                            mode="single"
+                                            selected={date}
+                                            captionLayout="dropdown"
+                                            onSelect={(date) => {
+                                                setDate(date)
+                                                setOpen(false)
+                                            }}
+                                        />
+                                    </PopoverContent>
+                                </Popover>
                             </div>
                         </CardContent>
                     </Card>
@@ -161,6 +221,7 @@ export function DesignSystemPage() {
                             </div>
                         </CardContent>
                     </Card>
+
                 </div>
             </section>
 
@@ -170,7 +231,7 @@ export function DesignSystemPage() {
             <section className="space-y-4">
                 <div>
                     <h2 className="text-2xl font-bold tracking-tight">Feedback</h2>
-                    <p className="text-muted-foreground">Alerts, badges e indicadores</p>
+                    <p className="text-muted-foreground">Alerts, toaster, badges e indicadores</p>
                 </div>
 
                 <div className="grid gap-6">
@@ -197,7 +258,43 @@ export function DesignSystemPage() {
                         </CardContent>
                     </Card>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-3 gap-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Toaster</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2">
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={() => toast.success("Operação realizada com sucesso!")}
+                                >
+                                    Success Toast
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={() => toast.error("Erro ao processar solicitação")}
+                                >
+                                    Error Toast
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={() => toast.info("Esta é uma informação importante")}
+                                >
+                                    Info Toast
+                                </Button>
+                                <Button
+                                    variant="outline"
+                                    className="w-full"
+                                    onClick={() => toast.warning("Atenção! Verifique os dados")}
+                                >
+                                    Warning Toast
+                                </Button>
+                            </CardContent>
+                        </Card>
+
                         <Card>
                             <CardHeader>
                                 <CardTitle>Badges</CardTitle>
@@ -316,7 +413,6 @@ export function DesignSystemPage() {
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <Button variant="outline" className="w-full">
-                                            <HelpCircle className="h-4 w-4 mr-2" />
                                             Hover me
                                         </Button>
                                     </TooltipTrigger>
@@ -328,6 +424,63 @@ export function DesignSystemPage() {
                         </CardContent>
                     </Card>
                 </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Sheet</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <Sheet>
+                                <SheetTrigger asChild>
+                                    <Button variant="outline" className="w-full">
+                                        Abrir Sheet
+                                    </Button>
+                                </SheetTrigger>
+                                <SheetContent>
+                                    <SheetHeader className="">
+                                        <SheetTitle>Você tem certeza disso?</SheetTitle>
+                                        <SheetDescription>Esta ação não pode ser desfeita.</SheetDescription>
+                                        <SheetFooter className="px-0">
+                                            <SheetClose className="flex space-x-3">
+                                                <Button>Enviar</Button>
+                                                <Button variant="outline">Cancelar</Button>
+                                            </SheetClose>
+                                        </SheetFooter>
+                                    </SheetHeader>
+                                </SheetContent>
+                            </Sheet>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Drawer</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <Drawer>
+                                <DrawerTrigger asChild>
+                                    <Button variant="outline" className="w-full">
+                                        <HelpCircle className="h-4 w-4 mr-2" />
+                                        Abrir Drawer
+                                    </Button>
+                                </DrawerTrigger>
+                                <DrawerContent >
+                                    <DrawerHeader>
+                                        <DrawerTitle>Você tem certeza disso?</DrawerTitle>
+                                        <DrawerDescription>Esta ação não pode ser desfeita.</DrawerDescription>
+                                    </DrawerHeader>
+                                    <DrawerFooter className="flex items-center">
+                                        <Button className="w-sm">Enviar</Button>
+                                        <DrawerClose>
+                                            <Button className="w-sm" variant="outline">Cancelar</Button>
+                                        </DrawerClose>
+                                    </DrawerFooter>
+                                </DrawerContent>
+                            </Drawer>
+                        </CardContent>
+                    </Card>
+                </div>
             </section>
 
             <Separator />
@@ -336,12 +489,12 @@ export function DesignSystemPage() {
             <section className="space-y-4">
                 <div>
                     <h2 className="text-2xl font-bold tracking-tight">Display</h2>
-                    <p className="text-muted-foreground">Tabs, tables e avatars</p>
+                    <p className="text-muted-foreground">Abas, tabelas e avatar</p>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Tabs</CardTitle>
+                        <CardTitle>Tab</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <Tabs defaultValue="tab1" className="w-full">
@@ -371,7 +524,7 @@ export function DesignSystemPage() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Avatars</CardTitle>
+                        <CardTitle>Avatar</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="flex gap-4 items-center">
@@ -439,29 +592,49 @@ export function DesignSystemPage() {
             {/* Loading States */}
             <section className="space-y-4">
                 <div>
-                    <h2 className="text-2xl font-bold tracking-tight">Loading States</h2>
-                    <p className="text-muted-foreground">Skeletons e placeholders</p>
+                    <h2 className="text-2xl font-bold tracking-tight">Estados de carregamento</h2>
+                    <p className="text-muted-foreground">Skeletons e Spinners</p>
                 </div>
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Skeleton Loaders</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-4 w-3/4" />
-                            <Skeleton className="h-4 w-1/2" />
-                        </div>
-                        <div className="flex items-center space-x-4">
-                            <Skeleton className="h-12 w-12 rounded-full" />
-                            <div className="space-y-2 flex-1">
+                <div className="grid md:grid-cols-2 gap-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Skeleton</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-2">
                                 <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-2/3" />
+                                <Skeleton className="h-4 w-3/4" />
+                                <Skeleton className="h-4 w-1/2" />
                             </div>
-                        </div>
-                    </CardContent>
-                </Card>
+                            <div className="flex items-center space-x-4">
+                                <Skeleton className="h-12 w-12 rounded-full" />
+                                <div className="space-y-2 flex-1">
+                                    <Skeleton className="h-4 w-full" />
+                                    <Skeleton className="h-4 w-2/3" />
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Spinner</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col space-y-4 h-full items-center justify-center">
+                            <Spinner />
+                            <Badge variant="outline">
+                                <Spinner />
+                                Carregando...
+                            </Badge>
+                            <Button variant="outline">
+                                <Spinner />
+                                Carregando...
+                            </Button>
+                        </CardContent>
+                    </Card>
+
+                </div>
             </section>
 
             {/* Color Palette */}

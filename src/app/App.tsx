@@ -2,7 +2,7 @@ import { RouterProvider } from "react-router-dom"
 import { AppProviders } from "@/app/providers"
 import { router } from "@/app/router"
 import { MobileUnsupported } from "@/shared/components/layout/MobileUnsupported"
-import { useIsMobile } from "@/shared/hooks/useIsMobile"
+import { useIsMobile } from "@/shared/hooks/useMobile"
 
 function App() {
     const isMobile = useIsMobile()
