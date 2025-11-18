@@ -59,7 +59,7 @@ export function DesignSystemPage() {
     const [switchOn, setSwitchOn] = useState(false)
     const [open, setOpen] = useState(false)
     const [date, setDate] = useState<Date | undefined>(new Date())
-    const { theme, setThemeColor, setThemeMode } = useTheme()
+    const { theme, setThemeMode } = useTheme()
 
     return (
         <div className="space-y-8">
