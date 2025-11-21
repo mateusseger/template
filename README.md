@@ -64,6 +64,10 @@ src/
 │   ├── tarefas/                  # Exemplo de CRUD moderno (1 componente)
 │   │   ├── TarefasPage.tsx       # Lista com filtros, stats e animações
 │   │   └── tarefas-types.ts
+│   ├── formularios/              # Exemplo de formulários (2+ componentes)
+│   │   ├── components/           # FormulariosPage
+│   │   ├── formularios-types.ts  # Schemas Zod + tipos
+│   │   └── index.ts
 │   ├── design-system/            # Exemplo (1 componente na raiz)
 │   │   └── DesignSystemPage.tsx
 │   ├── settings/                 # Configurações (1 componente)
@@ -444,6 +448,20 @@ O template inclui features prontas que demonstram as melhores práticas:
   - Hover effects e feedback visual
 - **Aprenda:** State management, filtros, animações, UX moderna
 
+### 📝 Formulários
+- **Propósito:** Exemplos de formulários com validação robusta
+- **Destaques:**
+  - React Hook Form para performance otimizada
+  - Zod para validação type-safe (runtime + compiletime)
+  - Formulário completo: 9 tipos de validação diferentes
+  - Formulário simples: Login minimalista
+  - Validações: string, email, regex, number, enum, array, nested object, refine
+  - Feedback visual em tempo real
+  - Estados de loading e sucesso
+  - Skills como badges interativos
+  - Snippets de código para referência
+- **Aprenda:** React Hook Form, Zod schemas, validação complexa, UX de formulários
+
 ### ⚙️ Preferências
 - **Propósito:** Personalização de tema e aparência
 - **Destaques:**
@@ -614,7 +632,7 @@ Este template foi inspirado em padrões consolidados da indústria:
 - [ ] Executar `npm install`
 - [ ] Executar `npm run setup` para configurar tema e nome
 - [ ] Configurar `.env` com credenciais Keycloak
-- [ ] Remover features de exemplo (tarefas, pokemon, previsao-tempo) se não necessárias
+- [ ] Remover features de exemplo (tarefas, formularios, pokemon, previsao-tempo) se não necessárias
 - [ ] Ajustar logo e favicon
 - [ ] Revisar `src/shared/lib/menu/index.ts` e remover itens de exemplo
 - [ ] Configurar roles em `src/shared/lib/permissions/index.ts` conforme necessidade

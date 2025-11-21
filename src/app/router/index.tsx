@@ -14,6 +14,7 @@ import { PokemonListPage } from "@/features/pokemon/components/pokemon-list-page
 import { PokemonDetailPage } from "@/features/pokemon/components/pokemon-detail-page"
 import { PrevisaoTempoListPage } from "@/features/previsao-tempo/components/previsao-tempo-list-page"
 import { PrevisaoTempoDetailPage } from "@/features/previsao-tempo/components/previsao-tempo-detail-page"
+import { FormulariosPage } from "@/features/formularios"
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: "/tarefas",
                 element: <TarefasPage />,
+            },
+            {
+                path: "/formularios",
+                element: <FormulariosPage />,
             },
             {
                 path: "/pokemon",

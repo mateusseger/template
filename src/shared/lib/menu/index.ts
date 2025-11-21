@@ -1,6 +1,6 @@
 // Configuração e utilitários do menu de navegação
 
-import { Home, ListTodo, Palette, Settings, Sliders, Sparkles, CloudSun, type LucideIcon } from "lucide-react"
+import { Home, ListTodo, Palette, Settings, Sliders, Sparkles, CloudSun, FileText, type LucideIcon } from "lucide-react"
 import { type UserRole } from "@/shared/lib/permissions"
 
 // ==================== TYPES ====================
@@ -42,6 +42,12 @@ export const MENU_ITEMS: MenuItem[] = [
         url: "/tarefas",
         icon: ListTodo,
         description: "Lista de tarefas",
+    },
+    {
+        name: "Formulários",
+        url: "/formularios",
+        icon: FileText,
+        description: "Exemplos com React Hook Form + Zod",
     },
     {
         name: "Pokédex",
