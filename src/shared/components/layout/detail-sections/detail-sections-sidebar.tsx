@@ -1,7 +1,7 @@
 // filepath: src/components/layout/detail-sections/DetailSectionsSidebar.tsx
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/shared/lib/utils/cn"
-import { useDetailSections } from "./DetailSectionsProvider"
+import { useDetailSections } from "./detail-sections-provider"
 
 /**
  * DetailSectionsSidebar - Terceiro sidebar para navegação entre seções

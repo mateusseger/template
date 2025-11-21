@@ -1,9 +1,9 @@
 // Feature Auth - Barrel export
 
 // Components
-export { AuthCallbackPage } from "./components/AuthCallbackPage"
-export { LogoutPage } from "./components/LogoutPage"
-export { UnauthorizedPage } from "./components/UnauthorizedPage"
+export { AuthCallbackPage } from "./components/auth-callback-page"
+export { LogoutPage } from "./components/logout-page"
+export { UnauthorizedPage } from "./components/unauthorized-page"
 
 // Hooks
 export { useAuth, useAuthorization } from "./auth-hooks"

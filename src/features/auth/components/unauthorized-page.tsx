@@ -1,13 +1,13 @@
 /**
  * Unauthorized Access Page
- * 
+ *
  * Displayed when authenticated user tries to access a route
  * they don't have permission for (missing required roles).
  */
 
 import { useNavigate } from "react-router-dom"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
-import { Button } from "@/shared/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
+import { Button } from "@/shared/components/ui/shadcn/button"
 
 export function UnauthorizedPage() {
     const navigate = useNavigate()

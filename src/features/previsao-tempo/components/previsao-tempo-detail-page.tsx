@@ -4,10 +4,10 @@ import { useState, useEffect } from "react"
 import { useParams, useLocation, Link } from "react-router-dom"
 import { ArrowLeft, Info, Calendar, Clock, CloudRain } from "lucide-react"
 import { Section } from "@/shared/components/layout/detail-sections"
-import { Button } from "@/shared/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
-import { Skeleton } from "@/shared/components/ui/skeleton"
-import { Separator } from "@/shared/components/ui/separator"
+import { Button } from "@/shared/components/ui/shadcn/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
+import { DetailPageSkeleton } from "@/shared/components/ui/custom/detail-page-skeleton"
+import { Separator } from "@/shared/components/ui/shadcn/separator"
 import {
     getWeatherDetail,
     getWeatherDescription,
@@ -53,12 +53,7 @@ export function PrevisaoTempoDetailPage() {
     }
 
     if (isLoading) {
-        return (
-            <div className="space-y-6">
-                <Skeleton className="h-12 w-64" />
-                <Skeleton className="h-96 w-full" />
-            </div>
-        )
+        return <DetailPageSkeleton />
     }
 
     if (error || !weather) {

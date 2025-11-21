@@ -3,9 +3,9 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Search, MapPin, Loader2, CloudSun } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
-import { Input } from "@/shared/components/ui/input"
-import { Button } from "@/shared/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
+import { Input } from "@/shared/components/ui/shadcn/input"
+import { Button } from "@/shared/components/ui/shadcn/button"
 import { searchLocations } from "../previsao-tempo-service"
 import type { Location } from "../previsao-tempo-types"
 

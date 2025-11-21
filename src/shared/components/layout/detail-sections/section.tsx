@@ -2,7 +2,7 @@
 import { forwardRef, useEffect, useRef, type ReactNode } from "react"
 import { type LucideIcon } from "lucide-react"
 import { cn } from "@/shared/lib/utils/cn"
-import { useDetailSections } from "./DetailSectionsProvider"
+import { useDetailSections } from "./detail-sections-provider"
 
 interface SectionProps {
     id: string

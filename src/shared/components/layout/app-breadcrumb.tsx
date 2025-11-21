@@ -6,8 +6,14 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from "@/shared/components/ui/breadcrumb"
+} from "@/shared/components/ui/shadcn/breadcrumb"
 import { getBreadcrumbPath } from "@/shared/lib/menu"
+
+// Tipagem para route handles customizados
+interface RouteHandle {
+    detailSectionsEnabled?: boolean
+    breadcrumbLabel?: (params: Record<string, string>) => string
+}
 
 /**
  * AppBreadcrumb - Navegação breadcrumb automática baseada na rota atual
@@ -24,8 +30,8 @@ export function AppBreadcrumb() {
 
     // Verifica se a rota atual tem handle.breadcrumbLabel
     const currentMatch = matches[matches.length - 1]
-    const handle = currentMatch?.handle as any
-    const dynamicLabel = handle?.breadcrumbLabel?.(params)
+    const handle = currentMatch?.handle as RouteHandle | undefined
+    const dynamicLabel = handle?.breadcrumbLabel?.(params as Record<string, string>)
 
     // Se há label dinâmico, substitui o último item
     const items = dynamicLabel && breadcrumbItems.length > 0

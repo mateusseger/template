@@ -1,20 +1,20 @@
 import { useState } from "react"
 import { useTheme } from "@/shared/theme/use-theme"
-import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card"
-import { Button } from "@/shared/components/ui/button"
-import { Input } from "@/shared/components/ui/input"
-import { Textarea } from "@/shared/components/ui/textarea"
-import { Badge } from "@/shared/components/ui/badge"
-import { Separator } from "@/shared/components/ui/separator"
-import { Skeleton } from "@/shared/components/ui/skeleton"
-import { Checkbox } from "@/shared/components/ui/checkbox"
-import { Label } from "@/shared/components/ui/label"
-import { Switch } from "@/shared/components/ui/switch"
-import { Progress } from "@/shared/components/ui/progress"
-import { Alert, AlertDescription, AlertTitle } from "@/shared/components/ui/alert"
-import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/tabs"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
+import { Button } from "@/shared/components/ui/shadcn/button"
+import { Input } from "@/shared/components/ui/shadcn/input"
+import { Textarea } from "@/shared/components/ui/shadcn/textarea"
+import { Badge } from "@/shared/components/ui/shadcn/badge"
+import { Separator } from "@/shared/components/ui/shadcn/separator"
+import { Skeleton } from "@/shared/components/ui/shadcn/skeleton"
+import { Checkbox } from "@/shared/components/ui/shadcn/checkbox"
+import { Label } from "@/shared/components/ui/shadcn/label"
+import { Switch } from "@/shared/components/ui/shadcn/switch"
+import { Progress } from "@/shared/components/ui/shadcn/progress"
+import { Alert, AlertDescription, AlertTitle } from "@/shared/components/ui/shadcn/alert"
+import { Avatar, AvatarFallback } from "@/shared/components/ui/shadcn/avatar"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/shadcn/tabs"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/shadcn/table"
 import {
     Dialog,
     DialogContent,
@@ -23,7 +23,7 @@ import {
     DialogTitle,
     DialogTrigger,
     DialogFooter,
-} from "@/shared/components/ui/dialog"
+} from "@/shared/components/ui/shadcn/dialog"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -31,8 +31,8 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/shared/components/ui/dropdown-menu"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/shared/components/ui/tooltip"
+} from "@/shared/components/ui/shadcn/dropdown-menu"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/shared/components/ui/shadcn/tooltip"
 import {
     Palette,
     Info,
@@ -45,13 +45,13 @@ import {
     HelpCircle,
     ChevronDownIcon
 } from "lucide-react"
-import { Calendar } from "@/shared/components/ui/calendar"
+import { Calendar } from "@/shared/components/ui/shadcn/calendar"
 import { toast } from "sonner"
-import { Popover, PopoverContent, PopoverTrigger } from "@/shared/components/ui/popover"
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/shared/components/ui/drawer"
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/shared/components/ui/sheet"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/components/ui/select"
-import { Spinner } from "@/shared/components/ui/spinner"
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/components/ui/shadcn/popover"
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/shared/components/ui/shadcn/drawer"
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/shared/components/ui/shadcn/sheet"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/components/ui/shadcn/select"
+import { Spinner } from "@/shared/components/ui/shadcn/spinner"
 
 export function DesignSystemPage() {
     const [progress, setProgress] = useState(45)

@@ -73,7 +73,9 @@ src/
 │
 ├── shared/                       # Recursos compartilhados
 │   ├── components/               # Componentes reutilizáveis
-│   │   ├── ui/                   # shadcn/ui (NÃO MODIFICAR)
+│   │   ├── ui/                   # Componentes de interface
+│   │   │   ├── shadcn/           # shadcn/ui primitives (NÃO MODIFICAR)
+│   │   │   └── custom/           # Componentes custom do projeto
 │   │   ├── layout/               # Layout components (Header, Sidebar, Breadcrumb)
 │   │   ├── routing/              # ProtectedRoute
 │   │   └── transitions/          # PageTransition
@@ -257,11 +259,11 @@ import { USER_ROLES } from "@/shared/lib/permissions"
 function MyComponent() {
   const { user, logout } = useAuth()
   const { hasRole, canAccess } = useAuthorization()
-  
+
   if (hasRole(USER_ROLES.ADMIN)) {
     return <AdminPanel />
   }
-  
+
   return <UserView />
 }
 ```
@@ -374,10 +376,10 @@ export function PokemonDetailPage() {
   return (
     <div className="space-y-6">
       {/* Cada Section se registra automaticamente */}
-      
+
       <Section id="info" label="Informações Básicas" icon={Info}>
         <Section.Header id="info" label="Informações Básicas" icon={Info} />
-        
+
         {/* Use componentes shadcn */}
         <Card>
           <CardHeader>
@@ -388,12 +390,12 @@ export function PokemonDetailPage() {
           </CardContent>
         </Card>
       </Section>
-      
+
       <Section id="abilities" label="Habilidades" icon={Zap}>
         <Section.Header id="abilities" label="Habilidades" icon={Zap} />
         {/* Conteúdo */}
       </Section>
-      
+
       <Section id="stats" label="Estatísticas" icon={Award}>
         <Section.Header id="stats" label="Estatísticas" icon={Award} />
         {/* Conteúdo */}
@@ -483,11 +485,40 @@ npm run setup       # Configuração inicial (tema + nome do projeto)
 
 | Tipo | Padrão | Exemplo |
 |------|--------|---------|
-| Arquivos | kebab-case | `pedido-detail-page.tsx` |
-| Componentes | PascalCase | `PedidoDetailPage` |
-| Hooks/Funções | camelCase | `useAuth`, `getUserData` |
-| Tipos/Interfaces | PascalCase | `UserData`, `AuthConfig` |
-| Constantes | UPPER_SNAKE_CASE | `USER_ROLES`, `API_URL` |
+| **Arquivos de Componentes** | kebab-case | `pedido-detail-page.tsx`, `user-profile-card.tsx` |
+| **Arquivos de Service** | kebab-case | `pedido-service.ts`, `auth-service.ts` |
+| **Arquivos de Tipos** | kebab-case | `pedido-types.ts`, `auth-types.ts` |
+| **Arquivos de Hooks** | kebab-case | `auth-hooks.ts`, `use-sidebar-menu.ts` |
+| **Componentes (export)** | PascalCase | `PedidoDetailPage`, `UserProfileCard` |
+| **Hooks/Funções (export)** | camelCase | `useAuth`, `getUserData`, `formatDate` |
+| **Tipos/Interfaces (export)** | PascalCase | `UserData`, `AuthConfig`, `IPedido` |
+| **Constantes (export)** | UPPER_SNAKE_CASE | `USER_ROLES`, `API_URL`, `AUTH_ERRORS` |
+
+> 💡 **Regra Geral:** Arquivos em kebab-case, exports em PascalCase (componentes/tipos) ou camelCase (funções/hooks)
+
+#### Exemplos Práticos
+
+```typescript
+// ✅ CORRETO
+// Arquivo: pedido-detail-page.tsx
+export function PedidoDetailPage() { ... }
+
+// Arquivo: use-pedido-form.ts
+export function usePedidoForm() { ... }
+
+// Arquivo: pedido-service.ts
+export async function getPedido(id: string) { ... }
+export async function createPedido(data: CreatePedidoData) { ... }
+
+// Arquivo: pedido-types.ts
+export interface IPedido { ... }
+export type PedidoStatus = "pending" | "approved" | "rejected"
+
+// ❌ INCORRETO
+// Arquivo: PedidoDetailPage.tsx (PascalCase no arquivo)
+// Arquivo: usePedidoForm.ts (camelCase no arquivo)
+// Arquivo: Pedido.service.ts (PascalCase + .service)
+```
 
 ### Ordem de Imports
 
@@ -500,7 +531,8 @@ import { useNavigate } from "react-router-dom"
 import { useAuth, useAuthorization } from "@/features/auth"
 
 // 3. Shared
-import { Button } from "@/shared/components/ui/button"
+import { Button } from "@/shared/components/ui/shadcn/button"
+import { DetailPageSkeleton } from "@/shared/components/ui/custom/detail-page-skeleton"
 import { cn } from "@/shared/lib/utils/cn"
 import { getUserRoles } from "@/shared/lib/user"
 import { MENU_ITEMS } from "@/shared/lib/menu"
@@ -523,8 +555,20 @@ import type { LocalType } from "./types"
 
 ### NÃO MODIFICAR
 
-- ❌ Componentes em `src/shared/components/ui/` (shadcn/ui)
+- ❌ Componentes em `src/shared/components/ui/shadcn/` (shadcn/ui primitives)
 - ❌ Fluxo OIDC em `src/features/auth/auth-service.ts` (core)
+
+### Organização de Componentes UI
+
+**`ui/shadcn/`** - Componentes shadcn/ui (primitives)
+- Gerados automaticamente pelo CLI do shadcn
+- **NÃO devem ser modificados** diretamente
+- Exemplo: `button.tsx`, `card.tsx`, `dialog.tsx`
+
+**`ui/custom/`** - Componentes custom do projeto
+- Componentes específicos da aplicação
+- Podem ser livremente modificados e criados
+- Exemplo: `detail-page-skeleton.tsx`, `scrolling-text.tsx`
 
 ### Adicionar Componentes shadcn/ui
 
@@ -532,7 +576,9 @@ import type { LocalType } from "./types"
 npx shadcn@latest add [component-name]
 ```
 
-Os componentes serão adicionados automaticamente em `src/shared/components/ui/`
+Os componentes serão adicionados automaticamente em `src/shared/components/ui/shadcn/`
+
+> 💡 **Dica:** Se precisar customizar um componente shadcn, crie uma versão wrapper em `ui/custom/` que importa e estende o componente original.
 
 ## 🎓 Filosofia do Template
 

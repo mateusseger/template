@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
-import { Button } from "@/shared/components/ui/button"
-import { Badge } from "@/shared/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/tabs"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/collapsible"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
+import { Button } from "@/shared/components/ui/shadcn/button"
+import { Badge } from "@/shared/components/ui/shadcn/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/shadcn/tabs"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/shared/components/ui/shadcn/collapsible"
 import { useAuth } from "@/features/auth"
 import {
     Sparkles,

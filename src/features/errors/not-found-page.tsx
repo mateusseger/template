@@ -1,5 +1,5 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
-import { Button } from "@/shared/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
+import { Button } from "@/shared/components/ui/shadcn/button"
 import { Link } from "react-router-dom"
 import { Home } from "lucide-react"
 

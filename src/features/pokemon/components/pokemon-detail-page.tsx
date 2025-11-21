@@ -4,12 +4,12 @@ import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import { ArrowLeft, Info, Zap, Award, Image as ImageIcon } from "lucide-react"
 import { Section } from "@/shared/components/layout/detail-sections"
-import { Button } from "@/shared/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
-import { Badge } from "@/shared/components/ui/badge"
-import { Progress } from "@/shared/components/ui/progress"
-import { Skeleton } from "@/shared/components/ui/skeleton"
-import { Separator } from "@/shared/components/ui/separator"
+import { Button } from "@/shared/components/ui/shadcn/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
+import { Badge } from "@/shared/components/ui/shadcn/badge"
+import { Progress } from "@/shared/components/ui/shadcn/progress"
+import { DetailPageSkeleton } from "@/shared/components/ui/custom/detail-page-skeleton"
+import { Separator } from "@/shared/components/ui/shadcn/separator"
 import { getPokemonDetail, translateType, translateStat, getTypeColor } from "../pokemon-service"
 import type { PokemonDetail } from "../pokemon-types"
 
@@ -40,12 +40,7 @@ export function PokemonDetailPage() {
     }
 
     if (isLoading) {
-        return (
-            <div className="space-y-6">
-                <Skeleton className="h-12 w-64" />
-                <Skeleton className="h-96 w-full" />
-            </div>
-        )
+        return <DetailPageSkeleton />
     }
 
     if (error || !pokemon) {
@@ -81,8 +76,8 @@ export function PokemonDetailPage() {
                         </div>
                         <div className="flex gap-2 mt-2">
                             {pokemon.types.map((type) => (
-                                <Badge 
-                                    key={type.slot} 
+                                <Badge
+                                    key={type.slot}
                                     className={`${getTypeColor(type.type.name)} text-white border-0`}
                                 >
                                     {translateType(type.type.name)}
@@ -135,8 +130,8 @@ export function PokemonDetailPage() {
                                 <span className="text-sm text-muted-foreground block mb-2">Tipos</span>
                                 <div className="flex gap-2">
                                     {pokemon.types.map((type) => (
-                                        <Badge 
-                                            key={type.slot} 
+                                        <Badge
+                                            key={type.slot}
                                             className={`${getTypeColor(type.type.name)} text-white border-0`}
                                         >
                                             {translateType(type.type.name)}

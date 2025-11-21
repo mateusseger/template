@@ -1,9 +1,9 @@
 import { Monitor, Smartphone } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
 
 /**
  * MobileUnsupported - Tela exibida quando o dispositivo é mobile
- * 
+ *
  * Componente que informa ao usuário que a aplicação não é suportada em dispositivos móveis
  */
 export function MobileUnsupported() {

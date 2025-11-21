@@ -8,7 +8,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from "@/shared/components/ui/sidebar"
+} from "@/shared/components/ui/shadcn/sidebar"
 import { cn } from "@/shared/lib/utils/cn"
 import type { MenuItem } from "@/shared/lib/menu"
 

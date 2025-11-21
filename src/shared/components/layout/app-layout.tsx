@@ -1,11 +1,11 @@
-import { AppHeader } from "./AppHeader"
-import { AppSidebarMenu } from "./AppSidebarMenu"
-import { AppPageTransition } from "../transitions/AppPageTransition"
-import { SidebarProvider } from "../ui/sidebar"
+import { AppHeader } from "./app-header"
+import { AppSidebarMenu } from "./app-sidebar-menu"
+import { AppPageTransition } from "../transitions/app-page-transition"
+import { SidebarProvider } from "../ui/shadcn/sidebar"
 import { SidebarLayoutProvider } from "@/shared/components/layout/sidebar-layout-context"
-import { DetailSectionsProvider } from "./detail-sections/DetailSectionsProvider"
-import { DetailSectionsSidebar } from "./detail-sections/DetailSectionsSidebar"
-import { Toaster } from "../ui/sonner"
+import { DetailSectionsProvider } from "./detail-sections/detail-sections-provider"
+import { DetailSectionsSidebar } from "./detail-sections/detail-sections-sidebar"
+import { Toaster } from "../ui/shadcn/sonner"
 
 // Layout principal: sidebar de navegação + header + conteúdo com transições
 // Suporta sidebar terciário de seções quando habilitado via route handle

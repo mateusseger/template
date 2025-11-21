@@ -1,8 +1,8 @@
-import { Button } from "@/shared/components/ui/button"
+import { Button } from "@/shared/components/ui/shadcn/button"
 import { useAuth } from "@/features/auth"
 import { LogOut } from "lucide-react"
-import { AppBreadcrumb } from "./AppBreadcrumb"
-import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar"
+import { AppBreadcrumb } from "./app-breadcrumb"
+import { Avatar, AvatarFallback } from "@/shared/components/ui/shadcn/avatar"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -10,9 +10,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/shared/components/ui/dropdown-menu"
-import { SidebarTrigger } from "@/shared/components/ui/sidebar"
-import { Separator } from "@/shared/components/ui/separator"
+} from "@/shared/components/ui/shadcn/dropdown-menu"
+import { SidebarTrigger } from "@/shared/components/ui/shadcn/sidebar"
+import { Separator } from "@/shared/components/ui/shadcn/separator"
 import { getUserInitials, getUserDisplayName } from "@/shared/lib/user"
 
 /**

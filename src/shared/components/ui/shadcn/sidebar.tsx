@@ -5,25 +5,25 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { PanelLeftIcon } from "lucide-react"
 
-import { useIsMobile } from "@/shared/hooks/useMobile"
+import { useMobile } from "@/shared/hooks/use-mobile"
 import { cn } from "@/shared/lib/utils/cn"
-import { Button } from "@/shared/components/ui/button"
-import { Input } from "@/shared/components/ui/input"
-import { Separator } from "@/shared/components/ui/separator"
+import { Button } from "@/shared/components/ui/shadcn/button"
+import { Input } from "@/shared/components/ui/shadcn/input"
+import { Separator } from "@/shared/components/ui/shadcn/separator"
 import {
     Sheet,
     SheetContent,
     SheetDescription,
     SheetHeader,
     SheetTitle,
-} from "@/shared/components/ui/sheet"
-import { Skeleton } from "@/shared/components/ui/skeleton"
+} from "@/shared/components/ui/shadcn/sheet"
+import { Skeleton } from "@/shared/components/ui/shadcn/skeleton"
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from "@/shared/components/ui/tooltip"
+} from "@/shared/components/ui/shadcn/tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -66,7 +66,7 @@ function SidebarProvider({
     open?: boolean
     onOpenChange?: (open: boolean) => void
 }) {
-    const isMobile = useIsMobile()
+    const isMobile = useMobile()
     const [openMobile, setOpenMobile] = React.useState(false)
 
     // This is the internal state of the sidebar.

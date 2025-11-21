@@ -11,12 +11,12 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarRail,
-} from "@/shared/components/ui/sidebar"
-import { Button } from "@/shared/components/ui/button"
+} from "@/shared/components/ui/shadcn/sidebar"
+import { Button } from "@/shared/components/ui/shadcn/button"
 import { useTheme } from "@/shared/theme"
 import { cn } from "@/shared/lib/utils/cn"
-import { useSidebarMenu } from "@/shared/hooks/useSidebarMenu"
-import { AppSidebarSubmenu } from "./AppSidebarSubmenu"
+import { useSidebarMenu } from "@/shared/hooks/use-sidebar-menu"
+import { AppSidebarSubmenu } from "./app-sidebar-submenu"
 import { projectConfig } from "@/shared/config/project"
 import { useSidebarLayout } from "@/shared/components/layout/sidebar-layout-context"
 import { useEffect } from "react"
