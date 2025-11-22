@@ -63,6 +63,7 @@ export function AppSidebarMenu() {
         activeSubmenu,
         isRouteActive,
         isSubmenuOpen,
+        hasActiveSubitem,
         handleItemClick,
         closeSubmenu,
     } = useSidebarMenu()
@@ -117,7 +118,9 @@ export function AppSidebarMenu() {
                                 {menuItems.map((item) => {
                                     const hasSubmenu = !!item.subItems?.length
                                     const isExpanded = isSubmenuOpen(item)
-                                    const isActive = !activeSubmenu && item.url ? isRouteActive(item.url) : false
+                                    const isActive = hasSubmenu
+                                        ? hasActiveSubitem(item)
+                                        : (!activeSubmenu && item.url ? isRouteActive(item.url) : false)
 
                                     const buttonClasses = cn(
                                         "transition-all duration-200 hover:translate-x-1",
@@ -132,7 +135,7 @@ export function AppSidebarMenu() {
                                                 <SidebarMenuButton
                                                     onClick={() => handleItemClick(item)}
                                                     tooltip={item.name}
-                                                    isActive={false}
+                                                    isActive={isActive}
                                                     className={buttonClasses}
                                                 >
                                                     <item.icon className="h-4 w-4" />

@@ -19,6 +19,15 @@ export function useSidebarMenu() {
         [location.pathname]
     )
 
+    // Verifica se um item de menu pai tem algum subitem ativo
+    const hasActiveSubitem = useCallback(
+        (item: MenuItem) => {
+            if (!item.subItems?.length) return false
+            return item.subItems.some(subItem => isRouteActive(subItem.url))
+        },
+        [isRouteActive]
+    )
+
     const isSubmenuOpen = useCallback(
         (item: MenuItem) => activeSubmenu?.name === item.name,
         [activeSubmenu]
@@ -50,6 +59,7 @@ export function useSidebarMenu() {
         activeSubmenu,
         isRouteActive,
         isSubmenuOpen,
+        hasActiveSubitem,
         handleItemClick,
         closeSubmenu,
     }
