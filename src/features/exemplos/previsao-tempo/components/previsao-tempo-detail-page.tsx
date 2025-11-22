@@ -61,7 +61,7 @@ export function PrevisaoTempoDetailPage() {
             <div className="flex flex-col items-center justify-center min-h-[400px]">
                 <h2 className="text-2xl font-bold mb-2">Erro ao carregar</h2>
                 <p className="text-muted-foreground mb-4">{error}</p>
-                <Link to="/previsao-tempo">
+                <Link to="/exemplos/previsao-tempo">
                     <Button>Voltar para Busca</Button>
                 </Link>
             </div>
@@ -73,7 +73,7 @@ export function PrevisaoTempoDetailPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link to="/previsao-tempo">
+                    <Link to="/exemplos/previsao-tempo">
                         <Button variant="ghost" size="icon">
                             <ArrowLeft className="h-5 w-5" />
                         </Button>

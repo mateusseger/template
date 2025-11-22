@@ -7,10 +7,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/sha
 import { Input } from "@/shared/components/ui/shadcn/input"
 import { Button } from "@/shared/components/ui/shadcn/button"
 import { Skeleton } from "@/shared/components/ui/shadcn/skeleton"
-import { listPokemons, searchPokemonByName } from "../pokemon-service"
-import type { Pokemon } from "../pokemon-types"
+import { listPokemons, searchPokemonByName } from "../pokedex-service"
+import type { Pokemon } from "../pokedex-types"
 
-export function PokemonListPage() {
+export function PokedexListPage() {
     const [pokemons, setPokemons] = useState<Pokemon[]>([])
     const [filteredPokemons, setFilteredPokemons] = useState<Pokemon[]>([])
     const [isLoading, setIsLoading] = useState(true)
@@ -132,7 +132,7 @@ export function PokemonListPage() {
                     <h2 className="text-xl font-semibold mb-4">Resultados da Busca</h2>
                     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {filteredPokemons.map((pokemon) => (
-                            <Link key={pokemon.id} to={`/pokemon/${pokemon.id}`}>
+                            <Link key={pokemon.id} to={`/exemplos/pokedex/${pokemon.id}`}>
                                 <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group">
                                     <CardContent className="p-6">
                                         <div className="aspect-square mb-4 bg-linear-to-br from-muted/50 to-muted rounded-lg p-4 flex items-center justify-center">
@@ -204,7 +204,7 @@ export function PokemonListPage() {
                         <h2 className="text-xl font-semibold mb-4">Pokémon Populares</h2>
                         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             {filteredPokemons.map((pokemon) => (
-                                <Link key={pokemon.id} to={`/pokemon/${pokemon.id}`}>
+                                <Link key={pokemon.id} to={`/exemplos/pokedex/${pokemon.id}`}>
                                     <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group">
                                         <CardContent className="p-6">
                                             <div className="aspect-square mb-4 bg-linear-to-br from-muted/50 to-muted rounded-lg p-4 flex items-center justify-center">

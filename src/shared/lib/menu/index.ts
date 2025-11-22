@@ -1,6 +1,6 @@
 // Configuração e utilitários do menu de navegação
 
-import { Home, ListTodo, Palette, Settings, Sliders, Sparkles, CloudSun, FileText, type LucideIcon } from "lucide-react"
+import { Home, ListTodo, Palette, Sparkles, CloudSun, FileText, type LucideIcon, Layers } from "lucide-react"
 import { type UserRole } from "@/shared/lib/permissions"
 
 // ==================== TYPES ====================
@@ -9,7 +9,6 @@ export interface MenuSubItem {
     name: string
     url: string
     icon: LucideIcon
-    description?: string
     roles?: UserRole[]
 }
 
@@ -18,7 +17,6 @@ export interface MenuItem {
     url?: string
     icon: LucideIcon
     roles?: UserRole[]
-    description?: string
     subItems?: MenuSubItem[]
 }
 
@@ -26,52 +24,44 @@ export interface MenuItem {
 
 export const MENU_ITEMS: MenuItem[] = [
     {
-        name: "Home",
+        name: "Onboarding",
         url: "/",
-        icon: Home,
-        description: "Página inicial",
+        icon: Home
     },
     {
         name: "Design System",
         url: "/design-system",
-        icon: Palette,
-        description: "Componentes do design system",
+        icon: Palette
     },
     {
-        name: "Tarefas",
-        url: "/tarefas",
-        icon: ListTodo,
-        description: "Lista de tarefas",
+        name: "Temas",
+        url: "/themes",
+        icon: Layers,
     },
     {
-        name: "Formulários",
-        url: "/formularios",
-        icon: FileText,
-        description: "Exemplos com React Hook Form + Zod",
-    },
-    {
-        name: "Pokédex",
-        url: "/pokemon",
+        name: "Exemplos",
         icon: Sparkles,
-        description: "Explorador de Pokémon",
-    },
-    {
-        name: "Previsão do Tempo",
-        url: "/previsao-tempo",
-        icon: CloudSun,
-        description: "Previsão do tempo completa",
-    },
-    {
-        name: "Configurações",
-        icon: Settings,
-        description: "Configurações do sistema",
         subItems: [
             {
-                name: "Preferências",
-                url: "/settings/preferences",
-                icon: Sliders,
-                description: "Preferências do usuário",
-            }
+                name: "Formulários",
+                url: "exemplos/formularios",
+                icon: FileText
+            },
+            {
+                name: "To-Do List",
+                url: "exemplos/to-do-list",
+                icon: ListTodo
+            },
+            {
+                name: "Pokédex",
+                url: "exemplos/pokedex",
+                icon: Sparkles
+            },
+            {
+                name: "Previsão do Tempo",
+                url: "exemplos/previsao-tempo",
+                icon: CloudSun
+            },
         ],
     },
 ]

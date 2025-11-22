@@ -28,7 +28,7 @@ import {
     Box,
 } from "lucide-react"
 
-export function HomePage() {
+export function OnboardingPage() {
     const { user } = useAuth()
     const [expandedSection, setExpandedSection] = useState<string | null>("architecture")
 
@@ -61,7 +61,7 @@ export function HomePage() {
                             </Link>
                         </Button>
                         <Button asChild variant="outline" size="lg" className="gap-2">
-                            <Link to="/tarefas">
+                            <Link to="/exemplos/to-do-list">
                                 <Code2 className="h-4 w-4" />
                                 Ver Exemplos
                             </Link>
@@ -448,14 +448,14 @@ src/features/relatorios/
                                                     <li>• Sidebar terciária aparece automaticamente</li>
                                                     <li>• Scroll suave entre seções</li>
                                                     <li>• Highlight da seção visível</li>
-                                                    <li>• Exemplos: Pokemon e Previsão do Tempo</li>
+                                                    <li>• Exemplos: Pokédex e Previsão do Tempo</li>
                                                 </ul>
                                                 <div className="flex gap-2 mt-3">
                                                     <Button asChild variant="outline" size="sm">
-                                                        <Link to="/pokemon/1">Ver Pokemon →</Link>
+                                                        <Link to="/exemplos/pokedex">Ver Pokédex →</Link>
                                                     </Button>
                                                     <Button asChild variant="outline" size="sm">
-                                                        <Link to="/previsao-tempo/-23.5505,-46.6333">Ver Clima →</Link>
+                                                        <Link to="/exemplos/previsao-tempo">Ver Clima →</Link>
                                                     </Button>
                                                 </div>
                                             </div>
@@ -782,7 +782,7 @@ src/features/relatorios/
                                         title: "1. Configure o Tema",
                                         description: "Execute o script de setup ou configure manualmente no .env",
                                         command: "npm run setup",
-                                        link: "/settings/preferences",
+                                        link: "/themes",
                                     },
                                     {
                                         title: "2. Configure Autenticação",
@@ -791,8 +791,8 @@ src/features/relatorios/
                                     },
                                     {
                                         title: "3. Explore os Exemplos",
-                                        description: "Tarefas (CRUD), Pokémon/Clima (APIs), Preferências (Temas)",
-                                        link: "/tarefas",
+                                        description: "To-Do List (CRUD), Pokémon/Clima (APIs), Preferências (Temas)",
+                                        link: "/exemplos/to-do-list",
                                     },
                                     {
                                         title: "4. Crie Sua Feature",
@@ -828,15 +828,15 @@ src/features/relatorios/
                                         </Link>
                                     </Button>
                                     <Button asChild variant="outline" className="h-auto py-4 flex-col gap-2">
-                                        <Link to="/tarefas">
+                                        <Link to="/exemplos/to-do-list">
                                             <Code2 className="h-5 w-5" />
                                             <span>Exemplos</span>
                                         </Link>
                                     </Button>
                                     <Button asChild variant="outline" className="h-auto py-4 flex-col gap-2">
-                                        <Link to="/settings/preferences">
+                                        <Link to="/themes">
                                             <Settings className="h-5 w-5" />
-                                            <span>Preferências</span>
+                                            <span>Temas</span>
                                         </Link>
                                     </Button>
                                 </div>

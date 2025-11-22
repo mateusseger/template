@@ -1,4 +1,4 @@
-// Tipos da feature Pokemon
+// Tipos da feature Pokédex
 
 export interface Pokemon {
     id: number

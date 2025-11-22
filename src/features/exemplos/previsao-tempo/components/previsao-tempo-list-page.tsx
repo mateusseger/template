@@ -100,7 +100,7 @@ export function PrevisaoTempoListPage() {
                         {locations.map((location) => (
                             <Link
                                 key={location.id}
-                                to={`/previsao-tempo/${location.latitude},${location.longitude}`}
+                                to={`/exemplos/previsao-tempo/${location.latitude},${location.longitude}`}
                                 state={{ location }}
                             >
                                 <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group">
@@ -129,7 +129,7 @@ export function PrevisaoTempoListPage() {
                     {POPULAR_CITIES.map((city, index) => (
                         <Link
                             key={index}
-                            to={`/previsao-tempo/${city.lat},${city.lon}`}
+                            to={`/exemplos/previsao-tempo/${city.lat},${city.lon}`}
                             state={{
                                 location: {
                                     name: city.name,

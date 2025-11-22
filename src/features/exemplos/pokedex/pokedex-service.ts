@@ -1,6 +1,6 @@
 // Serviço de integração com PokeAPI
 
-import type { Pokemon, PokemonDetail } from "./pokemon-types"
+import type { Pokemon, PokemonDetail } from "./pokedex-types"
 
 const POKEAPI_BASE_URL = "https://pokeapi.co/api/v2"
 

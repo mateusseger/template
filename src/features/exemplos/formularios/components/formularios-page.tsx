@@ -107,10 +107,17 @@ export function FormulariosPage() {
         <div className="space-y-8">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold tracking-tight">Formulários com Validação</h1>
-                <p className="mt-2 text-muted-foreground">
-                    Exemplos práticos usando React Hook Form + Zod para validação robusta e type-safe
-                </p>
+                <div className="flex items-center gap-3 mb-2">
+                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <FileText className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                        <h1 className="text-3xl font-bold tracking-tight">Formulários com Validação</h1>
+                        <p className="text-muted-foreground">
+                            Exemplos práticos usando React Hook Form + Zod para validação robusta e type-safe
+                        </p>
+                    </div>
+                </div>
             </div>
 
             {/* Stats Cards */}

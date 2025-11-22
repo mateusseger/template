@@ -10,10 +10,10 @@ import { Badge } from "@/shared/components/ui/shadcn/badge"
 import { Progress } from "@/shared/components/ui/shadcn/progress"
 import { DetailPageSkeleton } from "@/shared/components/ui/custom/detail-page-skeleton"
 import { Separator } from "@/shared/components/ui/shadcn/separator"
-import { getPokemonDetail, translateType, translateStat, getTypeColor } from "../pokemon-service"
-import type { PokemonDetail } from "../pokemon-types"
+import { getPokemonDetail, translateType, translateStat, getTypeColor } from "../pokedex-service"
+import type { PokemonDetail } from "../pokedex-types"
 
-export function PokemonDetailPage() {
+export function PokedexDetailPage() {
     const { id } = useParams<{ id: string }>()
     const [pokemon, setPokemon] = useState<PokemonDetail | null>(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -48,7 +48,7 @@ export function PokemonDetailPage() {
             <div className="flex flex-col items-center justify-center min-h-[400px]">
                 <h2 className="text-2xl font-bold mb-2">Pokémon não encontrado</h2>
                 <p className="text-muted-foreground mb-4">{error}</p>
-                <Link to="/pokemon">
+                <Link to="/exemplos/pokedex">
                     <Button>Voltar para Pokédex</Button>
                 </Link>
             </div>
@@ -60,7 +60,7 @@ export function PokemonDetailPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link to="/pokemon">
+                    <Link to="/exemplos/pokedex">
                         <Button variant="ghost" size="icon">
                             <ArrowLeft className="h-5 w-5" />
                         </Button>

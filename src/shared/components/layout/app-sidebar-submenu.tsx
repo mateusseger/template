@@ -92,7 +92,6 @@ export function AppSidebarSubmenu({
                                                 <SidebarMenuButton
                                                     asChild
                                                     isActive={isActive}
-                                                    tooltip={subItem.description || subItem.name}
                                                 >
                                                     <Link
                                                         to={subItem.url}

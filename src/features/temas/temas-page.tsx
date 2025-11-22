@@ -3,7 +3,7 @@ import { Label } from "@/shared/components/ui/shadcn/label"
 import { Switch } from "@/shared/components/ui/shadcn/switch"
 import { Badge } from "@/shared/components/ui/shadcn/badge"
 import { useTheme } from "@/shared/theme/use-theme"
-import { Settings, Palette, Sun, Moon, Check } from "lucide-react"
+import { Sun, Moon, Check, Layers } from "lucide-react"
 import { motion } from "framer-motion"
 import { THEMES, THEME_METADATA, type ThemeName } from "@/shared/theme/theme-config"
 import logoHervalDark from "@/shared/assets/logo-herval-dark.png"
@@ -27,7 +27,7 @@ const THEME_OPTIONS = (Object.keys(THEMES) as ThemeName[]).map((themeId) => ({
     characteristics: THEME_METADATA[themeId].characteristics,
 }))
 
-export function PreferencesPage() {
+export function TemasPage() {
     const { theme, setThemeColor, setThemeMode } = useTheme()
 
     const handleThemeChange = (themeId: ThemeName) => {
@@ -51,12 +51,12 @@ export function PreferencesPage() {
             <div>
                 <div className="flex items-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Settings className="h-5 w-5 text-primary" />
+                        <Layers className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight">Preferências</h1>
+                        <h1 className="text-3xl font-bold tracking-tight">Temas</h1>
                         <p className="text-muted-foreground">
-                            Personalize a aparência e comportamento da aplicação
+                            Personalize a aparência da aplicação
                         </p>
                     </div>
                 </div>
@@ -65,10 +65,7 @@ export function PreferencesPage() {
             {/* Appearance Section */}
             <Card>
                 <CardHeader>
-                    <div className="flex items-center gap-2">
-                        <Palette className="h-5 w-5 text-primary" />
-                        <CardTitle>Aparência</CardTitle>
-                    </div>
+                    <CardTitle>Tema</CardTitle>
                     <CardDescription>
                         Escolha o tema e modo de cor que mais combina com você
                     </CardDescription>

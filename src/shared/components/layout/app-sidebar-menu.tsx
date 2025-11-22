@@ -131,7 +131,7 @@ export function AppSidebarMenu() {
                                             {hasSubmenu ? (
                                                 <SidebarMenuButton
                                                     onClick={() => handleItemClick(item)}
-                                                    tooltip={item.description || item.name}
+                                                    tooltip={item.name}
                                                     isActive={false}
                                                     className={buttonClasses}
                                                 >
@@ -148,7 +148,7 @@ export function AppSidebarMenu() {
                                                 <SidebarMenuButton
                                                     asChild
                                                     isActive={isActive}
-                                                    tooltip={item.description || item.name}
+                                                    tooltip={item.name}
                                                 >
                                                     <Link
                                                         to={item.url!}

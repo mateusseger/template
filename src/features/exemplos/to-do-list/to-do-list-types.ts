@@ -1,4 +1,4 @@
-export interface ITarefa {
+export interface IToDo {
     id: string
     title: string
     completed: boolean

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import type { ITarefa } from "./tarefas-types"
+import type { IToDo as IToDo } from "./to-do-list-types"
 import { Button } from "@/shared/components/ui/shadcn/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
 import { Input } from "@/shared/components/ui/shadcn/input"
@@ -8,7 +8,7 @@ import { Badge } from "@/shared/components/ui/shadcn/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/shadcn/tabs"
 import { Plus, Trash2, Check, Circle, CheckCircle2, ListTodo, Filter } from "lucide-react"
 
-const initialTarefas: ITarefa[] = [
+const initialToDos: IToDo[] = [
     {
         id: "1",
         title: "Explorar a estrutura do template",
@@ -35,51 +35,51 @@ const initialTarefas: ITarefa[] = [
     },
 ]
 
-export function TarefasPage() {
-    const [tarefas, setTarefas] = useState<ITarefa[]>(initialTarefas)
-    const [newTarefaTitle, setNewTarefaTitle] = useState("")
+export function ToDoListPage() {
+    const [todos, setToDos] = useState<IToDo[]>(initialToDos)
+    const [newToDoTitle, setNewToDoTitle] = useState("")
     const [filter, setFilter] = useState<"all" | "active" | "completed">("all")
 
-    const handleAddTarefa = () => {
-        if (!newTarefaTitle.trim()) return
+    const handleAddToDo = () => {
+        if (!newToDoTitle.trim()) return
 
-        const newTarefa: ITarefa = {
+        const newToDo: IToDo = {
             id: Date.now().toString(),
-            title: newTarefaTitle,
+            title: newToDoTitle,
             completed: false,
             createdAt: new Date(),
         }
 
-        setTarefas([newTarefa, ...tarefas])
-        setNewTarefaTitle("")
+        setToDos([newToDo, ...todos])
+        setNewToDoTitle("")
     }
 
-    const handleToggleTarefa = (id: string) => {
-        setTarefas(
-            tarefas.map((tarefa) =>
-                tarefa.id === id ? { ...tarefa, completed: !tarefa.completed } : tarefa
+    const handleToggleToDo = (id: string) => {
+        setToDos(
+            todos.map((toDo) =>
+                toDo.id === id ? { ...toDo, completed: !toDo.completed } : toDo
             )
         )
     }
 
-    const handleDeleteTarefa = (id: string) => {
-        setTarefas(tarefas.filter((tarefa) => tarefa.id !== id))
+    const handleDeleteToDo = (id: string) => {
+        setToDos(todos.filter((toDo) => toDo.id !== id))
     }
 
     const handleClearCompleted = () => {
-        setTarefas(tarefas.filter((tarefa) => !tarefa.completed))
+        setToDos(todos.filter((toDo) => !toDo.completed))
     }
 
-    const filteredTarefas = tarefas.filter((tarefa) => {
-        if (filter === "active") return !tarefa.completed
-        if (filter === "completed") return tarefa.completed
+    const filteredToDos = todos.filter((toDo) => {
+        if (filter === "active") return !toDo.completed
+        if (filter === "completed") return toDo.completed
         return true
     })
 
     const stats = {
-        total: tarefas.length,
-        active: tarefas.filter((t) => !t.completed).length,
-        completed: tarefas.filter((t) => t.completed).length,
+        total: todos.length,
+        active: todos.filter((t) => !t.completed).length,
+        completed: todos.filter((t) => t.completed).length,
     }
 
     return (
@@ -91,7 +91,7 @@ export function TarefasPage() {
                         <ListTodo className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight">Tarefas</h1>
+                        <h1 className="text-3xl font-bold tracking-tight">To-Do List</h1>
                         <p className="text-muted-foreground">
                             Organize suas atividades de forma simples e eficiente
                         </p>
@@ -147,19 +147,19 @@ export function TarefasPage() {
             {/* Add Todo Card */}
             <Card>
                 <CardHeader>
-                    <CardTitle>Nova Tarefa</CardTitle>
-                    <CardDescription>Adicione uma nova tarefa à sua lista</CardDescription>
+                    <CardTitle>Novo To-Do</CardTitle>
+                    <CardDescription>Adicione um novo to-do à sua lista</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="flex gap-2">
                         <Input
-                            value={newTarefaTitle}
-                            onChange={(e) => setNewTarefaTitle(e.target.value)}
-                            onKeyDown={(e) => e.key === "Enter" && handleAddTarefa()}
-                            placeholder="Digite o título da tarefa..."
+                            value={newToDoTitle}
+                            onChange={(e) => setNewToDoTitle(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && handleAddToDo()}
+                            placeholder="Digite o título do to-do..."
                             className="flex-1"
                         />
-                        <Button onClick={handleAddTarefa} className="gap-2">
+                        <Button onClick={handleAddToDo} className="gap-2">
                             <Plus className="h-4 w-4" />
                             Adicionar
                         </Button>
@@ -172,7 +172,7 @@ export function TarefasPage() {
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <div>
-                            <CardTitle>Suas Tarefas</CardTitle>
+                            <CardTitle>Seus To-Dos</CardTitle>
                             <CardDescription>Gerencie e acompanhe seu progresso</CardDescription>
                         </div>
                         {stats.completed > 0 && (
@@ -206,7 +206,7 @@ export function TarefasPage() {
 
                         <TabsContent value={filter} className="space-y-3">
                             <AnimatePresence mode="popLayout">
-                                {filteredTarefas.length === 0 ? (
+                                {filteredToDos.length === 0 ? (
                                     <motion.div
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -217,15 +217,15 @@ export function TarefasPage() {
                                             <ListTodo className="h-8 w-8 text-muted-foreground" />
                                         </div>
                                         <p className="text-muted-foreground">
-                                            {filter === "all" && "Nenhuma tarefa ainda. Adicione uma para começar!"}
-                                            {filter === "active" && "Nenhuma tarefa ativa no momento."}
-                                            {filter === "completed" && "Nenhuma tarefa concluída ainda."}
+                                            {filter === "all" && "Nenhum to-do ainda. Adicione um para começar!"}
+                                            {filter === "active" && "Nenhum to-do ativo no momento."}
+                                            {filter === "completed" && "Nenhum to-do concluído ainda."}
                                         </p>
                                     </motion.div>
                                 ) : (
-                                    filteredTarefas.map((tarefa, index) => (
+                                    filteredToDos.map((toDo, index) => (
                                         <motion.div
-                                            key={tarefa.id}
+                                            key={toDo.id}
                                             initial={{ opacity: 0, x: 20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: 20 }}
@@ -237,12 +237,12 @@ export function TarefasPage() {
                                                     <div className="flex items-center justify-between gap-4">
                                                         <div className="flex items-center gap-3 flex-1 min-w-0">
                                                             <Button
-                                                                variant={tarefa.completed ? "default" : "outline"}
+                                                                variant={toDo.completed ? "default" : "outline"}
                                                                 size="icon"
-                                                                onClick={() => handleToggleTarefa(tarefa.id)}
+                                                                onClick={() => handleToggleToDo(toDo.id)}
                                                                 className="shrink-0"
                                                             >
-                                                                {tarefa.completed ? (
+                                                                {toDo.completed ? (
                                                                     <Check className="h-4 w-4" />
                                                                 ) : (
                                                                     <Circle className="h-4 w-4" />
@@ -250,21 +250,21 @@ export function TarefasPage() {
                                                             </Button>
                                                             <div className="flex-1 min-w-0">
                                                                 <p
-                                                                    className={`font-medium truncate ${tarefa.completed
+                                                                    className={`font-medium truncate ${toDo.completed
                                                                         ? "line-through text-muted-foreground"
                                                                         : ""
                                                                         }`}
                                                                 >
-                                                                    {tarefa.title}
+                                                                    {toDo.title}
                                                                 </p>
                                                                 <div className="flex items-center gap-2 mt-1">
                                                                     <p className="text-xs text-muted-foreground">
-                                                                        {tarefa.createdAt.toLocaleDateString("pt-BR", {
+                                                                        {toDo.createdAt.toLocaleDateString("pt-BR", {
                                                                             day: "2-digit",
                                                                             month: "short",
                                                                         })}
                                                                     </p>
-                                                                    {tarefa.completed && (
+                                                                    {toDo.completed && (
                                                                         <Badge variant="secondary" className="text-xs">
                                                                             Concluída
                                                                         </Badge>
@@ -275,7 +275,7 @@ export function TarefasPage() {
                                                         <Button
                                                             variant="ghost"
                                                             size="icon"
-                                                            onClick={() => handleDeleteTarefa(tarefa.id)}
+                                                            onClick={() => handleDeleteToDo(toDo.id)}
                                                             className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive"
                                                         >
                                                             <Trash2 className="h-4 w-4" />
