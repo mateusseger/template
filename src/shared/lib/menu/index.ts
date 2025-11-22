@@ -24,7 +24,7 @@ export interface MenuItem {
 
 export const MENU_ITEMS: MenuItem[] = [
     {
-        name: "Onboarding",
+        name: "Home",
         url: "/",
         icon: Home
     },
@@ -44,22 +44,22 @@ export const MENU_ITEMS: MenuItem[] = [
         subItems: [
             {
                 name: "Formulários",
-                url: "exemplos/formularios",
+                url: "/exemplos/formularios",
                 icon: FileText
             },
             {
                 name: "To-Do List",
-                url: "exemplos/to-do-list",
+                url: "/exemplos/to-do-list",
                 icon: ListTodo
             },
             {
                 name: "Pokédex",
-                url: "exemplos/pokedex",
+                url: "/exemplos/pokedex",
                 icon: Sparkles
             },
             {
                 name: "Previsão do Tempo",
-                url: "exemplos/previsao-tempo",
+                url: "/exemplos/previsao-tempo",
                 icon: CloudSun
             },
         ],
@@ -157,15 +157,32 @@ export function getBreadcrumbPath(url: string): Array<MenuItem | MenuSubItem> {
         }
     }
 
-    // Fallback para rotas dinâmicas: tenta encontrar a rota pai
+    // Fallback para rotas dinâmicas: tenta encontrar a rota pai mais específica
     const segments = url.split('/').filter(Boolean)
-    if (segments.length > 1) {
-        const parentUrl = '/' + segments[0]
+    
+    // Tenta construir URLs progressivamente para encontrar o pai
+    // Ex: /exemplos/pokedex/25 -> tenta /exemplos/pokedex, depois /exemplos
+    for (let i = segments.length - 1; i > 0; i--) {
+        const parentUrl = '/' + segments.slice(0, i).join('/')
+        
+        // Busca em itens principais
         const parentItem = MENU_ITEMS.find((item: MenuItem) => item.url === parentUrl)
         if (parentItem) {
             path.push(parentItem)
             path.push({ name: segments[segments.length - 1], url, icon: parentItem.icon } as MenuSubItem)
             return path
+        }
+        
+        // Busca em subitens
+        for (const item of MENU_ITEMS) {
+            if (item.subItems) {
+                const parentSubItem = item.subItems.find((sub: MenuSubItem) => sub.url === parentUrl)
+                if (parentSubItem) {
+                    path.push(item, parentSubItem)
+                    path.push({ name: segments[segments.length - 1], url, icon: parentSubItem.icon } as MenuSubItem)
+                    return path
+                }
+            }
         }
     }
 

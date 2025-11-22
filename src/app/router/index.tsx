@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import { AppProtectedRoute } from "@/shared/components/routing/app-protected-route"
 import { AppLayout } from "@/shared/components/layout/app-layout"
-import { OnboardingPage } from "@/features/onboarding/onboarding-page"
+import { HomePage } from "@/features/home/home-page"
 import { ToDoListPage } from "@/features/exemplos/to-do-list/to-do-list-page"
 import { DesignSystemPage } from "@/features/design-system/design-system-page"
 import { AuthCallbackPage } from "@/features/auth/components/auth-callback-page"
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <OnboardingPage />,
+                element: <HomePage />,
             },
             {
                 path: "/design-system",

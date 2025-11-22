@@ -28,7 +28,7 @@ import {
     Box,
 } from "lucide-react"
 
-export function OnboardingPage() {
+export function HomePage() {
     const { user } = useAuth()
     const [expandedSection, setExpandedSection] = useState<string | null>("architecture")
 

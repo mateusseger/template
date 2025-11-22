@@ -60,8 +60,8 @@ src/
 │   │   ├── previsao-tempo-service.ts # Integração com Open-Meteo API
 │   │   ├── previsao-tempo-types.ts   # Tipos da API
 │   │   └── index.ts
-│   ├── onboarding/                     # Onboarding interativo (1 componente)
-│   │   └── onboarding-page.tsx          # Documentação funcional do template
+│   ├── home/                     # Onboarding interativo (1 componente)
+│   │   └── home-page.tsx          # Documentação funcional do template
 │   ├── to-do-list/                  # Exemplo de CRUD moderno (1 componente)
 │   │   ├── to-do-list-page.tsx       # Lista com filtros, stats e animações
 │   │   └── to-do-list-types.ts
@@ -248,8 +248,8 @@ VITE_DEV_MOCK_ROLES=admin,user
 │   │   └── design-system-page.tsx
 │   ├── temas/            # Configurações (1 componente)
 │   │   └── temas-page.tsx   # Seletor de tema
-│   ├── onboarding/                     # Onboarding interativo (1 componente)
-│   │   └── onboarding-page.tsx          # Documentação funcional do template
+│   ├── home/                     # Onboarding interativo (1 componente)
+│   │   └── home-page.tsx          # Documentação funcional do template
 │   └── errors/                   # Exemplo (1 componente na raiz)
 │       └── not-found-page.tsx
 ### Usar Hooks de Autorização
@@ -426,7 +426,7 @@ export function PokedexDetailPage() {
 
 O template inclui features prontas que demonstram as melhores práticas:
 
-### 🏠 Onboarding
+### 🏠 Home
 - **Propósito:** Documentação interativa e funcional do template
 - **Destaques:**
   - Hero section com saudação personalizada
