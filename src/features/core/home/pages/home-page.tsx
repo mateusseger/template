@@ -147,7 +147,7 @@ export function HomePage() {
                         color: "text-yellow-500",
                         bgColor: "bg-yellow-500/10",
                     },
-                ].map((stat, index) => (
+                ].map((stat) => (
 
                     <Card className="h-full">
                         <CardContent className="p-6">
