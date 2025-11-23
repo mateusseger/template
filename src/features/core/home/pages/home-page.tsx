@@ -60,7 +60,7 @@ export function HomePage() {
                         Bem-vindo{user?.name ? `, ${user.name.split(" ")[0]}` : ""}! 👋
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mb-6">
-                        Este é o <strong>Template React Corporativo</strong> — uma base profissional, escalável e moderna
+                        Este é o <strong>Template Corporativo</strong> — uma base profissional, escalável e moderna
                         para construir aplicações enterprise com as melhores práticas da indústria.
                     </p>
                     <div className="flex flex-wrap gap-3">
@@ -71,9 +71,9 @@ export function HomePage() {
                             </Link>
                         </Button>
                         <Button asChild variant="outline" size="lg" className="gap-2">
-                            <Link to="/exemplos/to-do-list">
-                                <Code2 className="h-4 w-4" />
-                                Ver Exemplos
+                            <Link to="/themes">
+                                <Layers className="h-4 w-4" />
+                                Ver Temas
                             </Link>
                         </Button>
                     </div>
