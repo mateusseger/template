@@ -446,34 +446,6 @@ export function HomePage() {
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    <div className="grid md:grid-cols-3 gap-4">
-                        <div className="p-4 rounded-lg border bg-card">
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="h-4 w-4 rounded-full bg-red-600" />
-                                <h4 className="font-semibold">Herval</h4>
-                            </div>
-                            <p className="text-xs text-muted-foreground">
-                                Minimalista, corporativo, elegante
-                            </p>
-                        </div>
-
-                        <div className="p-4 rounded-lg border bg-card">
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="h-4 w-4 rounded-full bg-orange-600" />
-                                <h4 className="font-semibold">Taqi</h4>
-                            </div>
-                            <p className="text-xs text-muted-foreground">Clean, moderno, sofisticado</p>
-                        </div>
-
-                        <div className="p-4 rounded-lg border bg-card">
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="h-4 w-4 rounded-full bg-lime-500" />
-                                <h4 className="font-semibold">iPlace</h4>
-                            </div>
-                            <p className="text-xs text-muted-foreground">Tech, vibrante, contemporâneo</p>
-                        </div>
-                    </div>
-
                     <div className="p-4 rounded-lg bg-muted/50 border">
                         <h4 className="font-semibold mb-2">3 Formas de Configurar</h4>
                         <div className="space-y-2">
@@ -503,7 +475,7 @@ export function HomePage() {
                     <Button asChild variant="outline" className="w-full">
                         <Link to="/themes">
                             <Palette className="h-4 w-4 mr-2" />
-                            Configurar Tema
+                            Configurar via interface
                         </Link>
                     </Button>
                 </CardContent>
