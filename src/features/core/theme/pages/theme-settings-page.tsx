@@ -6,12 +6,12 @@ import { useTheme } from "@/features/core/theme/hooks/use-theme"
 import { Sun, Moon, Check, Layers } from "lucide-react"
 import { motion } from "framer-motion"
 import { THEMES, THEME_METADATA, type ThemeName } from "@/features/core/theme/config/theme-config"
-import logoHervalDark from "@/shared/assets/logo-herval-dark.png"
-import logoHervalLight from "@/shared/assets/logo-herval-light.png"
-import logoIplaceDark from "@/shared/assets/logo-iplace-dark.svg"
-import logoIplaceLight from "@/shared/assets/logo-iplace-light.svg"
-import logoTaqiDark from "@/shared/assets/logo-taqi-dark.svg"
-import logoTaqiLight from "@/shared/assets/logo-taqi-light.svg"
+import logoHervalDark from "@/shared/assets/logos/logo-herval-dark.png"
+import logoHervalLight from "@/shared/assets/logos/logo-herval-light.png"
+import logoIplaceDark from "@/shared/assets/logos/logo-iplace-dark.svg"
+import logoIplaceLight from "@/shared/assets/logos/logo-iplace-light.svg"
+import logoTaqiDark from "@/shared/assets/logos/logo-taqi-dark.svg"
+import logoTaqiLight from "@/shared/assets/logos/logo-taqi-light.svg"
 
 // Gera as opções de tema dinamicamente a partir do theme-config
 const THEME_OPTIONS = (Object.keys(THEMES) as ThemeName[]).map((themeId) => ({

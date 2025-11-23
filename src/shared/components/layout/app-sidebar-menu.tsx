@@ -20,12 +20,12 @@ import { AppSidebarSubmenu } from "./app-sidebar-submenu"
 import { projectConfig } from "@/shared/config/project"
 import { useSidebarLayout } from "@/shared/context/sidebar-layout-context"
 import { useEffect } from "react"
-import logoHervalLight from "@/shared/assets/logo-herval-light.png"
-import logoHervalDark from "@/shared/assets/logo-herval-dark.png"
-import logoTaqiLight from "@/shared/assets/logo-taqi-light.svg"
-import logoTaqiDark from "@/shared/assets/logo-taqi-dark.svg"
-import logoIplaceLight from "@/shared/assets/logo-iplace-light.svg"
-import logoIplaceDark from "@/shared/assets/logo-iplace-dark.svg"
+import logoHervalLight from "@/shared/assets/logos/logo-herval-light.png"
+import logoHervalDark from "@/shared/assets/logos/logo-herval-dark.png"
+import logoTaqiLight from "@/shared/assets/logos/logo-taqi-light.svg"
+import logoTaqiDark from "@/shared/assets/logos/logo-taqi-dark.svg"
+import logoIplaceLight from "@/shared/assets/logos/logo-iplace-light.svg"
+import logoIplaceDark from "@/shared/assets/logos/logo-iplace-dark.svg"
 
 /**
  * AppSidebarMenu - Barra lateral principal de navegação
