@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { Link } from "react-router-dom"
-import { Search, ChevronLeft, ChevronRight, X, Sparkles } from "lucide-react"
+import { Search, ChevronLeft, ChevronRight, X, Zap } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/shadcn/card"
 import { Input } from "@/shared/components/ui/shadcn/input"
 import { Button } from "@/shared/components/ui/shadcn/button"
@@ -62,7 +62,7 @@ export function PokedexListPage() {
             <div>
                 <div className="flex items-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <Sparkles className="h-5 w-5 text-primary" />
+                        <Zap className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                         <h1 className="text-3xl font-bold tracking-tight">Pokédex</h1>

@@ -52,48 +52,51 @@ npm run build
 
 ```
 src/
-├── app/                              # Configuração global
-│   ├── main.tsx                      # Entry point
-│   ├── app.tsx                       # Root component
-│   ├── app-providers.tsx             # Providers (Auth, Theme, Query)
-│   ├── app-router.tsx                # Router principal
-│   └── global.css                    # Estilos globais
+├── app/                                # Configuração global
+│   ├── main.tsx                        # Entry point
+│   ├── app.tsx                         # Root component
+│   ├── app-providers.tsx               # Providers (Auth, Theme, Query)
+│   ├── app-router.tsx                  # Router principal
+│   └── global.css                      # Estilos globais
 │
-├── features/                         # Features por domínio
-│   ├── core/                         # Features essenciais
-│   │   ├── auth/                     # Autenticação OIDC + RBAC
-│   │   │   ├── components/           # ProtectedRoute guard
-│   │   │   ├── config/               # Roles e permissões
-│   │   │   └── utils/                # Helpers de permissão e usuário
-│   │   ├── theme/                    # Sistema de temas
-│   │   ├── home/                     # Dashboard
-│   │   └── errors/                   # Páginas de erro
+├── features/                           # Features por domínio
+│   ├── core/                           # Features essenciais
+│   │   ├── auth/                       # Autenticação OIDC + RBAC
+│   │   │   ├── components/             # ProtectedRoute guard
+│   │   │   ├── config/                 # Roles e permissões
+│   │   │   └── utils/                  # Helpers de permissão e usuário
+│   │   ├── theme/                      # Sistema de temas
+│   │   └── errors/                     # Páginas de erro
 │   │
-│   └── business/                     # Features de negócio
-│       ├── pokedex/                  # Exemplo: API externa
-│       ├── previsao-tempo/           # Exemplo: API externa
-│       ├── to-do-list/               # Exemplo: CRUD completo
-│       ├── formularios/              # Exemplo: Formulários
-│       └── design-system/            # Showcase de componentes
+│   └── business/                       # Features de negócio
+│       ├── home/                       # Dashboard
+│       ├── pokedex/                    # Exemplo: API externa
+│       ├── previsao-tempo/             # Exemplo: API externa
+│       ├── to-do-list/                 # Exemplo: CRUD completo
+│       ├── formularios/                # Exemplo: Formulários
+│       └── design-system/              # Showcase de componentes
 │
-└── shared/                           # Código compartilhado
-    ├── components/                   # Componentes reutilizáveis
-    │   ├── layout/                   # Layout (header, sidebar, etc)
-    │   └── ui/                       # UI components (shadcn)
+└── shared/                             # Código compartilhado
+    ├── components/                     # Componentes reutilizáveis
+    │   ├── layout/                     # Layout (header, sidebar, etc)
+    │   └── ui/                         # UI components (shadcn)
     │
-    ├── config/                       # Configurações estáticas
-    │   ├── menu.ts                   # Configuração de menu
-    │   ├── project.ts                # Metadados do projeto
-    │   └── query-client.ts           # Config React Query
+    ├── config/                         # Configurações estáticas
+    │   ├── menu.ts                     # Configuração de menu
+    │   ├── project.ts                  # Metadados do projeto
+    │   └── query-client.ts             # Config React Query
     │
-    ├── hooks/                        # Hooks reutilizáveis
+    ├── context/                        # Contextos compartilhados
+    │   └── sidebar-layout-context.tsx
+    │
+    ├── hooks/                          # Hooks reutilizáveis
     │   ├── use-mobile.ts
     │   └── use-sidebar-menu.ts
     │
-    ├── utils/                        # Funções utilitárias puras
-    │   └── cn.ts                     # Utility: className
+    ├── utils/                          # Funções utilitárias puras
+    │   └── cn.ts                       # Utility: className
     │
-    └── assets/                       # Assets estáticos
+    └── assets/                         # Assets estáticos
         └── logos/
 ```
 

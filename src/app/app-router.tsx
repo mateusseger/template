@@ -6,9 +6,9 @@ import { AppLayout } from "@/shared/components/layout/app-layout"
 import { authRoutes } from "@/features/core/auth/routes"
 import { themeRoutes } from "@/features/core/theme/routes"
 import { errorRoutes } from "@/features/core/errors/routes"
-import { homeRoutes } from "@/features/core/home/routes"
 
 // Import de rotas das features business
+import { homeRoutes } from "@/features/business/home/routes"
 import { pokedexRoutes } from "@/features/business/pokedex/routes"
 import { previsaoTempoRoutes } from "@/features/business/previsao-tempo/routes"
 import { formulariosRoutes } from "@/features/business/formularios/routes"

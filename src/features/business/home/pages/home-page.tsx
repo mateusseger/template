@@ -329,7 +329,7 @@ export function HomePage() {
                             <ul className="space-y-1 text-xs">
                                 <li className="flex items-center gap-1">
                                     <ArrowRight className="h-3 w-3 text-muted-foreground" />
-                                    core/ (auth, theme, home)
+                                    core/ (auth, theme, errors)
                                 </li>
                                 <li className="flex items-center gap-1">
                                     <ArrowRight className="h-3 w-3 text-muted-foreground" />
@@ -375,55 +375,58 @@ export function HomePage() {
                         </h4>
                         <pre className="text-xs font-mono overflow-x-auto whitespace-pre">
                             {`src/
-├── app/                              # Configuração global
-│   ├── main.tsx                      # Entry point
-│   ├── app.tsx                       # Root component
-│   ├── app-providers.tsx             # Providers (Auth, Theme, Query)
-│   ├── app-router.tsx                # Router principal
-│   └── global.css                    # Estilos globais
+├── app/                                # Configuração global
+│   ├── main.tsx                        # Entry point
+│   ├── app.tsx                         # Root component
+│   ├── app-providers.tsx               # Providers (Auth, Theme, Query)
+│   ├── app-router.tsx                  # Router principal
+│   └── global.css                      # Estilos globais
 │
-├── features/                         # Features por domínio
-│   ├── core/                         # Features essenciais
-│   │   ├── auth/                     # Autenticação OIDC + RBAC
-│   │   │   ├── components/           # ProtectedRoute guard
-│   │   │   ├── config/               # Roles e permissões
-│   │   │   ├── context/              # Auth context
-│   │   │   ├── hooks/                # useAuth, useAuthorization
-│   │   │   ├── services/             # auth-service (Keycloak)
-│   │   │   ├── types/                # Tipos TypeScript
-│   │   │   ├── utils/                # Helpers de permissão
-│   │   │   ├── routes.tsx            # Rotas de auth
-│   │   │   └── index.ts              # Barrel export
+├── features/                           # Features por domínio
+│   ├── core/                           # Features essenciais
+│   │   ├── auth/                       # Autenticação OIDC + RBAC
+│   │   │   ├── components/             # ProtectedRoute guard
+│   │   │   ├── config/                 # Roles e permissões
+│   │   │   ├── context/                # Auth context
+│   │   │   ├── hooks/                  # useAuth, useAuthorization
+│   │   │   ├── services/               # auth-service (Keycloak)
+│   │   │   ├── types/                  # Tipos TypeScript
+│   │   │   ├── utils/                  # Helpers de permissão
+│   │   │   ├── routes.tsx              # Rotas de auth
+│   │   │   └── index.ts                # Barrel export
 │   │   │
-│   │   ├── theme/                    # Sistema de temas
-│   │   ├── home/                     # Dashboard
-│   │   └── errors/                   # Páginas de erro
+│   │   ├── theme/                      # Sistema de temas
+│   │   └── errors/                     # Páginas de erro
 │   │
-│   └── business/                     # Features de negócio
-│       ├── pokedex/                  # Exemplo: API externa
-│       ├── previsao-tempo/           # Exemplo: API externa
-│       ├── to-do-list/               # Exemplo: CRUD completo
-│       ├── formularios/              # Exemplo: Formulários
-│       └── design-system/            # Showcase de componentes
+│   └── business/                       # Features de negócio
+│       ├── home/                       # Dashboard
+│       ├── pokedex/                    # Exemplo: API externa
+│       ├── previsao-tempo/             # Exemplo: API externa
+│       ├── to-do-list/                 # Exemplo: CRUD completo
+│       ├── formularios/                # Exemplo: Formulários
+│       └── design-system/              # Showcase de componentes
 │
-└── shared/                           # Código compartilhado
-    ├── components/                   # Componentes reutilizáveis
-    │   ├── layout/                   # Layout (header, sidebar)
-    │   └── ui/                       # UI components (custom e shadcn)
+└── shared/                             # Código compartilhado
+    ├── components/                     # Componentes reutilizáveis
+    │   ├── layout/                     # Layout (header, sidebar)
+    │   └── ui/                         # UI components (custom e shadcn)
     │
-    ├── config/                       # Configurações estáticas
-    │   ├── menu.ts                   # Configuração de menu
-    │   ├── project.ts                # Metadados do projeto
-    │   └── query-client.ts           # Config React Query
+    ├── config/                         # Configurações estáticas
+    │   ├── menu.ts                     # Configuração de menu
+    │   ├── project.ts                  # Metadados do projeto
+    │   └── query-client.ts             # Config React Query
     │
-    ├── hooks/                        # Hooks reutilizáveis
+    ├── context/                        # Contextos compartilhados
+    │   └── sidebar-layout-context.tsx    
+    │
+    ├── hooks/                          # Hooks reutilizáveis
     │   ├── use-mobile.ts
     │   └── use-sidebar-menu.ts
     │
-    ├── utils/                        # Funções utilitárias
-    │   └── cn.ts                     # Utility: className
+    ├── utils/                          # Funções utilitárias
+    │   └── cn.ts                       # Utility: className
     │
-    └── assets/                       # Assets estáticos
+    └── assets/                         # Assets estáticos
         └── logos/`}
                         </pre>
                     </div>
@@ -848,7 +851,7 @@ export function HomePage() {
                             <div className="p-4 rounded-lg border bg-card hover:bg-accent transition-colors cursor-pointer h-full">
                                 <div className="flex items-center gap-3 mb-3">
                                     <div className="h-10 w-10 rounded-lg bg-red-500/10 flex items-center justify-center">
-                                        <Sparkles className="h-5 w-5 text-red-500" />
+                                        <Zap className="h-5 w-5 text-red-500" />
                                     </div>
                                     <div className="flex-1">
                                         <h4 className="font-semibold group-hover:text-primary transition-colors">

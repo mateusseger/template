@@ -1,6 +1,6 @@
 // Configuração e utilitários do menu de navegação
 
-import { Home, ListTodo, Palette, Sparkles, CloudSun, FileText, type LucideIcon, Layers } from "lucide-react"
+import { Home, ListTodo, Palette, Sparkles, CloudSun, FileText, type LucideIcon, Layers, Zap } from "lucide-react"
 import { type UserRole } from "@/features/core/auth"
 
 // ==================== TYPES ====================
@@ -55,7 +55,7 @@ export const MENU_ITEMS: MenuItem[] = [
             {
                 name: "Pokédex",
                 url: "/exemplos/pokedex",
-                icon: Sparkles
+                icon: Zap
             },
             {
                 name: "Previsão do Tempo",
