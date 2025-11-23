@@ -1,5 +1,5 @@
 import { Button } from "@/shared/components/ui/shadcn/button"
-import { useAuth } from "@/features/auth"
+import { useAuth } from "@/features/core/auth"
 import { LogOut } from "lucide-react"
 import { AppBreadcrumb } from "./app-breadcrumb"
 import { Avatar, AvatarFallback } from "@/shared/components/ui/shadcn/avatar"
@@ -13,7 +13,7 @@ import {
 } from "@/shared/components/ui/shadcn/dropdown-menu"
 import { SidebarTrigger } from "@/shared/components/ui/shadcn/sidebar"
 import { Separator } from "@/shared/components/ui/shadcn/separator"
-import { getUserInitials, getUserDisplayName } from "@/shared/lib/user"
+import { getUserInitials, getUserDisplayName } from "@/shared/helpers/user-helpers"
 
 /**
  * AppHeader - Barra de navegação superior com acionador da barra lateral, breadcrumb e menu do usuário

@@ -1,8 +1,8 @@
 import { useState, useCallback, useMemo, useEffect } from "react"
 import { useLocation } from "react-router-dom"
-import { getVisibleMenuItems, type MenuItem } from "@/shared/lib/menu"
-import { useAuth } from "@/features/auth"
-import { getUserRoles } from "@/shared/lib/user"
+import { getVisibleMenuItems, type MenuItem } from "@/shared/constants/menu"
+import { useAuth } from "@/features/core/auth"
+import { getUserRoles } from "@/shared/helpers/user-helpers"
 
 // Hook para gerenciar estado e lógica do menu lateral
 // Filtra itens baseados em permissões e gerencia submenu ativo

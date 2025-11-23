@@ -13,8 +13,8 @@ import {
     SidebarRail,
 } from "@/shared/components/ui/shadcn/sidebar"
 import { Button } from "@/shared/components/ui/shadcn/button"
-import { useTheme } from "@/shared/theme"
-import { cn } from "@/shared/lib/utils/cn"
+import { useTheme } from "@/features/core/theme"
+import { cn } from "@/shared/utils/cn"
 import { useSidebarMenu } from "@/shared/hooks/use-sidebar-menu"
 import { AppSidebarSubmenu } from "./app-sidebar-submenu"
 import { projectConfig } from "@/shared/config/project"

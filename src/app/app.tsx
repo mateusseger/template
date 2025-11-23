@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom"
-import { AppProviders } from "@/app/providers"
-import { router } from "@/app/router"
+import { AppProviders } from "@/app/app-providers"
+import { router } from "@/app/app-router"
 import { MobileUnsupported } from "@/shared/components/layout/mobile-unsupported"
 import { useMobile } from "@/shared/hooks/use-mobile"
 

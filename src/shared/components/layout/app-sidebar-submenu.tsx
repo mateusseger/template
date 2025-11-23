@@ -9,8 +9,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/shared/components/ui/shadcn/sidebar"
-import { cn } from "@/shared/lib/utils/cn"
-import type { MenuItem } from "@/shared/lib/menu"
+import { cn } from "@/shared/utils/cn"
+import type { MenuItem } from "@/shared/constants/menu"
 
 /**
  * AppSidebarSubmenu - Painel de navegação secundário para itens de submenu

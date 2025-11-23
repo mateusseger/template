@@ -3,9 +3,10 @@
 
 import { type ReactNode, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "@/features/auth"
-import { getUserRoles } from "@/shared/lib/user"
-import { hasAnyRole, type UserRole } from "@/shared/lib/permissions"
+import { useAuth } from "@/features/core/auth"
+import { getUserRoles } from "@/shared/helpers/user-helpers"
+import { hasAnyRole } from "@/shared/helpers/permission-helpers"
+import { type UserRole } from "@/shared/constants/permissions"
 
 interface ProtectedRouteProps {
     children: ReactNode
