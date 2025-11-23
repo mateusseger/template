@@ -1,6 +1,6 @@
 import { AppHeader } from "./app-header"
 import { AppSidebarMenu } from "./app-sidebar-menu"
-import { AppPageTransition } from "../transitions/app-page-transition"
+import { AppPageTransition } from "./app-page-transition"
 import { SidebarProvider } from "../ui/shadcn/sidebar"
 import { SidebarLayoutProvider } from "@/shared/components/layout/sidebar-layout-context"
 import { DetailSectionsProvider } from "./detail-sections/detail-sections-provider"

@@ -61,7 +61,10 @@ src/
 │
 ├── features/                         # Features por domínio
 │   ├── core/                         # Features essenciais
-│   │   ├── auth/                     # Autenticação OIDC
+│   │   ├── auth/                     # Autenticação OIDC + RBAC
+│   │   │   ├── components/           # ProtectedRoute guard
+│   │   │   ├── config/               # Roles e permissões
+│   │   │   └── utils/                # Helpers de permissão e usuário
 │   │   ├── theme/                    # Sistema de temas
 │   │   ├── home/                     # Dashboard
 │   │   └── errors/                   # Páginas de erro
@@ -76,28 +79,19 @@ src/
 └── shared/                           # Código compartilhado
     ├── components/                   # Componentes reutilizáveis
     │   ├── layout/                   # Layout (header, sidebar, etc)
-    │   ├── routing/                  # Componentes de rota
-    │   ├── transitions/              # Animações
     │   └── ui/                       # UI components (shadcn)
     │
-    ├── utils/                        # Funções utilitárias puras
-    │   └── cn.ts                     # Utility: className
-    │
-    ├── constants/                    # Constantes globais
+    ├── config/                       # Configurações estáticas
     │   ├── menu.ts                   # Configuração de menu
-    │   └── permissions.ts            # Roles e hierarquia
-    │
-    ├── helpers/                      # Funções auxiliares de domínio
-    │   ├── user-helpers.ts
-    │   └── permission-helpers.ts
+    │   ├── project.ts                # Metadados do projeto
+    │   └── query-client.ts           # Config React Query
     │
     ├── hooks/                        # Hooks reutilizáveis
     │   ├── use-mobile.ts
     │   └── use-sidebar-menu.ts
     │
-    ├── config/                       # Configurações estáticas
-    │   ├── project.ts                # Metadados do projeto
-    │   └── query-client.ts           # Config React Query
+    ├── utils/                        # Funções utilitárias puras
+    │   └── cn.ts                     # Utility: className
     │
     └── assets/                       # Assets estáticos
         └── logos/
@@ -130,6 +124,9 @@ features/business/minha-feature/
 │
 ├── utils/                            # Utilitários específicos (opcional)
 │   └── minha-feature-helpers.ts     # Funções auxiliares desta feature
+│
+├── config/                        # Configurações específicas (opcional)
+│   └── minha-feature-config.ts   # Configurações usadas apenas nesta feature
 │
 ├── routes.tsx                        # Rotas (obrigatório)
 └── index.ts                          # Barrel export (obrigatório)
@@ -190,7 +187,7 @@ O tema pode ser configurado de três formas:
 
 ### Adicionar Novo Tema
 
-1. Editar `src/features/core/theme/constants/theme-config.ts`
+1. Editar `src/features/core/theme/config/theme-config.ts`
 2. Adicionar no script `scripts/setup-theme.js`
 3. Adicionar logo em `src/shared/assets/` (opcional)
 
@@ -221,8 +218,7 @@ VITE_DEV_MOCK_ROLES=admin,user         # Roles mockadas
 ### Uso em Componentes
 
 ```typescript
-import { useAuth, useAuthorization } from "@/features/core/auth"
-import { USER_ROLES } from "@/shared/constants/permissions"
+import { useAuth, useAuthorization, USER_ROLES } from "@/features/core/auth"
 
 function MyComponent() {
   const { user, logout } = useAuth()
@@ -240,16 +236,15 @@ function MyComponent() {
 
 ```typescript
 // routes.tsx
-import { AppProtectedRoute } from "@/shared/components/routing/app-protected-route"
-import { USER_ROLES } from "@/shared/constants/permissions"
+import { ProtectedRoute, USER_ROLES } from "@/features/core/auth"
 
 export const minhaFeatureRoutes = [
     {
         path: "/admin",
         element: (
-            <AppProtectedRoute requiredRoles={[USER_ROLES.ADMIN]}>
+            <ProtectedRoute requiredRoles={[USER_ROLES.ADMIN]}>
                 <AdminPage />
-            </AppProtectedRoute>
+            </ProtectedRoute>
         ),
     },
 ]
@@ -258,7 +253,7 @@ export const minhaFeatureRoutes = [
 **Hierarquia de Roles:**
 - `ADMIN`: Acesso total (herda USER)
 - `USER`: Acesso básico
-- Configurável em `shared/constants/permissions.ts`
+- Configurável em `features/core/auth/config/permissions-config.ts`
 
 ## 🔄 React Query: Queries e Mutations
 
@@ -496,7 +491,7 @@ export const router = createBrowserRouter([
 ### 4. Adicionar ao Menu
 
 ```typescript
-// shared/constants/menu.ts
+// shared/config/menu.ts
 import { Layers } from "lucide-react"
 
 export const MENU_ITEMS: MenuItem[] = [
@@ -554,8 +549,8 @@ O template inclui features de exemplo que você pode estudar ou remover:
 - [ ] Configurar `.env` com Keycloak
 - [ ] Remover features de exemplo (se desnecessário)
 - [ ] Ajustar logo em `shared/assets/`
-- [ ] Revisar `shared/constants/menu.ts`
-- [ ] Configurar roles em `shared/constants/permissions.ts`
+- [ ] Revisar `shared/config/menu.ts`
+- [ ] Configurar roles em `features/core/auth/config/permissions-config.ts`
 - [ ] Testar autenticação
 - [ ] `npm run build`
 

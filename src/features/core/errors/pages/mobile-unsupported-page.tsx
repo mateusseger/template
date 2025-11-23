@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/sha
  *
  * Componente que informa ao usuário que a aplicação não é suportada em dispositivos móveis
  */
-export function MobileUnsupported() {
+export function MobileUnsupportedPage() {
     return (
         <div className="min-h-screen w-full flex items-center justify-center p-4 bg-background">
             <Card className="max-w-md w-full">

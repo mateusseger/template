@@ -13,7 +13,7 @@ import {
 } from "@/shared/components/ui/shadcn/dropdown-menu"
 import { SidebarTrigger } from "@/shared/components/ui/shadcn/sidebar"
 import { Separator } from "@/shared/components/ui/shadcn/separator"
-import { getUserInitials, getUserDisplayName } from "@/shared/helpers/user-helpers"
+import { getUserInitials, getUserDisplayName } from "@/features/core/auth"
 
 /**
  * AppHeader - Barra de navegação superior com acionador da barra lateral, breadcrumb e menu do usuário

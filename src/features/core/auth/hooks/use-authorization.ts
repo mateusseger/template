@@ -1,13 +1,6 @@
 // Hook de autorização - Verifica roles e permissões do usuário
 
-import { getUserRoles } from "@/shared/helpers/user-helpers"
-import {
-    hasAnyRole,
-    hasAllRoles,
-    hasMinimumRoleLevel,
-    type UserRole,
-} from "@/shared/helpers/permission-helpers"
-import { useAuth } from "./use-auth"
+import { useAuth, getUserRoles, hasAnyRole, hasAllRoles, hasMinimumRoleLevel, type UserRole } from "@/features/core/auth"
 
 export function useAuthorization() {
     const { user } = useAuth()

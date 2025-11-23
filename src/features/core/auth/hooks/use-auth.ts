@@ -1,7 +1,7 @@
 // Hook de autenticação - Fornece acesso ao contexto de autenticação
 
 import { useContext } from "react"
-import { AuthContext } from "../context/auth-context"
+import { AuthContext } from "@/features/core/auth"
 
 export function useAuth() {
     const context = useContext(AuthContext)

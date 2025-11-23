@@ -2,8 +2,7 @@
 // Inclui: service + config + mock consolidados
 
 import { User, UserManager, type UserManagerSettings, WebStorageStateStore } from "oidc-client"
-import { USER_ROLES } from "@/shared/constants/permissions"
-import type { IUser, UserProfile } from "../types/auth-types"
+import { USER_ROLES, type IUser, type UserProfile } from "@/features/core/auth"
 
 // ==================== CONFIG ====================
 

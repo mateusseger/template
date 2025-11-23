@@ -3,17 +3,14 @@
 
 import { type ReactNode, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "@/features/core/auth"
-import { getUserRoles } from "@/shared/helpers/user-helpers"
-import { hasAnyRole } from "@/shared/helpers/permission-helpers"
-import { type UserRole } from "@/shared/constants/permissions"
+import { useAuth, getUserRoles, hasAnyRole, type UserRole } from "@/features/core/auth"
 
 interface ProtectedRouteProps {
     children: ReactNode
     requiredRoles?: UserRole[]
 }
 
-export function AppProtectedRoute({ children, requiredRoles = [] }: ProtectedRouteProps) {
+export function ProtectedRoute({ children, requiredRoles = [] }: ProtectedRouteProps) {
     const navigate = useNavigate()
     const { user, isAuthenticated } = useAuth()
 

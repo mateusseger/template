@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, type ReactNode } from "react"
 import type { ThemeColor, ThemeMode, ThemeConfig } from "../types/theme-types"
-import { THEMES } from "../constants/theme-config"
+import { THEMES } from "../config/theme-config"
 
 interface ThemeContextType {
     theme: ThemeConfig

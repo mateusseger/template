@@ -3,8 +3,7 @@
  * Funções auxiliares para checagem de permissões e roles
  */
 
-import { ROLE_HIERARCHY } from "@/shared/constants/permissions"
-import type { UserRole } from "@/shared/constants/permissions"
+import { ROLE_HIERARCHY, type UserRole } from "@/features/core/auth"
 
 export type { UserRole }
 

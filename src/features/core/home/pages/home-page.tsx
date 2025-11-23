@@ -289,7 +289,8 @@ export function HomePage() {
                         </div>
                     </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-6">
+                    {/* Resumo das 3 camadas */}
                     <div className="grid md:grid-cols-3 gap-4">
                         <div className="p-4 rounded-lg border bg-card">
                             <div className="flex items-center gap-2 mb-3">
@@ -360,10 +361,71 @@ export function HomePage() {
                                 </li>
                                 <li className="flex items-center gap-1">
                                     <ArrowRight className="h-3 w-3 text-muted-foreground" />
-                                    Hooks, utils, constants
+                                    Hooks, utils, config
                                 </li>
                             </ul>
                         </div>
+                    </div>
+
+                    {/* Árvore de Arquivos Completa */}
+                    <div className="p-4 rounded-lg border bg-muted/50">
+                        <h4 className="font-semibold mb-3 flex items-center gap-2">
+                            <FolderTree className="h-4 w-4" />
+                            Estrutura Completa de Diretórios
+                        </h4>
+                        <pre className="text-xs font-mono overflow-x-auto whitespace-pre">
+                            {`src/
+├── app/                              # Configuração global
+│   ├── main.tsx                      # Entry point
+│   ├── app.tsx                       # Root component
+│   ├── app-providers.tsx             # Providers (Auth, Theme, Query)
+│   ├── app-router.tsx                # Router principal
+│   └── global.css                    # Estilos globais
+│
+├── features/                         # Features por domínio
+│   ├── core/                         # Features essenciais
+│   │   ├── auth/                     # Autenticação OIDC + RBAC
+│   │   │   ├── components/           # ProtectedRoute guard
+│   │   │   ├── config/               # Roles e permissões
+│   │   │   ├── context/              # Auth context
+│   │   │   ├── hooks/                # useAuth, useAuthorization
+│   │   │   ├── services/             # auth-service (Keycloak)
+│   │   │   ├── types/                # Tipos TypeScript
+│   │   │   ├── utils/                # Helpers de permissão
+│   │   │   ├── routes.tsx            # Rotas de auth
+│   │   │   └── index.ts              # Barrel export
+│   │   │
+│   │   ├── theme/                    # Sistema de temas
+│   │   ├── home/                     # Dashboard
+│   │   └── errors/                   # Páginas de erro
+│   │
+│   └── business/                     # Features de negócio
+│       ├── pokedex/                  # Exemplo: API externa
+│       ├── previsao-tempo/           # Exemplo: API externa
+│       ├── to-do-list/               # Exemplo: CRUD completo
+│       ├── formularios/              # Exemplo: Formulários
+│       └── design-system/            # Showcase de componentes
+│
+└── shared/                           # Código compartilhado
+    ├── components/                   # Componentes reutilizáveis
+    │   ├── layout/                   # Layout (header, sidebar)
+    │   └── ui/                       # UI components (custom e shadcn)
+    │
+    ├── config/                       # Configurações estáticas
+    │   ├── menu.ts                   # Configuração de menu
+    │   ├── project.ts                # Metadados do projeto
+    │   └── query-client.ts           # Config React Query
+    │
+    ├── hooks/                        # Hooks reutilizáveis
+    │   ├── use-mobile.ts
+    │   └── use-sidebar-menu.ts
+    │
+    ├── utils/                        # Funções utilitárias
+    │   └── cn.ts                     # Utility: className
+    │
+    └── assets/                       # Assets estáticos
+        └── logos/`}
+                        </pre>
                     </div>
                 </CardContent>
             </Card>
@@ -415,7 +477,7 @@ export function HomePage() {
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                             ADMIN herda permissões de USER. Configurável em{" "}
-                            <code className="bg-background px-1 rounded">shared/constants/permissions.ts</code>
+                            <code className="bg-background px-1 rounded">features/core/auth/config/permissions-config.ts</code>
                         </p>
                     </div>
 
@@ -425,7 +487,7 @@ export function HomePage() {
                             Proteger Rotas
                         </h4>
                         <p className="text-sm text-muted-foreground">
-                            Use <code className="bg-background px-1 rounded">AppProtectedRoute</code> com{" "}
+                            Use <code className="bg-background px-1 rounded">ProtectedRoute</code> com{" "}
                             <code className="bg-background px-1 rounded">requiredRoles</code> para restringir acesso
                         </p>
                     </div>
@@ -510,7 +572,7 @@ export function HomePage() {
                             {
                                 step: "3",
                                 title: "Adicionar ao Menu",
-                                description: "Configure o item em shared/constants/menu.ts com nome, url e ícone",
+                                description: "Configure o item em shared/config/menu.ts com nome, url e ícone",
                             },
                             {
                                 step: "4",

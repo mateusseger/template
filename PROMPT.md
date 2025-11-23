@@ -46,8 +46,8 @@ src/
 │   │   │   │   └── auth-service.ts   # OIDC service + config
 │   │   │   ├── types/
 │   │   │   │   └── auth-types.ts
-│   │   │   ├── constants/
-│   │   │   │   └── auth-constants.ts # Roles, errors, etc
+│   │   │   ├── config/
+│   │   │   │   └── permissions-config.ts    # Configuração de permissões
 │   │   │   ├── routes.tsx            # Rotas específicas da feature
 │   │   │   └── index.ts              # Barrel export
 │   │   │
@@ -58,7 +58,7 @@ src/
 │   │   │   │   └── use-theme.ts
 │   │   │   ├── context/
 │   │   │   │   └── theme-provider.tsx
-│   │   │   ├── constants/
+│   │   │   ├── config/
 │   │   │   │   └── theme-config.ts   # Configuração de temas
 │   │   │   ├── types/
 │   │   │   │   └── theme-types.ts

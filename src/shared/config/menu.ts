@@ -1,7 +1,7 @@
 // Configuração e utilitários do menu de navegação
 
 import { Home, ListTodo, Palette, Sparkles, CloudSun, FileText, type LucideIcon, Layers } from "lucide-react"
-import { type UserRole } from "@/shared/constants/permissions"
+import { type UserRole } from "@/features/core/auth"
 
 // ==================== TYPES ====================
 

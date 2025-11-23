@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom"
-import { AppProtectedRoute } from "@/shared/components/routing/app-protected-route"
+import { ProtectedRoute } from "@/features/core/auth"
 import { AppLayout } from "@/shared/components/layout/app-layout"
 
 // Import de rotas das features core
@@ -23,9 +23,9 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: (
-            <AppProtectedRoute>
+            <ProtectedRoute>
                 <AppLayout />
-            </AppProtectedRoute>
+            </ProtectedRoute>
         ),
         children: [
             ...homeRoutes,

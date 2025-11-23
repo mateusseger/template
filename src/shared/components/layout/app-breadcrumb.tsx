@@ -7,7 +7,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/shared/components/ui/shadcn/breadcrumb"
-import { getBreadcrumbPath } from "@/shared/constants/menu"
+import { getBreadcrumbPath } from "@/shared/config/menu"
 
 // Tipagem para route handles customizados
 interface RouteHandle {

@@ -1,7 +1,7 @@
 import { RouterProvider } from "react-router-dom"
 import { AppProviders } from "@/app/app-providers"
 import { router } from "@/app/app-router"
-import { MobileUnsupported } from "@/shared/components/layout/mobile-unsupported"
+import { MobileUnsupportedPage } from "@/features/core/errors/pages/mobile-unsupported-page"
 import { useMobile } from "@/shared/hooks/use-mobile"
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     if (isMobile) {
         return (
             <AppProviders>
-                <MobileUnsupported />
+                <MobileUnsupportedPage />
             </AppProviders>
         )
     }
