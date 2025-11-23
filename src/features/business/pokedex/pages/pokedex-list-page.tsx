@@ -122,7 +122,7 @@ export function PokedexListPage() {
                             <Link key={pokemon.id} to={`/exemplos/pokedex/${pokemon.id}`}>
                                 <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group">
                                     <CardContent className="p-6">
-                                        <div className="aspect-square mb-4 bg-gradient-to-br from-muted/50 to-muted rounded-lg p-4 flex items-center justify-center">
+                                        <div className="aspect-square mb-4 bg-linear-to-br from-muted/50 to-muted rounded-lg p-4 flex items-center justify-center">
                                             <img
                                                 src={pokemon.image}
                                                 alt={pokemon.name}

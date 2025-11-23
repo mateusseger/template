@@ -75,7 +75,7 @@ export function PokedexDetailPage() {
                     {/* Imagem Principal */}
                     <Card>
                         <CardContent className="p-8">
-                            <div className="aspect-square bg-gradient-to-br from-muted/50 to-muted rounded-lg p-8 flex items-center justify-center">
+                            <div className="aspect-square bg-linear-to-br from-muted/50 to-muted rounded-lg p-8 flex items-center justify-center">
                                 <img
                                     src={pokemon.image}
                                     alt={pokemon.name}
@@ -253,7 +253,7 @@ export function PokedexDetailPage() {
                             {pokemon.sprites.other?.['official-artwork']?.front_default && (
                                 <Card className="overflow-hidden md:col-span-2">
                                     <CardContent className="p-4">
-                                        <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg p-4 flex items-center justify-center mb-2">
+                                        <div className="aspect-square bg-linear-to-br from-primary/10 to-primary/5 rounded-lg p-4 flex items-center justify-center mb-2">
                                             <img
                                                 src={pokemon.sprites.other['official-artwork'].front_default}
                                                 alt="Artwork oficial"
