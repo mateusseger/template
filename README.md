@@ -1,4 +1,4 @@
-# Template React Corporativo
+# Template React
 
 > Template profissional, escalável e moderno para aplicações React corporativas com autenticação Keycloak, sistema de temas e arquitetura baseada em features.
 
@@ -301,7 +301,7 @@ import { useItems } from "../api"
 
 export function ItemsPage() {
     const { data: items = [], isLoading } = useItems()
-    
+
     if (isLoading) return <Skeleton />
     return <div>{items.map(item => ...)}</div>
 }
@@ -326,7 +326,7 @@ import { createItem } from "./minha-feature-api"
 
 export function useCreateItem() {
     const queryClient = useQueryClient()
-    
+
     return useMutation({
         mutationFn: createItem,
         onSuccess: () => {
@@ -340,15 +340,15 @@ import { useCreateItem } from "../api"
 
 export function CreateItemPage() {
     const createMutation = useCreateItem()
-    
+
     const handleSubmit = (data) => {
         createMutation.mutate(data, {
             onSuccess: () => navigate("/items"),
         })
     }
-    
+
     return (
-        <Button 
+        <Button
             onClick={handleSubmit}
             disabled={createMutation.isPending}
         >
@@ -364,27 +364,27 @@ export function CreateItemPage() {
 // api/mutations.ts
 export function useDeleteItem() {
     const queryClient = useQueryClient()
-    
+
     return useMutation({
         mutationFn: deleteItem,
-        
+
         // UI atualiza antes da resposta
         onMutate: async (id) => {
             await queryClient.cancelQueries({ queryKey: ["items"] })
             const previous = queryClient.getQueryData(["items"])
-            
+
             queryClient.setQueryData(["items"], (old) =>
                 old?.filter((item) => item.id !== id)
             )
-            
+
             return { previous }
         },
-        
+
         // Reverte em caso de erro
         onError: (_err, _id, context) => {
             queryClient.setQueryData(["items"], context?.previous)
         },
-        
+
         // Garante sincronização
         onSettled: () => {
             queryClient.invalidateQueries({ queryKey: ["items"] })

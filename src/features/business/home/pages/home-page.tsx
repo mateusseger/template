@@ -26,10 +26,10 @@ import {
 
 /**
  * HomePage - Dashboard principal do template
- * 
+ *
  * Esta página serve como ponto de entrada e documentação interativa do template,
  * apresentando os principais recursos, arquitetura, exemplos práticos e guias de uso.
- * 
+ *
  * Estrutura:
  * - Hero Section: Apresentação e CTAs principais
  * - Stack Cards: Tecnologias utilizadas
@@ -60,7 +60,7 @@ export function HomePage() {
                         Bem-vindo{user?.name ? `, ${user.name.split(" ")[0]}` : ""}! 👋
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mb-6">
-                        Este é o <strong>Template Corporativo</strong> — uma base profissional, escalável e moderna
+                        Este é o <strong>Template React</strong> — uma base profissional, escalável e moderna
                         para construir aplicações enterprise com as melhores práticas da indústria.
                     </p>
                     <div className="flex flex-wrap gap-3">
@@ -417,7 +417,7 @@ export function HomePage() {
     │   └── query-client.ts             # Config React Query
     │
     ├── context/                        # Contextos compartilhados
-    │   └── sidebar-layout-context.tsx    
+    │   └── sidebar-layout-context.tsx
     │
     ├── hooks/                          # Hooks reutilizáveis
     │   ├── use-mobile.ts

@@ -1,1 +1,5 @@
-padronizar formularios com useForm e componente do shadcn
+PLANO DE AÇÃO:
+
+1. Criação de script npx com template em repositório privado;
+2. Criação de exemplo de data table com formularios de filtros;
+3. Padronizar formulários com useForm e componente do shadcn;
