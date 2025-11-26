@@ -1,6 +1,12 @@
 import { createBrowserRouter } from "react-router-dom"
 
-import { authRoutes, errorRoutes, ProtectedRoute, AppLayout } from "@herval/react-core"
+import {
+    authRoutes,
+    errorRoutes,
+    themeRoutes,
+    ProtectedRoute,
+    AppLayout
+} from "@herval/react-core"
 
 import { homeRoutes } from "@/features/home/routes"
 import { pokedexRoutes } from "@/features/pokedex/routes"
@@ -32,8 +38,10 @@ export const router = createBrowserRouter([
             ...toDoListRoutes,
             ...pokedexRoutes,
             ...previsaoTempoRoutes,
+            ...themeRoutes,
         ],
     },
+
 
     // Rotas de erro (404, etc)
     ...errorRoutes,
