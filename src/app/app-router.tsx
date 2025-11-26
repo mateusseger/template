@@ -1,19 +1,14 @@
 import { createBrowserRouter } from "react-router-dom"
-import { ProtectedRoute } from "@/features/core/auth"
-import { AppLayout } from "@/shared/components/layout/app-layout"
 
-// Import de rotas das features core
-import { authRoutes } from "@/features/core/auth/routes"
-import { themeRoutes } from "@/features/core/theme/routes"
-import { errorRoutes } from "@/features/core/errors/routes"
+import { authRoutes, errorRoutes, ProtectedRoute, AppLayout } from "@herval/react-core"
 
-// Import de rotas das features business
-import { homeRoutes } from "@/features/business/home/routes"
-import { pokedexRoutes } from "@/features/business/pokedex/routes"
-import { previsaoTempoRoutes } from "@/features/business/previsao-tempo/routes"
-import { formulariosRoutes } from "@/features/business/formularios/routes"
-import { toDoListRoutes } from "@/features/business/to-do-list/routes"
-import { designSystemRoutes } from "@/features/business/design-system/routes"
+import { homeRoutes } from "@/features/home/routes"
+import { pokedexRoutes } from "@/features/pokedex/routes"
+import { previsaoTempoRoutes } from "@/features/previsao-tempo/routes"
+import { formulariosRoutes } from "@/features/formularios/routes"
+import { toDoListRoutes } from "@/features/to-do-list/routes"
+import { designSystemRoutes } from "@/features/design-system/routes"
+import { appConfig } from "./app-config"
 
 export const router = createBrowserRouter([
     // Rotas públicas (auth)
@@ -24,12 +19,14 @@ export const router = createBrowserRouter([
         path: "/",
         element: (
             <ProtectedRoute>
-                <AppLayout />
+                <AppLayout
+                    projectConfig={appConfig.project}
+                    menuItems={appConfig.menu}
+                />
             </ProtectedRoute>
         ),
         children: [
             ...homeRoutes,
-            ...themeRoutes,
             ...designSystemRoutes,
             ...formulariosRoutes,
             ...toDoListRoutes,

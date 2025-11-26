@@ -1,24 +1,34 @@
+import {
+    AuthProvider,
+    ErrorBoundaryProvider,
+    ThemeProvider,
+    MobileUnsupportedPage,
+    useMobile
+} from "@herval/react-core"
+
 import { RouterProvider } from "react-router-dom"
-import { AppProviders } from "@/app/app-providers"
-import { router } from "@/app/app-router"
-import { MobileUnsupportedPage } from "@/features/core/errors/pages/mobile-unsupported-page"
-import { useMobile } from "@/shared/hooks/use-mobile"
+import { appConfig } from './app-config'
+import { router } from "./app-router"
+import { QueryClientProvider } from "@tanstack/react-query"
+import { queryClient } from "@/shared/config/query-client"
+
 
 function App() {
     const isMobile = useMobile()
 
-    if (isMobile) {
-        return (
-            <AppProviders>
-                <MobileUnsupportedPage />
-            </AppProviders>
-        )
-    }
+    if (isMobile)
+        return <MobileUnsupportedPage />
 
     return (
-        <AppProviders>
-            <RouterProvider router={router} />
-        </AppProviders>
+        <ErrorBoundaryProvider>
+            <ThemeProvider>
+                <AuthProvider config={appConfig.auth} devMode>
+                    <QueryClientProvider client={queryClient}>
+                        <RouterProvider router={router} />
+                    </QueryClientProvider>
+                </AuthProvider>
+            </ThemeProvider>
+        </ErrorBoundaryProvider>
     )
 }
 
