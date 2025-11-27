@@ -5,7 +5,7 @@ import { FormulariosPage } from "./pages/formularios-page"
 
 export const formulariosRoutes: RouteObject[] = [
     {
-        path: "/exemplos/formularios",
+        path: "/formularios",
         element: <FormulariosPage />,
     },
 ]

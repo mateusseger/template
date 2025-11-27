@@ -1,26 +1,22 @@
-import {
-    AuthProvider,
-    ErrorBoundaryProvider,
-    ThemeProvider,
-    MobileUnsupportedPage,
-    useMobile
-} from "@herval/react-core"
-
+import { AuthProvider, ErrorFallback, ThemeProvider } from "@herval/react-core"
 import { RouterProvider } from "react-router-dom"
+import { ErrorBoundary } from "react-error-boundary"
 import { appConfig } from './app-config'
 import { router } from "./app-router"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { queryClient } from "@/shared/config/query-client"
 
-
 function App() {
-    const isMobile = useMobile()
-
-    if (isMobile)
-        return <MobileUnsupportedPage />
-
     return (
-        <ErrorBoundaryProvider>
+        <ErrorBoundary
+            FallbackComponent={({ error, resetErrorBoundary }) => (
+                <ErrorFallback
+                    error={error}
+                    resetErrorBoundary={resetErrorBoundary}
+                    showStack={import.meta.env.DEV}
+                />
+            )}
+        >
             <ThemeProvider>
                 <AuthProvider config={appConfig.auth} devMode>
                     <QueryClientProvider client={queryClient}>
@@ -28,7 +24,7 @@ function App() {
                     </QueryClientProvider>
                 </AuthProvider>
             </ThemeProvider>
-        </ErrorBoundaryProvider>
+        </ErrorBoundary>
     )
 }
 

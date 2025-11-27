@@ -6,11 +6,11 @@ import { PokedexDetailPage } from "./pages/pokedex-detail-page"
 
 export const pokedexRoutes: RouteObject[] = [
     {
-        path: "/exemplos/pokedex",
+        path: "/pokedex",
         element: <PokedexListPage />,
     },
     {
-        path: "/exemplos/pokedex/:id",
+        path: "/pokedex/:id",
         element: <PokedexDetailPage />,
         handle: {
             detailSectionsEnabled: true,

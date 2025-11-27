@@ -38,22 +38,22 @@ export const appConfig: AppConfig = {
             subItems: [
                 {
                     name: "Formulários",
-                    url: "/exemplos/formularios",
+                    url: "/formularios",
                     icon: FileText
                 },
                 {
                     name: "To-Do List",
-                    url: "/exemplos/to-do-list",
+                    url: "/to-do-list",
                     icon: ListTodo
                 },
                 {
                     name: "Pokédex",
-                    url: "/exemplos/pokedex",
+                    url: "/pokedex",
                     icon: Zap
                 },
                 {
                     name: "Previsão do Tempo",
-                    url: "/exemplos/previsao-tempo",
+                    url: "/previsao-tempo",
                     icon: CloudSun
                 },
             ],

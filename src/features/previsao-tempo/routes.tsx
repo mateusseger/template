@@ -6,11 +6,11 @@ import { PrevisaoTempoDetailPage } from "./pages/previsao-tempo-detail-page"
 
 export const previsaoTempoRoutes: RouteObject[] = [
     {
-        path: "/exemplos/previsao-tempo",
+        path: "/previsao-tempo",
         element: <PrevisaoTempoListPage />,
     },
     {
-        path: "/exemplos/previsao-tempo/:coords",
+        path: "/previsao-tempo/:coords",
         element: <PrevisaoTempoDetailPage />,
         handle: {
             detailSectionsEnabled: true,

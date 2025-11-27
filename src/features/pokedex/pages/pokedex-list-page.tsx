@@ -127,7 +127,7 @@ export function PokedexListPage() {
                     <h2 className="text-xl font-semibold mb-4">Resultados da Busca</h2>
                     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {filteredPokemons.map((pokemon) => (
-                            <Link key={pokemon.id} to={`/exemplos/pokedex/${pokemon.id}`}>
+                            <Link key={pokemon.id} to={`/pokedex/${pokemon.id}`}>
                                 <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group">
                                     <CardContent className="p-6">
                                         <div className="aspect-square mb-4 bg-linear-to-br from-muted/50 to-muted rounded-lg p-4 flex items-center justify-center">
@@ -199,7 +199,7 @@ export function PokedexListPage() {
                         <h2 className="text-xl font-semibold mb-4">Pokémon Populares</h2>
                         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             {filteredPokemons.map((pokemon) => (
-                                <Link key={pokemon.id} to={`/exemplos/pokedex/${pokemon.id}`}>
+                                <Link key={pokemon.id} to={`/pokedex/${pokemon.id}`}>
                                     <Card className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group">
                                         <CardContent className="p-6">
                                             <div className="aspect-square mb-4 bg-linear-to-br from-muted/50 to-muted rounded-lg p-4 flex items-center justify-center">

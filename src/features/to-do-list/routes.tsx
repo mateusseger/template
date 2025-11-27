@@ -5,7 +5,7 @@ import { ToDoListPage } from "./pages/to-do-list-page"
 
 export const toDoListRoutes: RouteObject[] = [
     {
-        path: "/exemplos/to-do-list",
+        path: "/to-do-list",
         element: <ToDoListPage />,
     },
 ]

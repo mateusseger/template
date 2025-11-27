@@ -34,7 +34,7 @@ export function PokedexDetailPage() {
                 <p className="text-muted-foreground mb-4">
                     {error instanceof Error ? error.message : "Pokémon não encontrado"}
                 </p>
-                <Link to="/exemplos/pokedex">
+                <Link to="/pokedex">
                     <Button>Voltar para Pokédex</Button>
                 </Link>
             </div>
@@ -46,7 +46,7 @@ export function PokedexDetailPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link to="/exemplos/pokedex">
+                    <Link to="/pokedex">
                         <Button variant="ghost" size="icon">
                             <ArrowLeft className="h-5 w-5" />
                         </Button>

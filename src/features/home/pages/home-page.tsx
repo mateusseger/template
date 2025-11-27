@@ -617,10 +617,10 @@ export function HomePage() {
                         </ul>
                         <div className="flex gap-2 mt-3">
                             <Button asChild variant="outline" size="sm">
-                                <Link to="/exemplos/pokedex">Ver Pokédex →</Link>
+                                <Link to="/pokedex">Ver Pokédex →</Link>
                             </Button>
                             <Button asChild variant="outline" size="sm">
-                                <Link to="/exemplos/previsao-tempo">Ver Clima →</Link>
+                                <Link to="/previsao-tempo">Ver Clima →</Link>
                             </Button>
                         </div>
                     </div>
@@ -785,7 +785,7 @@ export function HomePage() {
                 </CardHeader>
                 <CardContent>
                     <div className="grid md:grid-cols-2 gap-4">
-                        <Link to="/exemplos/formularios" className="group">
+                        <Link to="/formularios" className="group">
                             <div className="p-4 rounded-lg border bg-card hover:bg-accent transition-colors cursor-pointer h-full">
                                 <div className="flex items-center gap-3 mb-3">
                                     <div className="h-10 w-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
@@ -813,7 +813,7 @@ export function HomePage() {
                             </div>
                         </Link>
 
-                        <Link to="/exemplos/to-do-list" className="group">
+                        <Link to="/to-do-list" className="group">
                             <div className="p-4 rounded-lg border bg-card hover:bg-accent transition-colors cursor-pointer h-full">
                                 <div className="flex items-center gap-3 mb-3">
                                     <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -844,7 +844,7 @@ export function HomePage() {
                             </div>
                         </Link>
 
-                        <Link to="/exemplos/pokedex" className="group">
+                        <Link to="/pokedex" className="group">
                             <div className="p-4 rounded-lg border bg-card hover:bg-accent transition-colors cursor-pointer h-full">
                                 <div className="flex items-center gap-3 mb-3">
                                     <div className="h-10 w-10 rounded-lg bg-red-500/10 flex items-center justify-center">
@@ -875,7 +875,7 @@ export function HomePage() {
                             </div>
                         </Link>
 
-                        <Link to="/exemplos/previsao-tempo" className="group">
+                        <Link to="/previsao-tempo" className="group">
                             <div className="p-4 rounded-lg border bg-card hover:bg-accent transition-colors cursor-pointer h-full">
                                 <div className="flex items-center gap-3 mb-3">
                                     <div className="h-10 w-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
@@ -963,7 +963,7 @@ export function HomePage() {
                     </p>
                     <div className="flex flex-wrap gap-3 justify-center">
                         <Button asChild size="lg" className="gap-2">
-                            <Link to="/exemplos/to-do-list">
+                            <Link to="/to-do-list">
                                 <Code2 className="h-4 w-4" />
                                 Ver To-Do List
                             </Link>

@@ -61,7 +61,7 @@ export function PrevisaoTempoDetailPage() {
                 <p className="text-muted-foreground mb-4">
                     {error instanceof Error ? error.message : "Erro ao carregar previsão do tempo"}
                 </p>
-                <Link to="/exemplos/previsao-tempo">
+                <Link to="/previsao-tempo">
                     <Button>Voltar para Busca</Button>
                 </Link>
             </div>
@@ -73,7 +73,7 @@ export function PrevisaoTempoDetailPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link to="/exemplos/previsao-tempo">
+                    <Link to="/previsao-tempo">
                         <Button variant="ghost" size="icon">
                             <ArrowLeft className="h-5 w-5" />
                         </Button>
