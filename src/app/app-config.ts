@@ -29,7 +29,7 @@ export const appConfig: AppConfig = {
         },
         {
             name: "Temas",
-            url: "/themes",
+            url: "/temas",
             icon: Layers,
         },
         {

@@ -68,7 +68,7 @@ export function HomePage() {
                             </Link>
                         </Button>
                         <Button asChild variant="outline" size="lg" className="gap-2">
-                            <Link to="/themes">
+                            <Link to="/temas">
                                 <Layers className="h-4 w-4" />
                                 Ver Temas
                             </Link>
@@ -528,14 +528,14 @@ export function HomePage() {
                             <div className="flex items-start gap-2 text-sm">
                                 <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
                                 <div>
-                                    <strong>Via interface:</strong> Acesse <code className="text-xs bg-background px-1 rounded">/themes</code>
+                                    <strong>Via interface:</strong> Acesse <code className="text-xs bg-background px-1 rounded">/temas</code>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <Button asChild variant="outline" className="w-full">
-                        <Link to="/themes">
+                        <Link to="/temas">
                             <Palette className="h-4 w-4 mr-2" />
                             Configurar via interface
                         </Link>
@@ -975,7 +975,7 @@ export function HomePage() {
                             </Link>
                         </Button>
                         <Button asChild variant="outline" size="lg" className="gap-2">
-                            <Link to="/themes">
+                            <Link to="/temas">
                                 <Layers className="h-4 w-4" />
                                 Configurar Tema
                             </Link>

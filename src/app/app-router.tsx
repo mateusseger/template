@@ -3,7 +3,6 @@ import { createBrowserRouter, useRouteError } from "react-router-dom"
 import {
     authRoutes,
     errorRoutes,
-    themeRoutes,
     ProtectedRoute,
     AppLayout,
     ErrorFallback
@@ -16,6 +15,7 @@ import { formulariosRoutes } from "@/features/formularios/routes"
 import { toDoListRoutes } from "@/features/to-do-list/routes"
 import { designSystemRoutes } from "@/features/design-system/routes"
 import { appConfig } from "./app-config"
+import { temasRoutes } from "@/features/temas/routes"
 
 // Wrapper para erros de rota
 function RouteError() {
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
             ...toDoListRoutes,
             ...pokedexRoutes,
             ...previsaoTempoRoutes,
-            ...themeRoutes,
+            ...temasRoutes,
         ],
         errorElement: <RouteError />
     },
