@@ -54,7 +54,7 @@ export function HomePage() {
                         </Badge>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                        Bem-vindo{user?.name ? `, ${user.name.split(" ")[0]}` : ""}! 👋
+                        Bem-vindo{user?.profile.name ? `, ${user.profile.name.split(" ")[0]}` : ""}! 👋
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mb-6">
                         Este é o <strong>Template React</strong> — uma base profissional, escalável e moderna
