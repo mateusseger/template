@@ -146,7 +146,7 @@ export function HomePage() {
                     },
                 ].map((stat) => (
 
-                    <Card className="h-full">
+                    <Card className="h-full" key={stat.value}>
                         <CardContent className="p-6">
                             <div className="flex items-center gap-3">
                                 <div className={`h-10 w-10 rounded-lg flex items-center justify-center ${stat.bgColor}`}>

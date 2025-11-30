@@ -18,7 +18,7 @@ function App() {
             )}
         >
             <ThemeProvider>
-                <AuthProvider config={appConfig.auth} devMode>
+                <AuthProvider config={appConfig.auth}>
                     <QueryClientProvider client={queryClient}>
                         <RouterProvider router={router} />
                     </QueryClientProvider>

@@ -4,13 +4,11 @@ import type { AppConfig } from '@herval/react-core'
 export const appConfig: AppConfig = {
     auth: {
         authority: import.meta.env.VITE_AUTH_AUTHORITY,
-        client_id: import.meta.env.VITE_AUTH_CLIENT_ID,
-        redirect_uri: import.meta.env.VITE_AUTH_REDIRECT_URI,
-        post_logout_redirect_uri: import.meta.env.VITE_AUTH_POST_LOGOUT_REDIRECT_URI,
-        response_type: 'code',
+        clientId: import.meta.env.VITE_AUTH_CLIENT_ID,
+        redirectUri: import.meta.env.VITE_AUTH_REDIRECT_URI,
+        postLogoutRedirectUri: import.meta.env.VITE_AUTH_POST_LOGOUT_REDIRECT_URI,
         scope: 'openid profile email',
-        automaticSilentRenew: true,
-        loadUserInfo: true,
+        devMockRoles: import.meta.env.VITE_DEV_MOCK_ROLES ? import.meta.env.VITE_DEV_MOCK_ROLES.split(',') : ['user'],
     },
     project: {
         name: 'Template React',

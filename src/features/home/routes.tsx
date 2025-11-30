@@ -6,6 +6,6 @@ import { HomePage } from "./pages/home-page"
 export const homeRoutes: RouteObject[] = [
     {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage />
     },
 ]
