@@ -18,6 +18,7 @@ import {
 } from "@herval/react-core"
 
 import { Plus, Trash2, Check, Circle, CheckCircle2, ListTodo, Loader2, Filter } from "lucide-react"
+import { PageHeader } from "@/shared/components"
 import {
     useToDos,
     useCreateToDo,
@@ -79,7 +80,7 @@ export function ToDoListPage() {
     // Loading state
     if (isLoading) {
         return (
-            <div className="space-y-6">
+            <div className="space-y-8">
                 <Skeleton className="h-20 w-full" />
                 <div className="grid gap-4 md:grid-cols-3">
                     <Skeleton className="h-32 w-full" />
@@ -104,20 +105,12 @@ export function ToDoListPage() {
 
     return (
         <div className="space-y-6">
-            {/* Header */}
-            <div>
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <ListTodo className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                        <h1 className="text-3xl font-bold tracking-tight">To-Do List</h1>
-                        <p className="text-muted-foreground">
-                            Organize suas atividades de forma simples e eficiente
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <PageHeader
+                icon={ListTodo}
+                iconClassName="text-primary"
+                title="To-Do List"
+                description="Organize suas atividades de forma simples e eficiente"
+            />
 
             {/* Stats Cards */}
             <div className="grid gap-4 md:grid-cols-3">
@@ -320,7 +313,7 @@ export function ToDoListPage() {
                                                             size="icon"
                                                             onClick={() => handleDeleteToDo(toDo.id)}
                                                             disabled={deleteMutation.isPending}
-                                                            className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive"
+                                                            className="shrink-0 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive"
                                                         >
                                                             <Trash2 className="h-4 w-4" />
                                                         </Button>

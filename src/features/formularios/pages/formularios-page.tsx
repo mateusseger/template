@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CheckCircle2, FileText, User, Mail, Phone, Briefcase, Hash, FileCheck, Bell, Code } from "lucide-react"
+import { PageHeader } from "@/shared/components"
 
 import {
     Card,
@@ -119,53 +120,57 @@ export function FormulariosPage() {
 
     return (
         <div className="space-y-8">
-            {/* Header */}
-            <div>
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <FileText className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                        <h1 className="text-3xl font-bold tracking-tight">Formulários com Validação</h1>
-                        <p className="text-muted-foreground">
-                            Exemplos práticos usando React Hook Form + Zod para validação robusta e type-safe
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <PageHeader
+                icon={FileText}
+                iconClassName="text-violet-500"
+                title="Formulários com Validação"
+                description="Exemplos práticos usando React Hook Form + Zod para validação robusta e type-safe"
+            />
 
             {/* Stats Cards */}
             <div className="grid gap-4 md:grid-cols-3">
                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">React Hook Form</CardTitle>
-                        <FileText className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">useForm</div>
-                        <p className="text-xs text-muted-foreground">Performance otimizada</p>
+                    <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">React Hook Form</p>
+                                <p className="text-2xl font-bold mt-1">useForm</p>
+                                <p className="text-xs text-muted-foreground mt-1">Performance otimizada</p>
+                            </div>
+                            <div className="h-12 w-12 rounded-full bg-blue-500/10 flex items-center justify-center">
+                                <FileText className="h-6 w-6 text-blue-500" />
+                            </div>
+                        </div>
                     </CardContent>
                 </Card>
 
                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Zod Schema</CardTitle>
-                        <FileCheck className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">Type-safe</div>
-                        <p className="text-xs text-muted-foreground">Validação runtime + compiletime</p>
+                    <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">Zod Schema</p>
+                                <p className="text-2xl font-bold mt-1">Type-safe</p>
+                                <p className="text-xs text-muted-foreground mt-1">Validação runtime + compiletime</p>
+                            </div>
+                            <div className="h-12 w-12 rounded-full bg-green-500/10 flex items-center justify-center">
+                                <FileCheck className="h-6 w-6 text-green-500" />
+                            </div>
+                        </div>
                     </CardContent>
                 </Card>
 
                 <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">UX Fluida</CardTitle>
-                        <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">Feedback</div>
-                        <p className="text-xs text-muted-foreground">Validação em tempo real</p>
+                    <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-muted-foreground">UX Fluida</p>
+                                <p className="text-2xl font-bold mt-1">Feedback</p>
+                                <p className="text-xs text-muted-foreground mt-1">Validação em tempo real</p>
+                            </div>
+                            <div className="h-12 w-12 rounded-full bg-violet-500/10 flex items-center justify-center">
+                                <CheckCircle2 className="h-6 w-6 text-violet-500" />
+                            </div>
+                        </div>
                     </CardContent>
                 </Card>
             </div>

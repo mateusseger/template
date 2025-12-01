@@ -57,19 +57,25 @@ export function PrevisaoTempoDetailPage() {
     if (error || !weatherWithLocation) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[400px]">
+                <div className="w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mb-4">
+                    <CloudRain className="h-8 w-8 text-destructive" />
+                </div>
                 <h2 className="text-2xl font-bold mb-2">Erro ao carregar</h2>
-                <p className="text-muted-foreground mb-4">
-                    {error instanceof Error ? error.message : "Erro ao carregar previsão do tempo"}
+                <p className="text-muted-foreground mb-4 text-center max-w-md">
+                    {error instanceof Error ? error.message : "Não foi possível carregar a previsão do tempo para esta localização."}
                 </p>
                 <Link to="/previsao-tempo">
-                    <Button>Voltar para Busca</Button>
+                    <Button>
+                        <ArrowLeft className="h-4 w-4 mr-2" />
+                        Voltar para Busca
+                    </Button>
                 </Link>
             </div>
         )
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
@@ -96,16 +102,16 @@ export function PrevisaoTempoDetailPage() {
 
                 <div className="grid gap-6 md:grid-cols-2">
                     {/* Temperatura Atual */}
-                    <Card>
+                    <Card className="overflow-hidden">
                         <CardContent className="p-8">
                             <div className="text-center">
-                                <div className="text-6xl mb-4">
+                                <div className="text-7xl mb-4">
                                     {getWeatherEmoji(weatherWithLocation.current.weathercode)}
                                 </div>
-                                <div className="text-5xl font-bold mb-2">
+                                <div className="text-6xl font-bold mb-2">
                                     {Math.round(weatherWithLocation.current.temperature)}°C
                                 </div>
-                                <p className="text-muted-foreground">
+                                <p className="text-lg text-muted-foreground">
                                     {getWeatherDescription(weatherWithLocation.current.weathercode)}
                                 </p>
                             </div>
@@ -257,4 +263,3 @@ export function PrevisaoTempoDetailPage() {
         </div>
     )
 }
-
