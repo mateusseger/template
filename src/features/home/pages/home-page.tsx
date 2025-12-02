@@ -112,7 +112,7 @@ export function HomePage() {
                         <div className="p-4 rounded-lg border bg-card">
                             <h4 className="font-semibold mb-2 flex items-center gap-2">
                                 <Box className="h-4 w-4 text-primary" />
-                                React Template (Este projeto)
+                                @herval/react-template (Este projeto)
                             </h4>
                             <ul className="space-y-1 text-sm text-muted-foreground">
                                 <li>• Estrutura de pastas pronta</li>
