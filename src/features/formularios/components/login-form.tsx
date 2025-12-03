@@ -26,7 +26,7 @@ export function LoginForm() {
     const form = useLoginForm()
     const { isSubmitting } = form.formState
 
-    const onSubmit = async (data: LoginFormData) => {
+    const onSubmit = async (_data: LoginFormData) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000))
             toast.success("Login realizado com sucesso!", {
