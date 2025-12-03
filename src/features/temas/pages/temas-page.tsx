@@ -1,4 +1,4 @@
-import { Sun, Moon, Check, Palette, Code, Monitor, Smartphone, Sparkles } from "lucide-react"
+import { Sun, Moon, Check, Palette, Code, Monitor, Smartphone, Sparkles, Layers } from "lucide-react"
 import { motion } from "framer-motion"
 import {
     Badge,
@@ -41,7 +41,7 @@ export function TemasPage() {
     return (
         <div className="space-y-8">
             <PageHeader
-                icon={Palette}
+                icon={Layers}
                 iconClassName="text-primary"
                 title="Temas"
                 description="Personalize a aparência da aplicação"

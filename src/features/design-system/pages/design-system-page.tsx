@@ -137,7 +137,6 @@ import {
 } from "@herval/react-core"
 
 import {
-    Component,
     Search,
     Info,
     XCircle,
@@ -168,6 +167,7 @@ import {
     Rocket,
     Github,
     Zap,
+    Palette,
 } from "lucide-react"
 
 import { toast } from "sonner"
@@ -202,7 +202,7 @@ export function DesignSystemPage() {
         <TooltipProvider delayDuration={300}>
             <div className="space-y-6 md:space-y-8">
                 <PageHeader
-                    icon={Component}
+                    icon={Palette}
                     iconClassName="text-primary"
                     title="Design System"
                     description="Biblioteca completa de componentes do @herval/react-core"
