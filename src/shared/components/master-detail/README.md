@@ -15,9 +15,9 @@ O `MasterDetailLayout` implementa o padrão de interface onde uma lista de itens
 Os componentes estão em `@/shared/components/master-detail`.
 
 ```tsx
-import { 
-  MasterDetailLayout, 
-  type SecaoItem 
+import {
+  MasterDetailLayout,
+  type SecaoItem
 } from "@/shared/components"
 ```
 
