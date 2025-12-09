@@ -1,9 +1,8 @@
 import { useParams, Link } from "react-router-dom"
 import { Info, Zap, Award, Image as ImageIcon } from "lucide-react"
-import { Badge, Skeleton } from "@herval/react-core"
+import { Skeleton } from "@herval/react-core"
 import { ItemDetailLayout, type SecaoItem } from "@/shared/components"
 import { usePokemonDetail } from "../api"
-import { getTypeColor, translateType } from "../api/pokedex-api"
 
 const secoes: SecaoItem[] = [
     { id: "informacoes", label: "Informações", icon: Info },
@@ -12,7 +11,7 @@ const secoes: SecaoItem[] = [
     { id: "galeria", label: "Galeria", icon: ImageIcon },
 ]
 
-export function PokedexDetailLayout() {
+export function PokedexDetalheLayout() {
     const { id } = useParams<{ id: string }>()
     const { data: pokemon, isLoading, error } = usePokemonDetail(id)
 
@@ -39,32 +38,15 @@ export function PokedexDetailLayout() {
         )
     }
 
+    // Título com nome e número
+    const titulo = `${pokemon.name} #${pokemon.id.toString().padStart(3, '0')}`
+
     return (
         <ItemDetailLayout
             secoes={secoes}
             tituloVoltar="Pokédex"
             rotaVoltar="/pokedex"
-        >
-            <div className="mb-6">
-                <div className="flex items-center gap-3 mb-2">
-                    <h1 className="text-2xl sm:text-3xl font-bold capitalize">
-                        {pokemon.name}
-                    </h1>
-                    <span className="text-xl sm:text-2xl text-muted-foreground">
-                        #{pokemon.id.toString().padStart(3, '0')}
-                    </span>
-                </div>
-                <div className="flex gap-2">
-                    {pokemon.types.map((type) => (
-                        <Badge
-                            key={type.slot}
-                            className={`${getTypeColor(type.type.name)} text-white border-0`}
-                        >
-                            {translateType(type.type.name)}
-                        </Badge>
-                    ))}
-                </div>
-            </div>
-        </ItemDetailLayout>
+            tituloItem={titulo}
+        />
     )
 }

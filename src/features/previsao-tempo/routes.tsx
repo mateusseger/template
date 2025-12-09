@@ -1,7 +1,7 @@
 import { CloudSun, MapPin, Info, Calendar, Clock, CloudRain } from "lucide-react"
 import { Navigate, Outlet, type RouteObject } from "react-router-dom"
-import { PrevisaoTempoListPage } from "./pages/previsao-tempo-list-page"
-import { PrevisaoTempoDetailLayout } from "./pages/previsao-tempo-detail-layout"
+import { PrevisaoTempoListaPage } from "./pages/previsao-tempo-lista-page"
+import { PrevisaoTempoDetalheLayout } from "./pages/previsao-tempo-detalhe-layout"
 import {
     ClimaAtualSecao,
     PrevisaoSemanalSecao,
@@ -20,11 +20,10 @@ export const previsaoTempoRoutes: RouteObject[] = [
         children: [
             {
                 index: true,
-                element: <PrevisaoTempoListPage />,
+                element: <PrevisaoTempoListaPage />,
             },
             {
                 path: ":coords",
-                element: <PrevisaoTempoDetailLayout />,
                 handle: {
                     breadcrumbLabel: "Detalhes",
                     breadcrumbIcon: MapPin,
@@ -33,36 +32,42 @@ export const previsaoTempoRoutes: RouteObject[] = [
                 children: [
                     { index: true, element: <Navigate to="clima-atual" replace /> },
                     {
-                        path: "clima-atual",
-                        element: <ClimaAtualSecao />,
-                        handle: {
-                            breadcrumbLabel: "Clima Atual",
-                            breadcrumbIcon: Info,
-                        },
-                    },
-                    {
-                        path: "previsao-semanal",
-                        element: <PrevisaoSemanalSecao />,
-                        handle: {
-                            breadcrumbLabel: "Próximos 7 Dias",
-                            breadcrumbIcon: Calendar,
-                        },
-                    },
-                    {
-                        path: "previsao-horaria",
-                        element: <PrevisaoHorariaSecao />,
-                        handle: {
-                            breadcrumbLabel: "Próximas 24 Horas",
-                            breadcrumbIcon: Clock,
-                        },
-                    },
-                    {
-                        path: "precipitacao",
-                        element: <PrecipitacaoSecao />,
-                        handle: {
-                            breadcrumbLabel: "Precipitação",
-                            breadcrumbIcon: CloudRain,
-                        },
+                        // Layout route - wrapper para todas as seções
+                        element: <PrevisaoTempoDetalheLayout />,
+                        children: [
+                            {
+                                path: "clima-atual",
+                                element: <ClimaAtualSecao />,
+                                handle: {
+                                    breadcrumbLabel: "Clima Atual",
+                                    breadcrumbIcon: Info,
+                                },
+                            },
+                            {
+                                path: "previsao-semanal",
+                                element: <PrevisaoSemanalSecao />,
+                                handle: {
+                                    breadcrumbLabel: "Próximos 7 Dias",
+                                    breadcrumbIcon: Calendar,
+                                },
+                            },
+                            {
+                                path: "previsao-horario",
+                                element: <PrevisaoHorariaSecao />,
+                                handle: {
+                                    breadcrumbLabel: "Próximas 24 Horas",
+                                    breadcrumbIcon: Clock,
+                                },
+                            },
+                            {
+                                path: "precipitacao",
+                                element: <PrecipitacaoSecao />,
+                                handle: {
+                                    breadcrumbLabel: "Precipitação",
+                                    breadcrumbIcon: CloudRain,
+                                },
+                            },
+                        ],
                     },
                 ],
             },

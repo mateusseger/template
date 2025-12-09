@@ -9,11 +9,11 @@ import { formatHour } from "../api/previsao-tempo-api"
 const secoes: SecaoItem[] = [
     { id: "clima-atual", label: "Clima Atual", icon: Info },
     { id: "previsao-semanal", label: "Próximos 7 Dias", icon: Calendar },
-    { id: "previsao-horaria", label: "Próximas 24 Horas", icon: Clock },
+    { id: "previsao-horario", label: "Próximas 24 Horas", icon: Clock },
     { id: "precipitacao", label: "Precipitação", icon: CloudRain },
 ]
 
-export function PrevisaoTempoDetailLayout() {
+export function PrevisaoTempoDetalheLayout() {
     const { coords } = useParams<{ coords: string }>()
     const location = useLocation()
     const locationData = location.state?.location
@@ -29,9 +29,7 @@ export function PrevisaoTempoDetailLayout() {
 
     const weatherWithLocation = useMemo(() => {
         if (!weather) return null
-        if (locationData) {
-            return { ...weather, location: locationData }
-        }
+        if (locationData) return { ...weather, location: locationData }
         return weather
     }, [weather, locationData])
 
@@ -66,16 +64,9 @@ export function PrevisaoTempoDetailLayout() {
             secoes={secoes}
             tituloVoltar="Previsão do Tempo"
             rotaVoltar="/previsao-tempo"
-        >
-            <div className="mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold">
-                    {weatherWithLocation.location.name || "Localidade"}
-                </h1>
-                <p className="text-muted-foreground mt-1">
-                    {weatherWithLocation.location.country && `${weatherWithLocation.location.country} • `}
-                    Atualizado em {formatHour(weatherWithLocation.current.time)}
-                </p>
-            </div>
-        </ItemDetailLayout>
+            tituloItem={weatherWithLocation.location.name || "Localidade"}
+            subtituloItem={weatherWithLocation.location.country}
+            rodape={`Atualizado em ${formatHour(weatherWithLocation.current.time)}`}
+        />
     )
 }

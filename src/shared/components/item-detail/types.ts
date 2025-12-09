@@ -10,5 +10,7 @@ export interface ItemDetailLayoutProps {
     secoes: SecaoItem[]
     tituloVoltar: string
     rotaVoltar: string
-    children: React.ReactNode
+    tituloItem: string
+    rodape?: React.ReactNode
+    children?: React.ReactNode
 }
