@@ -1,4 +1,4 @@
-# PROMPT: Refatoração - Detail Sections para Master-Detail com Rotas
+# PROMPT: Refatoração - Detail Sections para Item-Detail com Rotas
 
 ## 📋 Contexto
 
@@ -11,7 +11,7 @@ O **react-core** atualmente fornece um sistema de "Detail Sections" (`DetailSect
 ## 🎯 Objetivos
 
 1. **Remover do react-core**: `DetailSectionsProvider`, `DetailSectionsSidebar`, `Section`, `DetailPageSkeleton`
-2. **Criar no react-template**: Sistema simples de Master-Detail usando rotas aninhadas
+2. **Criar no react-template**: Sistema simples de Item-Detail usando rotas aninhadas
 3. **Sidebar desktop / Sheet mobile**: Padrão consistente com `app-sidebar-submenu.tsx`
 4. **Mobile-first**: Classes Tailwind responsivas
 5. **Componentes reutilizáveis**: Compartilhados entre features (Pokédex, Previsão do Tempo)
@@ -104,10 +104,10 @@ Remover qualquer menção a Detail Sections, Section props, scroll spy.
 ```
 react-template/src/shared/components/
 ├── index.ts                              ✏️ ATUALIZAR
-├── master-detail/
+├── item-detail/
 │   ├── index.ts                          🆕 CRIAR
-│   ├── master-detail-layout.tsx          🆕 CRIAR
-│   ├── master-detail-nav.tsx             🆕 CRIAR
+│   ├── item-detail-layout.tsx            🆕 CRIAR
+│   ├── item-detail-nav.tsx               🆕 CRIAR
 │   └── types.ts                          🆕 CRIAR
 ```
 
@@ -122,7 +122,7 @@ export interface SecaoItem {
     icone: LucideIcon
 }
 
-export interface MasterDetailLayoutProps {
+export interface ItemDetailLayoutProps {
     secoes: SecaoItem[]
     tituloVoltar: string
     rotaVoltar: string
@@ -130,7 +130,7 @@ export interface MasterDetailLayoutProps {
 }
 ```
 
-### Layout Principal (`master-detail-layout.tsx`)
+### Layout Principal (`item-detail-layout.tsx`)
 
 ```tsx
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
@@ -145,15 +145,15 @@ import {
     SheetTitle,
 } from "@herval/react-core"
 import { cn } from "@/shared/utils/cn"
-import { MasterDetailNav } from "./master-detail-nav"
-import type { MasterDetailLayoutProps } from "./types"
+import { ItemDetailNav } from "./item-detail-nav"
+import type { ItemDetailLayoutProps } from "./types"
 
-export function MasterDetailLayout({
+export function ItemDetailLayout({
     secoes,
     tituloVoltar,
     rotaVoltar,
     children,
-}: MasterDetailLayoutProps) {
+}: ItemDetailLayoutProps) {
     const [sheetAberto, setSheetAberto] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
@@ -197,7 +197,7 @@ export function MasterDetailLayout({
                         <SheetTitle>Seções</SheetTitle>
                     </SheetHeader>
                     <div className="p-4">
-                        <MasterDetailNav
+                        <ItemDetailNav
                             secoes={secoes}
                             secaoAtiva={secaoAtiva}
                             onNavegar={handleNavegar}
@@ -232,7 +232,7 @@ export function MasterDetailLayout({
                                 <h3 className="text-xs font-semibold text-muted-foreground mb-3 px-2">
                                     Seções
                                 </h3>
-                                <MasterDetailNav
+                                <ItemDetailNav
                                     secoes={secoes}
                                     secaoAtiva={secaoAtiva}
                                     onNavegar={handleNavegar}
@@ -253,23 +253,23 @@ export function MasterDetailLayout({
 }
 ```
 
-### Navegação (`master-detail-nav.tsx`)
+### Navegação (`item-detail-nav.tsx`)
 
 ```tsx
 import { cn } from "@/shared/utils/cn"
 import type { SecaoItem } from "./types"
 
-interface MasterDetailNavProps {
+interface ItemDetailNavProps {
     secoes: SecaoItem[]
     secaoAtiva: string
     onNavegar: (id: string) => void
 }
 
-export function MasterDetailNav({
+export function ItemDetailNav({
     secoes,
     secaoAtiva,
     onNavegar,
-}: MasterDetailNavProps) {
+}: ItemDetailNavProps) {
     return (
         <nav className="space-y-1">
             {secoes.map((secao) => {
@@ -301,16 +301,16 @@ export function MasterDetailNav({
 ### Export (`index.ts`)
 
 ```tsx
-export { MasterDetailLayout } from "./master-detail-layout"
-export { MasterDetailNav } from "./master-detail-nav"
-export type { SecaoItem, MasterDetailLayoutProps } from "./types"
+export { ItemDetailLayout } from "./item-detail-layout"
+export { ItemDetailNav } from "./item-detail-nav"
+export type { SecaoItem, ItemDetailLayoutProps } from "./types"
 ```
 
 ### Atualizar `shared/components/index.ts`
 
 ```tsx
 export { PageHeader } from "./page-header"
-export * from "./master-detail"
+export * from "./item-detail"
 ```
 
 ---
@@ -382,7 +382,7 @@ export const pokedexRoutes: RouteObject[] = [
 import { useParams } from "react-router-dom"
 import { Info, Zap, Award, Image as ImageIcon } from "lucide-react"
 import { Badge, Skeleton } from "@herval/react-core"
-import { MasterDetailLayout, type SecaoItem } from "@/shared/components"
+import { ItemDetailLayout, type SecaoItem } from "@/shared/components"
 import { usePokemonDetail } from "../api"
 import { getTypeColor, translateType } from "../api/pokedex-api"
 
@@ -407,7 +407,7 @@ export function PokedexDetailLayout() {
     }
 
     return (
-        <MasterDetailLayout
+        <ItemDetailLayout
             secoes={secoes}
             tituloVoltar="Pokédex"
             rotaVoltar="/pokedex"
@@ -434,7 +434,7 @@ export function PokedexDetailLayout() {
                     </div>
                 </div>
             )}
-        </MasterDetailLayout>
+        </ItemDetailLayout>
     )
 }
 ```
@@ -597,7 +597,7 @@ import { useMemo } from "react"
 import { useParams, useLocation } from "react-router-dom"
 import { Info, Calendar, Clock, CloudRain } from "lucide-react"
 import { Skeleton } from "@herval/react-core"
-import { MasterDetailLayout, type SecaoItem } from "@/shared/components"
+import { ItemDetailLayout, type SecaoItem } from "@/shared/components"
 import { useWeatherDetail } from "../api"
 import { formatHour } from "../api/previsao-tempo-api"
 
@@ -640,7 +640,7 @@ export function PrevisaoTempoDetailLayout() {
     }
 
     return (
-        <MasterDetailLayout
+        <ItemDetailLayout
             secoes={secoes}
             tituloVoltar="Previsão do Tempo"
             rotaVoltar="/previsao-tempo"
@@ -656,7 +656,7 @@ export function PrevisaoTempoDetailLayout() {
                     </p>
                 </div>
             )}
-        </MasterDetailLayout>
+        </ItemDetailLayout>
     )
 }
 ```
@@ -676,10 +676,10 @@ export function PrevisaoTempoDetailLayout() {
 
 ### Fase 2: Componentes no React-Template
 
-- [ ] Criar `shared/components/master-detail/types.ts`
-- [ ] Criar `shared/components/master-detail/master-detail-nav.tsx`
-- [ ] Criar `shared/components/master-detail/master-detail-layout.tsx`
-- [ ] Criar `shared/components/master-detail/index.ts`
+- [ ] Criar `shared/components/item-detail/types.ts`
+- [ ] Criar `shared/components/item-detail/item-detail-nav.tsx`
+- [ ] Criar `shared/components/item-detail/item-detail-layout.tsx`
+- [ ] Criar `shared/components/item-detail/index.ts`
 - [ ] Atualizar `shared/components/index.ts`
 
 ### Fase 3: Migração Pokédex
@@ -712,7 +712,7 @@ export function PrevisaoTempoDetailLayout() {
 
 ### Fase 5: Documentação
 
-- [ ] Criar `shared/components/master-detail/README.md`
+- [ ] Criar `shared/components/item-detail/README.md`
 - [ ] Build final e testes
 
 ---

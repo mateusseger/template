@@ -1,0 +1,14 @@
+import type { LucideIcon } from "lucide-react"
+
+export interface SecaoItem {
+    id: string
+    label: string
+    icon: LucideIcon
+}
+
+export interface ItemDetailLayoutProps {
+    secoes: SecaoItem[]
+    tituloVoltar: string
+    rotaVoltar: string
+    children: React.ReactNode
+}
